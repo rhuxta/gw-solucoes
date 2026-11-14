@@ -220,7 +220,7 @@
       var b = R[this.room], x0 = b[0][0] / 100, y0 = b[0][1] / 100, x1 = b[1][0] / 100, y1 = b[2][1] / 100;
       s = Math.min(VW / ((x1 - x0) * VW), VH / ((y1 - y0) * SH)) * 0.96;
       tx = VW / 2 - (x0 + x1) / 2 * VW * s; ty = VH / 2 - (y0 + y1) / 2 * SH * s;
-    } else { s = base; tx = (VW - VW * s) / 2; ty = (VH - SH * s) / 2; }
+    } else { s = desk.matches || VH / SH < 1.2 ? base : Math.min(VW / (0.78 * VW), VH / SH); tx = VW / 2 - 0.5 * VW * s; ty = (VH - SH * s) / 2; }
     st.style.setProperty("--s", s.toFixed(4)); st.style.transform = "translate(" + tx.toFixed(1) + "px," + ty.toFixed(1) + "px) scale(" + s.toFixed(4) + ")";
   };
   Corte.prototype.set = function (room, state) {

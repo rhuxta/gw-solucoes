@@ -297,7 +297,7 @@ page('sobre.html', {
   desc: 'A GW Soluções planeia, instala e mantém climatização e ventilação em casas e escritórios da linha de Cascais.',
   page: 'sobre', hero: true,
   body: `
-<section class="band" style="min-height:min(140vw,92svh)" aria-labelledby="h1" data-video-wrap>
+<section class="band band-hero" aria-labelledby="h1" data-video-wrap>
   ${heroPicture('costa-45', 'costa-219', 'Água transparente sobre rochas, na costa de Cascais')}
   ${video('costa', {})}
   <div class="band-txt grid" style="padding-top:calc(var(--hdr) + 48px)"><div><h1 class="d-l" id="h1" style="color:#fff">De Cascais, para a linha.</h1><p>Conforto em casas com luz de mar, paredes grossas e janelas antigas.</p></div></div>
