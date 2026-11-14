@@ -209,6 +209,7 @@ ul, ol { padding: 0; list-style: none; }
 .res { margin-top: var(--s-8); background: var(--white); display: grid; grid-template-columns: 1fr; }
 .res-img { background: var(--grey-10); }
 .res-img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (max-width: 1023px) { .res-img img { aspect-ratio: 16 / 9; object-fit: contain; } }
 .res-body { padding: var(--s-5) var(--s-5) var(--s-6); }
 .res-body .h3 { margin-bottom: var(--s-3); }
 .res-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin: var(--s-6) 0 var(--s-4); }
@@ -234,7 +235,7 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
   .diag-cap { padding-inline: 0; }
   .res { grid-template-columns: 1fr; }
 }
-@media (min-width: 1440px) { .res { grid-template-columns: 220px 1fr; } .res-img img { height: 100%; } }
+@media (min-width: 1440px) { .res { grid-template-columns: 200px 1fr; } .res-img { display: grid; align-items: center; } .res-img img { height: auto; } }
 
 /* ============ proof ============ */
 .facts { display: grid; grid-template-columns: 1fr; }
@@ -505,7 +506,7 @@ body[data-page="loja"] .toast { bottom: calc(80px + env(safe-area-inset-bottom))
 @media (min-width: 1024px) { .ch-main { grid-column: 1 / 8; } .ch-aside { grid-column: 9 / 13; } }
 /* explode */
 .xpl { position: relative; }
-.xpl-view { position: relative; background: var(--grey-10); aspect-ratio: 4 / 5; overflow: hidden; }
+.xpl-view { position: relative; background: var(--grey-10); aspect-ratio: 4 / 3; overflow: hidden; }
 .xpl-view > img, .xpl-view model-viewer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .xpl-view > img.xpl-open { opacity: var(--x, 0); }
 .xpl-view model-viewer { --poster-color: transparent; background: var(--grey-10); }

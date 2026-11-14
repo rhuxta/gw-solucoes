@@ -266,7 +266,7 @@
         var ref = G.recs[P][Rm], prod = G.products.find(function (x) { return x.ref === ref; });
         var wasHidden = res.hidden; res.hidden = false;
         if (wasHidden && !reduce) { res.classList.remove("is-new"); raf(function () { res.classList.add("is-new"); }); }
-        $("#res-for").textContent = "Para " + G.roomNames[Rm].toLowerCase() + " · " + label(P).toLowerCase();
+        $("#res-for").textContent = "Para " + ({ sala: "a sala", quarto: "o quarto", escritorio: "o escritório", banho: "a casa de banho" })[Rm] + " · " + label(P).toLowerCase();
         $("#res-h").textContent = prod.name + " " + prod.ref;
         $("#res-text").textContent = G.answers[P][Rm];
         var im = $("#res-img"); im.src = "img/p-" + prod.ref.toLowerCase() + "-400.webp"; im.alt = prod.name;
@@ -419,15 +419,15 @@
       var at = { src: "3d/ui-25.glb", alt: "Modelo 3D da unidade de parede UI-25", "camera-controls": "", "touch-action": "pan-y", "interaction-prompt": "none", "shadow-intensity": "0.7", "shadow-softness": "1", exposure: "1.05", "environment-image": "neutral", "camera-orbit": "-66deg 72deg auto", "field-of-view": "24deg", "animation-name": "explode", ar: "", "ar-modes": "webxr scene-viewer quick-look", "ar-placement": "wall", "disable-zoom": "", poster: $(".xpl-closed", view).currentSrc || $(".xpl-closed", view).src, reveal: "auto", loading: "eager" };
       Object.keys(at).forEach(function (k) { mv.setAttribute(k, at[k]); });
       mv.addEventListener("load", function () {
-        mvReady = true; mv.pause(); setX(+range.value);
+        mv.pause(); try { var c = mv.getBoundingBoxCenter(), dm = mv.getDimensions(); mv.cameraTarget = c.x.toFixed(3) + "m " + (c.y + 0.03).toFixed(3) + "m " + (c.z + 0.34).toFixed(3) + "m"; mv.cameraOrbit = "-58deg 74deg " + (Math.max(dm.x, dm.z + 0.75) * (view.clientWidth < view.clientHeight ? 3.2 : 1.85)).toFixed(2) + "m"; mv.fieldOfView = "28deg"; mv.maxCameraOrbit = "auto auto 12m"; mv.maxFieldOfView = "40deg"; mv.minCameraOrbit = "auto auto " + (Math.max(dm.x, dm.z + 0.75) * 1.2).toFixed(2) + "m"; if (mv.jumpCameraToGoal) mv.jumpCameraToGoal(); } catch (e) {} mvReady = true; setX(+range.value);
         view.querySelectorAll("img").forEach(function (i) { i.style.visibility = "hidden"; });
         if (mv.canActivateAR) arBtn.hidden = false;
         if (cb) cb();
       });
       view.appendChild(mv);
-      var lb = $("[data-load-3d]", xpl); if (lb) { lb.innerHTML = lb.innerHTML.replace("Rodar em 3D", "Arrasta para rodar"); lb.disabled = true; }
+      var lb = $("[data-load-3d]", xpl); if (lb) { var hint = d.createElement("p"); hint.className = "small xpl-hint"; hint.textContent = "Arrasta o modelo para rodar."; lb.replaceWith(hint); }
     }
-    $("[data-load-3d]", xpl).addEventListener("click", function () { loadMV(); });
+    var lb0 = $("[data-load-3d]", xpl); if (lb0) lb0.addEventListener("click", function () { loadMV(); });
     if (arBtn) arBtn.addEventListener("click", function () { if (mv && mv.activateAR) mv.activateAR(); });
     $$("[data-goto-3d]").forEach(function (b) { b.addEventListener("click", function () { var sec = $("#pecas"); sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); loadMV(); }); });
     if ("IntersectionObserver" in w) {
