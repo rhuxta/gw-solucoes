@@ -41,8 +41,8 @@ page('index.html', {
       <h2 class="h2 split" id="eq-h">Peças pensadas para ficar à vista.</h2>
       <div class="rail-ctl" data-rail-ctl="eq"><button type="button" data-prev aria-label="Anterior">${I.left}</button><output aria-live="polite">1 / 4</output><button type="button" data-next aria-label="Seguinte">${I.right}</button></div>
     </div>
-    <div class="rail" id="eq" tabindex="0" aria-label="Equipamentos em destaque">${feat4.map(p => card(p, { sizes: '(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw', where: false })).join('')}</div>
-    <p style="margin-top:24px"><a class="btn-2" href="loja.html">Ver a loja toda ${I.arrow}</a></p>
+    <div class="rail" id="eq" tabindex="0" role="group" aria-label="Equipamentos em destaque">${feat4.map(p => card(p, { sizes: '(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw', where: false })).join('')}</div>
+    <p class="mt-24"><a class="btn-2" href="loja.html">Ver a loja toda ${I.arrow}</a></p>
   </div>
 </section>
 
@@ -64,17 +64,17 @@ page('index.html', {
   <div class="grid">
     <div class="mnt-txt full-m">
       <h2 class="h2 split" id="mnt-h">Depois da instalação, ficamos.</h2>
-      <p class="lede" style="margin-top:16px">Revisões, filtros e o histórico de cada equipamento, numa conta simples.</p>
-      <figure class="mnt-img rv" style="margin-top:32px">${pic('manutencao', { alt: 'Mãos a retirar o filtro de uma unidade de parede branca', sizes: '(min-width: 1024px) 36vw, 100vw' })}</figure>
-      <p style="margin-top:24px"><a class="btn-2" href="servicos.html#planos">Planos de manutenção ${I.arrow}</a></p>
+      <p class="lede mt-16">Revisões, filtros e o histórico de cada equipamento, numa conta simples.</p>
+      <figure class="mnt-img rv mt-32">${pic('manutencao', { alt: 'Mãos a retirar o filtro de uma unidade de parede branca', sizes: '(min-width: 1024px) 36vw, 100vw' })}</figure>
+      <p class="mt-24"><a class="btn-2" href="servicos.html#planos">Planos de manutenção ${I.arrow}</a></p>
     </div>
     <div class="mnt-ui full-m">
-      <div class="mock" aria-label="Exemplo da área de cliente">
+      <div class="mock" role="figure" aria-label="Área de cliente: pré-visualização">
         <div class="mock-h"><span>A minha casa · Cascais</span><span class="data">3 equipamentos</span></div>
         <div class="mock-row"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-25 · Sala</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge">Revisão a 12 mar</span></div>
         <div class="mock-row"><img src="img/p-ui-12-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-12 · Quarto</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge warn">Filtro a trocar</span></div>
         <div class="mock-row"><img src="img/p-vx-01-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>VX-01 · Casa de banho</b><span class="data">Instalada a 2 abr 2026</span></div><span class="badge">Em dia</span></div>
-        <p style="margin-top:20px"><a class="btn-2" href="conta.html">Abrir a conta ${I.arrow}</a></p>
+        <p class="mt-20"><a class="btn-2" href="conta.html">Abrir a conta ${I.arrow}</a></p>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@ page('index.html', {
 
 <section class="band" aria-labelledby="sobre-h">
   ${heroPicture('cascais-45', 'cascais-219', 'Rua de Cascais com casas brancas e céu limpo', false)}
-  <div class="band-txt grid"><div><h2 class="h2" id="sobre-h">De Cascais, para a linha.</h2><p>Somos uma equipa pequena, com técnicos próprios, a trabalhar em casas com luz de mar e paredes antigas.</p><p style="margin-top:16px"><a class="btn-2" href="sobre.html">Conhecer a GW ${I.arrow}</a></p></div></div>
+  <div class="band-txt grid"><div><h2 class="h2" id="sobre-h">De Cascais, para a linha.</h2><p>Somos uma equipa pequena, com técnicos próprios, a trabalhar em casas com luz de mar e paredes antigas.</p><p class="mt-16"><a class="btn-2" href="sobre.html">Conhecer a GW ${I.arrow}</a></p></div></div>
 </section>
 
 ${closing()}
@@ -104,7 +104,7 @@ page('solucoes.html', {
 <section class="sec" aria-labelledby="sol-h">
   <div class="wrap">
     <h2 class="h2 split" id="sol-h">Quatro problemas, quatro caminhos.</h2>
-    <div class="duo" style="margin-top:48px">
+    <div class="duo mt-48">
       <figure class="rv">${pic('sit-quente', { alt: 'Sol forte numa parede branca', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Calor.</b> Unidade de parede ou de tecto, com potência medida para a divisão.</figcaption></figure>
       <figure class="rv">${pic('sit-frio', { alt: 'Quarto com azulejo azul e luz fria', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Frio.</b> Bomba de calor silenciosa, pensada para a noite.</figcaption></figure>
       <figure class="rv">${pic('sit-parado', { alt: 'Sombra de janela numa parede, com cortina', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Ar parado.</b> Ventilação com caixa compacta, sem abrir janelas.</figcaption></figure>
@@ -127,7 +127,7 @@ const filters = (pfx) => `
 const cards = [];
 order.forEach((r, i) => {
   cards.push(card(P[r], { feat: i === 0, lazy: i > 2 }));
-  if (i === 5) cards.push(`<a class="tile" href="servicos.html" data-tile>${pic('oficio', { alt: '', sizes: '(min-width: 1024px) 48vw, 100vw' })}<p>Cada peça da loja pode vir com instalação, num dia.<span>Ver serviços</span></p></a>`);
+  if (i === 6) cards.push(`<a class="tile" href="servicos.html" data-tile>${pic('oficio', { alt: '', sizes: '(min-width: 1024px) 48vw, 100vw' })}<p>Cada peça da loja pode vir com instalação, num dia.<span>Ver serviços</span></p></a>`);
 });
 page('loja.html', {
   title: 'Loja — Climatização e ventilação · GW Soluções',
@@ -142,7 +142,7 @@ page('loja.html', {
 <div class="tabs" id="pesquisa"><div class="tabs-in" role="group" aria-label="Categoria">${D.cats.map(([k, v], i) => `<button type="button" class="tab" data-cat="${k}" aria-pressed="${i === 0}">${v}</button>`).join('')}</div></div>
 <div class="grid shop">
   <aside class="shop-side" aria-label="Filtros"><form data-filters="d">${filters('d')}</form></aside>
-  <div class="active-f" data-active aria-label="Filtros ativos"></div>
+  <div class="active-f" data-active role="group" aria-label="Filtros ativos"></div>
   <p class="sr" aria-live="polite" data-live></p>
   <div class="pgrid" data-grid>${cards.join('')}
     <div class="empty" data-empty hidden><p class="h3">Nenhuma peça com estes filtros.</p><p class="muted" style="margin:8px 0 16px">Tira um filtro, ou pede-nos um estudo à medida.</p><button type="button" class="btn-2" data-clear>Limpar filtros</button></div>
@@ -163,25 +163,25 @@ const also = r => ['FL-04', 'TH-02', 'VT-20', 'UE-50', 'VX-01'].filter(x => x !=
 for (const p of D.products) {
   const is25 = p.ref === 'UI-25';
   const gal = is25
-    ? [['p-ui-25-hi', 'Unidade de parede UI-25, vista a três quartos'], ['p-ui-25-front', 'UI-25 vista de frente'], ['hero-45', 'UI-25 instalada numa sala em Cascais'], ['p-ui-25-detail', 'Detalhe do LED e da aleta da UI-25']]
-    : [[pImg(p.ref), `${p.name} ${p.short}`], [M[p.insitu + '-45'] ? p.insitu + '-45' : p.insitu, `${p.name} em contexto`]];
+    ? [['p-ui-25-hi', 'Unidade de parede UI-25, vista a três quartos', 'p'], ['p-ui-25-front', 'UI-25 vista de frente', 'p sq'], ['p-ui-25-detail', 'Detalhe do LED e da aleta da UI-25', 'p sq'], ['sala-32', 'UI-25 instalada numa sala em Cascais', 'wide']]
+    : [[pImg(p.ref), `${p.name} ${p.short}`, 'p'], [M[p.insitu] ? p.insitu : p.insitu + '-45', `${p.name} em contexto`, 'wide']];
   const roomRec = p.rooms[0];
   const bodyP = `
 <div class="grid pp" data-ref="${p.ref}">
   <nav class="crumb pp-crumb full" aria-label="Caminho"><a href="loja.html">Loja</a><span aria-hidden="true">/</span><a href="loja.html?cat=${p.cat}">${D.cats.find(c => c[0] === p.cat)[1]}</a></nav>
+  <div class="pp-head"><h1 class="d-l pp-name">${p.name} ${p.short}</h1><p class="pp-price-m" aria-hidden="true">${eur(p.price)}</p></div>
   <div class="pp-media">
-    <div class="gal" id="gal" tabindex="0" aria-label="Imagens do produto">${gal.map((g, i) => `<figure>${pic(g[0], { alt: g[1], sizes: '(min-width: 1024px) 56vw, 100vw', prio: i === 0, lazy: i > 0, vt: i === 0 ? 'p-' + p.ref.toLowerCase() : '' })}</figure>`).join('')}</div>
+    <div class="gal" id="gal" tabindex="0" role="group" aria-label="Imagens do produto">${gal.map((g, i) => `<figure class="${g[2]}">${pic(g[0], { alt: g[1], sizes: '(min-width: 1024px) 56vw, 100vw', prio: i === 0, lazy: i > 0, vt: i === 0 ? 'p-' + p.ref.toLowerCase() : '' })}</figure>`).join('')}</div>
     <div class="gal-ind" aria-hidden="true">${gal.map((g, i) => `<i${i === 0 ? ' class="is-on"' : ''}></i>`).join('')}</div>
     ${is25 ? `<button type="button" class="btn-3d" data-goto-3d>${I.cube} Ver em 3D</button>` : ''}
   </div>
   <div class="pp-side">
-    <h1 class="d-l pp-name split">${p.name} ${p.short}</h1>
     <div class="pp-buy" id="buy">
       <p class="short">${p.desc}</p>
       <p class="price-l">${eur(p.price)}</p>
       <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : 'IVA incluído · instalação à parte'}</p>
-      <p style="margin-top:12px"><span class="badge${p.price == null ? ' q' : ''}">${p.stock}</span></p>
-      <fieldset style="border:0;padding:0;margin:20px 0 0"><legend class="lbl">${p.fn === 'climatizacao' ? 'Potência' : 'Versão'}</legend>
+      <p class="mt-12"><span class="badge${p.price == null ? ' q' : ''}">${p.stock}</span></p>
+      <fieldset class="fs-0 mt-20"><legend class="lbl">${p.fn === 'climatizacao' ? 'Potência' : 'Versão'}</legend>
         <div class="seg">${p.power.map((v, i) => `<label><input type="radio" name="pw" value="${esc(v)}"${i === 0 ? ' checked' : ''}><span>${v}</span></label>`).join('')}</div>
       </fieldset>
       <div class="pp-cta">${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}">Pedir estudo ${I.arrow}</a>` : `<button type="button" class="btn" data-add="${p.ref}">Adicionar ao cesto</button><a class="btn-2" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>`}</div>
@@ -190,17 +190,24 @@ for (const p of D.products) {
   </div>
 </div>
 <nav class="chap" aria-label="Capítulos"><div class="chap-in">
-  <a href="#visao">Visão geral</a><a href="#casa">Na casa</a>${is25 ? '<a href="#pecas">Peça a peça</a>' : ''}<a href="#spec">Especificações</a><a href="#inst">Instalação</a>
+  <a href="#visao" class="is-on" aria-current="true">Visão geral</a><a href="#casa">Na casa</a>${is25 ? '<a href="#pecas">Peça a peça</a>' : ''}<a href="#spec">Especificações</a><a href="#inst">Instalação</a>
 </div></nav>
+<div class="pp-flow">
+<div class="pp-rail"><aside class="pp-stick" aria-label="Comprar ${p.name} ${p.short}">
+  <p class="pp-stick-n">${p.name} ${p.short}</p>
+  <p class="price-l">${eur(p.price)}</p>
+  <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : 'IVA incluído · instalação à parte'}</p>
+  <div class="pp-cta">${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}">Pedir estudo ${I.arrow}</a>` : `<button type="button" class="btn" data-add="${p.ref}">Adicionar ao cesto</button><a class="btn-2" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>`}</div>
+</aside></div>
 <section class="sec ch" id="visao" aria-labelledby="visao-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="visao-h">${p.lede}</h2>
   <dl class="keys">${p.key.map(k => `<div><dd><span class="num">${k[0]}${k[1] ? `<small>${k[1]}</small>` : ''}</span></dd><dt>${k[2]}</dt></div>`).join('')}</dl>
-  <figure class="ov-img rv">${pic(is25 ? 'sala-32' : (M[p.insitu] ? p.insitu : p.insitu + '-45'), { alt: `${p.name} numa casa`, sizes: '(min-width: 1024px) 56vw, 100vw' })}</figure>
+  <figure class="ov-img rv">${pic(is25 ? 'insitu-parede' : (M[p.insitu] ? p.insitu : p.insitu + '-45'), { alt: `${p.name} numa casa`, sizes: '(min-width: 1024px) 56vw, 100vw' })}</figure>
 </div></div></section>
 <section class="sec on-cut ch" id="casa" aria-labelledby="casa-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="casa-h">Fica na ${D.roomNames[roomRec].toLowerCase()}${p.cat === 'parede' ? ', a 2,1 m do chão' : ''}.</h2>
   <div class="corte-box" data-corte-fixed="${roomRec}">${corte({ id: 'corte-p', sizes: '(min-width: 1024px) 56vw, 200vw' })}</div>
-  <p class="diag-cap" style="padding-inline:0"><span>${D.roomNames[roomRec]} · com a solução instalada</span><span aria-hidden="true">Esc. 1:50</span></p>
+  <p class="diag-cap pi-0"><span>${D.roomNames[roomRec]} · com a solução instalada</span><span aria-hidden="true">Esc. 1:50</span></p>
 </div></div></section>
 ${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><div class="grid"><div class="ch-main xpl-pin">
   <h2 class="h2 ch-h split" id="pecas-h">Peça a peça.</h2>
@@ -208,22 +215,22 @@ ${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><
     <div class="xpl-view">
       <img class="xpl-closed" src="img/p-ui-25-closed-1200.webp" srcset="img/p-ui-25-closed-800.webp 800w, img/p-ui-25-closed-1200.webp 1200w, img/p-ui-25-closed-1600.webp 1600w" sizes="(min-width: 1024px) 58vw, 100vw" alt="UI-25 fechada" width="1600" height="1000" loading="lazy">
       <img class="xpl-open" src="img/p-ui-25-explode-1200.webp" srcset="img/p-ui-25-explode-800.webp 800w, img/p-ui-25-explode-1200.webp 1200w, img/p-ui-25-explode-1600.webp 1600w" sizes="(min-width: 1024px) 58vw, 100vw" alt="UI-25 em vista explodida: chassis, ventilador, permutador, filtro e frente" width="1600" height="1000" loading="lazy">
-      <span class="call" style="left:66%;top:22%"><span>Frente</span></span>
-      <span class="call" style="left:52%;top:30%"><span>Filtro</span></span>
-      <span class="call" style="left:40%;top:62%"><span>Permutador</span></span>
-      <span class="call" style="left:20%;top:72%"><span>Ventilador</span></span>
+      <span class="call" style="left:76%;top:30%"><span>Frente</span></span>
+      <span class="call" style="left:57%;top:36%"><span>Filtro</span></span>
+      <span class="call" style="left:44%;top:28%"><span>Permutador</span></span>
+      <span class="call" style="left:20%;top:50%"><span>Ventilador</span></span>
     </div>
     <div class="xpl-ctl"><span>Fechada</span><input type="range" min="0" max="100" value="0" step="1" data-xpl-range aria-label="Abrir a peça" aria-valuetext="Fechada"><span>Aberta</span></div>
     <div class="xpl-bt"><button type="button" class="btn-2" data-load-3d>${I.cube} Rodar em 3D</button><button type="button" class="btn-2" data-ar hidden>${I.ar} Ver na minha parede</button></div>
   </div>
-</div><div class="ch-aside">
   <ol class="calls-list"><li><div><b>Frente</b><span>Painel liso, abre para cima para trocar o filtro.</span></div></li><li><div><b>Filtro</b><span>Lavável, com troca anual registada na conta.</span></div></li><li><div><b>Permutador</b><span>Alumínio e cobre; é aqui que o calor muda de sítio.</span></div></li><li><div><b>Ventilador</b><span>Tangencial, de baixa rotação: 19 dB(A) no modo noite.</span></div></li></ol>
 </div></div></section>` : ''}
 <section class="sec on-2 ch" id="spec" aria-labelledby="spec-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="spec-h">Especificações</h2>
   <table class="spec" data-spec><caption class="sr">Especificações técnicas de ${p.name} ${p.short}</caption><tbody>${p.specs.map((s, i) => `<tr${i >= 6 ? ' class="more"' : ''}><th scope="row">${s[0]}</th><td>${s[1]}</td></tr>`).join('')}</tbody></table>
-  ${p.specs.length > 6 ? `<p style="margin-top:16px"><button type="button" class="btn-2" data-spec-all aria-expanded="false">Ver todas (${p.specs.length})</button></p>` : ''}
+  ${p.specs.length > 6 ? `<p class="mt-16"><button type="button" class="btn-2" data-spec-all aria-expanded="false">Ver todas (${p.specs.length})</button></p>` : ''}
 </div></div></section>
+</div>
 <section class="sec ch" id="inst" aria-labelledby="inst-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="inst-h">Instalação, num dia.</h2>
   <figure class="inst-img rv">${pic('oficio', { alt: 'Técnico a nivelar o suporte da unidade', sizes: '(min-width: 1024px) 56vw, 100vw' })}</figure>
@@ -231,7 +238,7 @@ ${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><
   <a class="btn" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>
 </div></div></section>
 <section class="sec on-2" aria-labelledby="also-h"><div class="wrap">
-  <h2 class="h2 split" id="also-h" style="margin-bottom:48px">Também vais precisar.</h2>
+  <h2 class="h2 split mb-48" id="also-h">Também vais precisar.</h2>
   <div class="rail">${also(p.ref).map(x => card(x, { sizes: '(min-width: 1024px) 24vw, 78vw', where: false })).join('')}</div>
 </div></section>
 <div class="buybar" id="buybar" aria-hidden="true"><div class="bb-t"><b>${p.name} ${p.short}</b><span>${eur(p.price)}</span></div>${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}" tabindex="-1">Pedir estudo</a>` : `<button type="button" class="btn" data-add="${p.ref}" tabindex="-1">Adicionar</button>`}</div>
@@ -265,23 +272,23 @@ page('servicos.html', {
   page: 'servicos',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid">
-  <div class="full" style="grid-column:1/-1"><h1 class="d-l split" id="h1">Instalamos num dia. Ficamos para sempre.</h1><p class="lede">Da visita à revisão anual, com a mesma equipa.</p></div>
+  <div class="full span-all"><h1 class="d-l split" id="h1">Instalamos num dia. Ficamos para sempre.</h1><p class="lede">Da visita à revisão anual, com a mesma equipa.</p></div>
 </div></section>
-<figure class="media-hero rv" style="margin:0">${heroPicture('oficio-45', 'oficio', 'Mãos de técnico a nivelar um suporte numa parede branca', false)}</figure>
+<figure class="media-hero rv m-0">${heroPicture('oficio-45', 'oficio', 'Mãos de técnico a nivelar um suporte numa parede branca', false)}</figure>
 <section class="sec" aria-labelledby="proc-h"><div class="grid">
   <div class="full"><h2 class="h2 split" id="proc-h">O que acontece, por ordem.</h2></div>
-  <div class="full facts" style="margin-top:48px">
+  <div class="full facts mt-48">
     <div class="fact up"><b>Visita</b><span>Medimos a divisão, vemos as paredes e o quadro elétrico. Grátis com orçamento aceite.</span></div>
     <div class="fact up"><b>Instalação</b><span>Chão protegido, furação limpa, calha pintada da cor da parede.</span></div>
     <div class="fact up"><b>Entrega</b><span>Explicamos o comando, registamos tudo na tua conta e marcamos a primeira revisão.</span></div>
   </div>
 </div></section>
 <section class="sec on-2" id="planos" aria-labelledby="plans-h"><div class="wrap">
-  <h2 class="h2 split" id="plans-h" style="margin-bottom:48px">Planos de manutenção.</h2>
+  <h2 class="h2 split mb-48" id="plans-h">Planos de manutenção.</h2>
   <div class="plans">${plans.map(([n, pr, li], i) => `<article class="plan up"><h3 class="h3">${n}</h3><p class="price">${eur(pr)}<span class="small"> / ano</span></p><ul>${li.map(x => `<li>${x}</li>`).join('')}</ul>${i === 1 ? `<a class="btn" href="orcamento.html?plano=${n.toLowerCase()}">Escolher ${n} ${I.arrow}</a>` : `<a class="btn-2" href="orcamento.html?plano=${n.toLowerCase().replace(' ', '-')}">Escolher ${n} ${I.arrow}</a>`}</article>`).join('')}</div>
 </div></section>
 <section class="sec" aria-labelledby="faq-h"><div class="grid">
-  <div class="full" style="max-width:860px"><h2 class="h2 split" id="faq-h" style="margin-bottom:32px">Perguntas frequentes</h2>
+  <div class="full" style="max-width:860px"><h2 class="h2 split mb-32" id="faq-h">Perguntas frequentes</h2>
   <div class="faq">${faqs.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div>
 </div></section>
 <section class="band" aria-labelledby="mnt2-h">
@@ -295,16 +302,18 @@ ${closing('Marca a primeira visita.', 'Pedir orçamento')}
 page('sobre.html', {
   title: 'Sobre — Uma equipa de Cascais · GW Soluções',
   desc: 'A GW Soluções planeia, instala e mantém climatização e ventilação em casas e escritórios da linha de Cascais.',
-  page: 'sobre', hero: true,
+  page: 'sobre', preloadImg: preloadHero('costa-45', 'costa-219'),
   body: `
-<section class="band band-hero" aria-labelledby="h1" data-video-wrap>
-  ${heroPicture('costa-45', 'costa-219', 'Água transparente sobre rochas, na costa de Cascais')}
-  ${video('costa', {})}
-  <div class="band-txt grid" style="padding-top:calc(var(--hdr) + 48px)"><div><h1 class="d-l" id="h1" style="color:#fff">De Cascais, para a linha.</h1><p>Conforto em casas com luz de mar, paredes grossas e janelas antigas.</p></div></div>
+<section class="hero-l" aria-labelledby="h1">
+  <div class="grid hero-l-t"><h1 class="d-l" id="h1">De Cascais, para a linha.</h1><p class="lede">Conforto em casas com luz de mar, paredes grossas e janelas antigas.</p></div>
+  <div class="hero-l-m" data-video-wrap>
+    ${heroPicture('costa-45', 'costa-219', 'Água transparente sobre rochas, na costa de Cascais')}
+    ${video('costa', {})}
+  </div>
 </section>
 <section class="sec" aria-labelledby="hist-h"><div class="grid">
   <div class="full"><h2 class="h2 split" id="hist-h">Começámos por resolver o calor de uma sala virada a poente.</h2></div>
-  <div class="full body" style="margin-top:32px">
+  <div class="full body mt-32">
     <p>A GW Soluções nasceu em Cascais em 2014, com dois técnicos e uma carrinha. Hoje somos onze, sempre com equipas próprias e sem subempreitadas.</p>
     <p>Trabalhamos devagar onde é preciso: medir a divisão, escolher a parede certa, esconder o tubo. E depressa onde conta: a visita em 48 horas e a instalação num dia.</p>
     <p>Gostamos de casas antigas. Sabemos onde passam as vigas, como se fura uma parede de pedra sem a estragar e porque é que a sala virada a sul precisa de outra potência.</p>
@@ -316,7 +325,7 @@ page('sobre.html', {
   <div class="fact up"><b>1 800 casas</b><span>Com equipamento instalado e acompanhado por nós.</span></div>
 </div></section>
 <section class="sec on-2" aria-labelledby="ofi-h"><div class="wrap">
-  <h2 class="h2 split" id="ofi-h" style="margin-bottom:48px">O ofício.</h2>
+  <h2 class="h2 split mb-48" id="ofi-h">O ofício.</h2>
   <div class="duo">
     <figure class="rv">${pic('oficio', { alt: 'Técnico a nivelar um suporte com laser', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption>Nível laser e chão protegido, em todas as obras.</figcaption></figure>
     <figure class="rv">${pic('insitu-exterior', { alt: 'Unidade exterior numa fachada branca com céu azul', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption>Unidades exteriores integradas na fachada.</figcaption></figure>
@@ -324,7 +333,7 @@ page('sobre.html', {
 </div></section>
 <section class="sec" aria-labelledby="loc-h"><div class="grid">
   <div class="full ct-form"><h2 class="h2 split" id="loc-h">Onde estamos.</h2><p class="lede" style="margin:16px 0 24px">${c.address}. Atendimento ${c.hours.toLowerCase()}.</p><a class="btn-2" href="${c.maps}" rel="noopener" target="_blank">Abrir no mapa ${I.arrow}</a></div>
-  <figure class="full ct-side rv" style="margin-top:32px">${pic('cascais-45', { alt: 'Rua de Cascais com casas brancas', sizes: '(min-width: 1024px) 34vw, 100vw' })}</figure>
+  <figure class="full ct-side rv mt-32">${pic('cascais-45', { alt: 'Rua de Cascais com casas brancas', sizes: '(min-width: 1024px) 34vw, 100vw' })}</figure>
 </div></section>
 ${closing('Vamos conhecer a tua casa.', 'Pedir visita')}
 `});
@@ -336,7 +345,7 @@ page('contacto.html', {
   page: 'contacto',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l split" id="h1">Fala connosco.</h1><p class="lede">Respondemos no mesmo dia útil.</p></div></div></section>
-<section class="sec" style="padding-top:0"><div class="grid">
+<section class="sec pt-0"><div class="grid">
   <div class="full ct-form">
     <form class="form" data-demo-form novalidate>
       <div class="fld"><label for="f-nome">Nome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
@@ -348,7 +357,7 @@ page('contacto.html', {
     </form>
     <div class="ok-box" data-demo-ok hidden tabindex="-1"><p class="h3">Mensagem recebida.</p><p class="muted">Respondemos por email no mesmo dia útil.</p></div>
   </div>
-  <div class="full ct-side" style="margin-top:64px">
+  <div class="full ct-side mt-64">
     <figure class="rv">${pic('cascais-45', { alt: 'Rua de Cascais', sizes: '(min-width: 1024px) 34vw, 100vw' })}</figure>
     <dl>
       <div><dt>Telefone</dt><dd><a href="${c.telHref}">${c.tel}</a></dd></div>
@@ -383,7 +392,7 @@ page('orcamento.html', {
       <section class="wp" data-step="4" aria-labelledby="w4" hidden><h1 id="w4" tabindex="-1">Confirma o pedido.</h1>
         <dl class="rev" id="w-rev"></dl>
         <div class="rev-prod" id="w-prod"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><span class="small">Sugestão</span><br><b id="w-prod-n">Unidade de parede UI-25</b></div></div></section>
-      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede" style="margin-top:12px">Referência <span class="data" id="w-ref">GW-000000</span>. Ligamos-te no mesmo dia útil para marcar a visita.</p><p style="margin-top:24px"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
+      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede mt-12">Referência <span class="data" id="w-ref">GW-000000</span>. Ligamos-te no mesmo dia útil para marcar a visita.</p><p class="mt-24"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
     </form>
     <div class="wiz-bar" id="wiz-bar"><button type="button" class="btn btn-back" data-prev aria-label="Voltar" hidden>${I.left}</button><button type="button" class="btn" data-next>Continuar ${I.arrow}</button></div>
   </div>
@@ -397,12 +406,12 @@ page('cesto.html', {
   page: 'cesto',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Cesto</h1></div></div></section>
-<section class="sec" style="padding-top:0"><div class="grid">
+<section class="sec pt-0"><div class="grid">
   <div class="full cart-main"><div class="cart-items" id="cart-list" aria-live="polite"></div></div>
   <div class="full cart-side" id="cart-side">
     <div class="sum"><div><span>Subtotal</span><span class="data" id="c-sub">0 €</span></div><div><span>Entrega</span><span class="data">Grátis</span></div><div class="tot"><span>Total</span><span id="c-tot">0 €</span></div>
-    <button type="button" class="btn btn-wide" style="margin-top:20px" data-checkout>Finalizar compra ${I.arrow}</button>
-    <p class="small" style="margin-top:12px" id="co-note" aria-live="polite"></p></div>
+    <button type="button" class="btn btn-wide mt-20" data-checkout>Finalizar compra ${I.arrow}</button>
+    <p class="small mt-12" id="co-note" aria-live="polite"></p></div>
   </div>
   <div class="full" id="cart-empty" hidden><div class="empty-cart">${pic('p-ui-25', { alt: '', sizes: '360px' })}<div><p class="h2">O cesto está vazio.</p><p class="lede" style="margin:12px 0 24px">Começa pela peça que mais instalamos.</p><a class="btn" href="loja.html">Ir à loja ${I.arrow}</a></div></div></div>
 </div></section>
@@ -415,11 +424,11 @@ page('conta.html', {
   page: 'conta',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Olá, Inês.</h1><p class="lede">A tua casa em Cascais, num só sítio.</p></div></div></section>
-<section class="sec" style="padding-top:0"><div class="grid">
+<section class="sec pt-0"><div class="grid">
   <div class="full acc-main">
     <div class="acc-tabs" role="tablist" aria-label="Conta"><button type="button" role="tab" aria-selected="true" aria-controls="t-eq" id="tb-eq">Equipamentos</button><button type="button" role="tab" aria-selected="false" aria-controls="t-rev" id="tb-rev" tabindex="-1">Revisões</button><button type="button" role="tab" aria-selected="false" aria-controls="t-enc" id="tb-enc" tabindex="-1">Encomendas</button></div>
     <div role="tabpanel" id="t-eq" aria-labelledby="tb-eq">
-      <div class="mock" style="margin:0;padding:0">
+      <div class="mock fs-0">
         <div class="mock-row"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-25 · Sala</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge">Revisão a 12 mar</span></div>
         <div class="mock-row"><img src="img/p-ui-12-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-12 · Quarto</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge warn">Filtro a trocar</span></div>
         <div class="mock-row"><img src="img/p-vx-01-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>VX-01 · Casa de banho</b><span class="data">Instalada a 2 abr 2026</span></div><span class="badge">Em dia</span></div>
@@ -428,8 +437,8 @@ page('conta.html', {
     <div role="tabpanel" id="t-rev" aria-labelledby="tb-rev" hidden><table class="spec"><caption class="sr">Revisões</caption><tbody><tr><th scope="row">12 mar 2027</th><td>Revisão anual · UI-25, UI-12</td></tr><tr><th scope="row">2 abr 2027</th><td>Revisão anual · VX-01</td></tr><tr><th scope="row">14 set 2026</th><td>Troca de filtro · UI-12</td></tr></tbody></table></div>
     <div role="tabpanel" id="t-enc" aria-labelledby="tb-enc" hidden><table class="spec"><caption class="sr">Encomendas</caption><tbody><tr><th scope="row">GW-204118</th><td>FL-04 × 2 · 48 €</td></tr><tr><th scope="row">GW-198402</th><td>Instalação UI-25 + UE-50</td></tr></tbody></table></div>
   </div>
-  <div class="full acc-side" style="margin-top:48px">
-    <div class="sum" style="margin-top:0"><p class="h3">Próxima revisão</p><p class="num" style="margin:12px 0 4px">12.03</p><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide" style="margin-top:20px" data-demo-note="Pedido de nova data registado. Confirmamos por email.">Mudar a data</button><p class="small" style="margin-top:12px" aria-live="polite" data-note-out></p></div>
+  <div class="full acc-side mt-48">
+    <div class="sum mt-0"><p class="h3">Próxima revisão</p><p class="num" style="margin:12px 0 4px">12.03</p><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide mt-20" data-demo-note="Pedido de nova data registado. Confirmamos por email.">Mudar a data</button><p class="small mt-12" aria-live="polite" data-note-out></p></div>
   </div>
 </div></section>
 `});
@@ -442,9 +451,9 @@ page('404.html', {
   extraHead: '<base href="/gw-solucoes/">\n',
   body: `
 <section class="nf"><div class="grid">
-  <div class="full"><h1 class="d-l split">Esta divisão não existe.</h1><p class="lede" style="margin-top:16px">O endereço pode ter mudado. Voltamos ao princípio?</p>
+  <div class="full"><h1 class="d-l split">Esta divisão não existe.</h1><p class="lede mt-16">O endereço pode ter mudado. Voltamos ao princípio?</p>
   <div class="row"><a class="btn" href="index.html">Página inicial ${I.arrow}</a><a class="btn-2" href="loja.html">Ver a loja ${I.arrow}</a></div></div>
-  <div class="full" style="margin-top:48px"><div class="corte">${corte({ id: 'corte-404', dark: true, sizes: '100vw', cotas: false })}</div></div>
+  <div class="full mt-48"><div class="corte">${corte({ id: 'corte-404', dark: true, sizes: '100vw', cotas: false })}</div></div>
 </div></section>
 `});
 finish();
