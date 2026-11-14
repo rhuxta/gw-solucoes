@@ -215,10 +215,10 @@ ${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><
     <div class="xpl-view">
       <img class="xpl-closed" src="img/p-ui-25-closed-1200.webp" srcset="img/p-ui-25-closed-800.webp 800w, img/p-ui-25-closed-1200.webp 1200w, img/p-ui-25-closed-1600.webp 1600w" sizes="(min-width: 1024px) 58vw, 100vw" alt="UI-25 fechada" width="1600" height="1000" loading="lazy">
       <img class="xpl-open" src="img/p-ui-25-explode-1200.webp" srcset="img/p-ui-25-explode-800.webp 800w, img/p-ui-25-explode-1200.webp 1200w, img/p-ui-25-explode-1600.webp 1600w" sizes="(min-width: 1024px) 58vw, 100vw" alt="UI-25 em vista explodida: chassis, ventilador, permutador, filtro e frente" width="1600" height="1000" loading="lazy">
-      <span class="call" style="left:76%;top:30%"><span>Frente</span></span>
-      <span class="call" style="left:57%;top:36%"><span>Filtro</span></span>
-      <span class="call" style="left:44%;top:28%"><span>Permutador</span></span>
-      <span class="call" style="left:20%;top:50%"><span>Ventilador</span></span>
+      <span class="call" style="left:72%;top:24%"><span data-n="1">Frente</span></span>
+      <span class="call" style="left:57%;top:31%"><span data-n="2">Filtro</span></span>
+      <span class="call" style="left:41%;top:21%"><span data-n="3">Permutador</span></span>
+      <span class="call" style="left:17%;top:47%"><span data-n="4">Ventilador</span></span>
     </div>
     <div class="xpl-ctl"><span>Fechada</span><input type="range" min="0" max="100" value="0" step="1" data-xpl-range aria-label="Abrir a peça" aria-valuetext="Fechada"><span>Aberta</span></div>
     <div class="xpl-bt"><button type="button" class="btn-2" data-load-3d>${I.cube} Rodar em 3D</button><button type="button" class="btn-2" data-ar hidden>${I.ar} Ver na minha parede</button></div>
