@@ -1,0 +1,42 @@
+/* HEX lidos do centro de cada bloco da paleta enviada (imagem 1367×382). */
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+
+  --blue-100: #001141;
+  --blue-90: #001D6C;
+  --blue-80: #002D9C;
+  --blue-70: #0043CE;
+  --blue-60: #0F62FE;
+  --blue-50: #4589FF;
+  --blue-40: #78A9FF;
+  --blue-30: #A6C8FF;
+  --blue-20: #D0E2FF;
+  --blue-10: #EDF5FF;
+
+  --grey-100: #161616;
+  --grey-90: #262626;
+  --grey-80: #393939;
+  --grey-70: #525252;
+  --grey-60: #6F6F6F;
+  --grey-50: #8D8D8D;
+  --grey-40: #A8A8A8;
+  --grey-30: #C6C6C6;
+  --grey-20: #E0E0E0;
+  --grey-10: #F4F4F4;
+
+  --red: #DA1E28;      /* quente */
+  --orange: #FF832B;   /* aviso / corrente */
+  --yellow: #FDDC69;   /* atenção / humidade */
+  --green: #24A148;    /* ok */
+
+  --ink: var(--grey-100);
+  --muted: var(--grey-70);
+  --bg: var(--grey-10);
+  --paper: var(--white);
+  --line: var(--grey-20);
+  --line-strong: var(--grey-30);
+  --accent: var(--blue-60);
+  --accent-ink: var(--white);
+  --canvas: var(--blue-100);
+}

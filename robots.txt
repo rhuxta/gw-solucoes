@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Atualiza o Sitemap quando o repositório tiver nome.
+# Sitemap: https://rhuxta.github.io/<repo>/sitemap.xml
