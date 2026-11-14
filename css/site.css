@@ -321,9 +321,10 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
 /* ============ photo band with scrim ============ */
 .band { position: relative; overflow: hidden; color: var(--white); min-height: min(125vw, 86svh); display: flex; align-items: flex-end; }
 .band > picture, .band > picture img, .band > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(22 22 22 / .62), rgb(22 22 22 / .18) 55%, transparent 75%); }
+.band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(22 22 22 / .8) 0%, rgb(22 22 22 / .62) 40%, rgb(22 22 22 / .2) 72%, transparent 92%); }
 .band-txt { position: relative; z-index: 1; width: 100%; padding-bottom: var(--s-7); }
-.band-txt .h2 { color: var(--white); }
+.band-txt .h2 { color: var(--white); text-shadow: 0 1px 24px rgb(22 22 22 / .35); }
+.band-txt h1, .band-txt p { text-shadow: 0 1px 24px rgb(22 22 22 / .35); }
 .band-txt p { font-size: var(--fs-body-l); line-height: 1.45; max-width: 40ch; margin-top: var(--s-3); color: var(--white); }
 .band-txt a { color: var(--white); }
 @media (min-width: 1024px) { .band { min-height: 0; aspect-ratio: 21 / 9; } .band-txt > * { grid-column: 1 / 7; } }
@@ -382,7 +383,7 @@ body[data-page="loja"] main { padding-bottom: 96px; }
 .pgrid .card.is-feat .card-name { font-size: var(--fs-h3); }
 .pgrid .tile { grid-column: 1 / -1; position: relative; color: var(--white); min-height: 360px; display: flex; align-items: flex-end; overflow: hidden; text-decoration: none; }
 .pgrid .tile picture, .pgrid .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.pgrid .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(22 22 22 / .62), transparent 60%); }
+.pgrid .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(22 22 22 / .8) 0%, rgb(22 22 22 / .62) 40%, rgb(22 22 22 / .2) 72%, transparent 92%); }
 .pgrid .tile p { position: relative; z-index: 1; padding: var(--s-5); font-size: var(--fs-h3); line-height: 1.2; max-width: 22ch; }
 .pgrid .tile p span { display: block; font-size: var(--fs-small); margin-top: var(--s-2); text-decoration: underline; text-underline-offset: 3px; }
 .empty { grid-column: 1 / -1; padding: var(--s-8) 0; text-align: left; }
@@ -542,7 +543,7 @@ body[data-page="loja"] .toast { bottom: calc(80px + env(safe-area-inset-bottom))
 .sits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--g); margin-top: var(--s-6); }
 .sit { position: relative; display: block; width: 100%; padding: 0; border: 0; background: var(--grey-10); text-align: left; cursor: pointer; overflow: hidden; aspect-ratio: 4 / 5; color: var(--white); }
 .sit img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--d-5) var(--ease-out); }
-.sit::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(22 22 22 / .66), transparent 60%); }
+.sit::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(22 22 22 / .85) 0%, rgb(22 22 22 / .7) 35%, rgb(22 22 22 / .15) 70%, transparent 90%); }
 .sit span { position: absolute; left: var(--s-4); right: var(--s-4); bottom: var(--s-4); z-index: 1; font-size: 1.125rem; line-height: 1.25; font-weight: 500; }
 .sit i { position: absolute; top: var(--s-3); left: var(--s-3); z-index: 1; width: 12px; height: 12px; background: var(--sw); outline: 1px solid var(--white); }
 .sit[aria-checked="true"] { outline: 3px solid var(--grey-100); outline-offset: 3px; }
