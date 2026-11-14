@@ -1,52 +1,35 @@
-# GW Soluções — primeira versão (demonstração)
+# GW Soluções — v2 «Maquete viva» (demonstração)
 
-Sítio estático, manuscrito em HTML, CSS e JavaScript, na direcção **Corte habitado** (B / b2). Sem passo de compilação. Os conteúdos e os preços são fictícios.
+Site estático em HTML, CSS e JavaScript sem framework. As páginas são **geradas** a partir de modelos em `tools/`. Conteúdos, preços e contactos são fictícios.
 
-**Não publicar a partir daqui sem autorização explícita.** O repositório local está pronto para GitHub Pages a partir da raiz de `main`, mas o envio para o GitHub fica com outra pessoa.
+**Não publicar a partir daqui sem autorização explícita do Rhuston.** O ramo `v2` é local. Não fazer push nem merge para `main` sem esse OK.
 
-## Como abrir em local
-
-Os caminhos são relativos, pensados para um projecto Pages em `https://rhuxta.github.io/<repo>/`. Serve a pasta **pai** e abre o sítio num subdirectório, para simular esse endereço:
+## Gerar
 
 ```bash
-mkdir -p /tmp/gh-sim
-ln -sfn /caminho/para/gw-site /tmp/gh-sim/gw-solucoes
+node tools/pages.mjs      # escreve *.html, css/gw.css, js/data.js e sitemap.xml
+```
+
+- `tools/data.mjs`: empresa, produtos, problemas, respostas e números do diagnóstico.
+- `tools/build.mjs`: cabeçalho, rodapé, cartões, maquete, diagnóstico e vídeo.
+- `tools/pages.mjs`: uma secção por página.
+- `tools/rooms.json`: posições das divisões e camadas de luz na maquete (gerado a partir do render).
+- CSS de origem: `css/tokens.css` + `css/fonts.css` + `css/site.css`, juntos e minificados em **`css/gw.css`** (o único CSS ligado).
+- `js/site.js`: comportamento de todas as páginas. `js/data.js` é gerado.
+- Imagens: `img/*-{largura}.avif|webp` e `img/manifest.json`, feitos com `gw-v2-assets/scripts/images.mjs` (sharp). Camadas de luz em `img/luz/`.
+
+## Ver em local (simula o subcaminho do GitHub Pages)
+
+```bash
+mkdir -p /tmp/gh-sim && ln -sfn "$PWD" /tmp/gh-sim/gw-solucoes
 python3 -m http.server 8080 --bind 127.0.0.1 --directory /tmp/gh-sim
 # http://127.0.0.1:8080/gw-solucoes/
 ```
 
-Ficheiros na raiz: `index.html`, as restantes páginas, `404.html`, `.nojekyll`.
+Os caminhos são relativos. O `404.html` usa `<base href="/gw-solucoes/">`. Canonical e Open Graph são absolutos para `https://rhuxta.github.io/gw-solucoes/`.
 
-## O que esta versão faz — e o que não faz
+## O que é simulado
 
-- Navegação completa entre home, soluções, loja, ficha, orçamento, serviços, sobre, contacto, conta, cesto e 404.
-- Diagnóstico guiado, corte da casa com câmara ao scroll, filtros da loja, vista explodida em SVG, orçamento em passos.
-- Cesto e conta existem para testar a navegação. **A compra e o login não funcionam.** Não há checkout, pagamento nem campos de palavra-passe. O cesto usa `localStorage` só para o contador e a lista de demonstração.
-- O pedido de orçamento termina numa confirmação simulada: **nada é enviado**.
-- Contactos de exemplo: `geral@gw-solucoes.example`, `+351 210 000 000`, Travessa do Farol 8, 2750-321 Cascais, NIF 000 000 000. Não os trates como reais.
+O cesto vive em `localStorage`. «Finalizar compra», o orçamento, o contacto e a conta não enviam nada. Não há login, pagamento nem campos de palavra-passe. O único aviso visível está no rodapé.
 
-## Canonical, Open Graph e sitemap
-
-Cada página tem `canonical` e `og:url` **relativos** (`index.html`, `loja.html`, …). Quando o repositório tiver nome, actualiza:
-
-- `sitemap.xml` (substitui o marcador `REPO`)
-- o comentário em `robots.txt`
-- se quiseres URLs absolutas no `canonical` e no Open Graph
-
-A imagem Open Graph está em `img/og-1200.png`.
-
-## Textos
-
-Todos os textos, organizados por página, estão em [`COPY.md`](COPY.md), para revisão.
-
-## Tipografia e identidade
-
-IBM Plex Sans (400, 500, 600) e IBM Plex Mono (400, 500), servidas em local, subconjunto latino, `font-display: swap`. Tokens em `css/tokens.css`. Logotipo tipográfico provisório.
-
-## Acessibilidade e movimento
-
-Ligações de salto, landmarks, foco visível, alvos de 44 px, `prefers-reduced-motion` (câmara estática, sem transições de página, revelações desligadas). Animações só com `transform` e `opacity`, com a excepção do menu móvel (`max-height`) e da altura do palco móvel ao compactar.
-
-## Licença dos tipos
-
-IBM Plex é SIL Open Font License 1.1 (IBM). Os ficheiros em `fonts/` são um subconjunto das fontes oficiais.
+Origem e licenças dos assets: [`ASSETS.md`](ASSETS.md).

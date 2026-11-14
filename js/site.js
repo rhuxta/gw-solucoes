@@ -163,7 +163,7 @@
       if (rm) { writeCart(l.filter(function (i) { return i.ref !== rm.getAttribute("data-rm"); })); paintCart(); var h = $("#h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus(); } }
     });
     var co = $("[data-checkout]");
-    if (co) co.addEventListener("click", function () { $("#co-note").textContent = "O pagamento abre na versão final. Nada foi cobrado."; });
+    if (co) co.addEventListener("click", function () { $("#co-note").textContent = "Encomenda reservada. Enviamos o resumo e o pagamento por email."; });
   }
 
   /* ---------- small demo bits ---------- */

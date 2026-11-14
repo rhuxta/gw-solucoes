@@ -207,7 +207,7 @@ function diagnosis({ withPhotos = false, h = 'Qual é o teu problema?', sub = 'E
         </dl>
         <div class="cmp"><span>Agora</span><input type="range" min="0" max="1" step="1" value="0" id="cmp" aria-label="Comparar agora com a solução" aria-valuetext="Agora"><span>Com a solução</span></div>
         <div class="row"><a class="btn" id="res-quote" href="orcamento.html">Pedir orçamento ${I.arrow}</a><a class="btn-2" id="res-prod" href="produto.html">Ver a peça ${I.arrow}</a></div>
-        <p class="small" style="margin-top:16px">Valores ilustrativos para uma divisão de 20 m².</p>
+        <p class="small" style="margin-top:16px">Valores indicativos para uma divisão de 20 m².</p>
       </div>
     </section>
   </div>

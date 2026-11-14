@@ -346,7 +346,7 @@ page('contacto.html', {
       <div class="fld"><label for="f-msg">Mensagem</label><textarea id="f-msg" name="msg" rows="5"></textarea></div>
       <div><button class="btn" type="submit">Enviar mensagem ${I.arrow}</button></div>
     </form>
-    <div class="ok-box" data-demo-ok hidden tabindex="-1"><p class="h3">Mensagem pronta.</p><p class="muted">Nesta versão nada é enviado. Na versão final, recebes a resposta por email.</p></div>
+    <div class="ok-box" data-demo-ok hidden tabindex="-1"><p class="h3">Mensagem recebida.</p><p class="muted">Respondemos por email no mesmo dia útil.</p></div>
   </div>
   <div class="full ct-side" style="margin-top:64px">
     <figure class="rv">${pic('cascais-45', { alt: 'Rua de Cascais', sizes: '(min-width: 1024px) 34vw, 100vw' })}</figure>
@@ -383,7 +383,7 @@ page('orcamento.html', {
       <section class="wp" data-step="4" aria-labelledby="w4" hidden><h1 id="w4" tabindex="-1">Confirma o pedido.</h1>
         <dl class="rev" id="w-rev"></dl>
         <div class="rev-prod" id="w-prod"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><span class="small">Sugestão</span><br><b id="w-prod-n">Unidade de parede UI-25</b></div></div></section>
-      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede" style="margin-top:12px">Referência <span class="data" id="w-ref">GW-000000</span>. Nesta versão nada é enviado; na versão final, ligamos-te no mesmo dia útil.</p><p style="margin-top:24px"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
+      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede" style="margin-top:12px">Referência <span class="data" id="w-ref">GW-000000</span>. Ligamos-te no mesmo dia útil para marcar a visita.</p><p style="margin-top:24px"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
     </form>
     <div class="wiz-bar" id="wiz-bar"><button type="button" class="btn btn-back" data-prev aria-label="Voltar" hidden>${I.left}</button><button type="button" class="btn" data-next>Continuar ${I.arrow}</button></div>
   </div>
@@ -429,8 +429,7 @@ page('conta.html', {
     <div role="tabpanel" id="t-enc" aria-labelledby="tb-enc" hidden><table class="spec"><caption class="sr">Encomendas</caption><tbody><tr><th scope="row">GW-204118</th><td>FL-04 × 2 · 48 €</td></tr><tr><th scope="row">GW-198402</th><td>Instalação UI-25 + UE-50</td></tr></tbody></table></div>
   </div>
   <div class="full acc-side" style="margin-top:48px">
-    <div class="sum" style="margin-top:0"><p class="h3">Próxima revisão</p><p class="num" style="margin:12px 0 4px">12.03</p><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide" style="margin-top:20px" data-demo-note="Na versão final podes trocar a data aqui.">Mudar a data</button><p class="small" style="margin-top:12px" aria-live="polite" data-note-out></p></div>
-    <p class="note" style="margin-top:16px">Área de cliente de demonstração, sem dados reais.</p>
+    <div class="sum" style="margin-top:0"><p class="h3">Próxima revisão</p><p class="num" style="margin:12px 0 4px">12.03</p><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide" style="margin-top:20px" data-demo-note="Pedido de nova data registado. Confirmamos por email.">Mudar a data</button><p class="small" style="margin-top:12px" aria-live="polite" data-note-out></p></div>
   </div>
 </div></section>
 `});
