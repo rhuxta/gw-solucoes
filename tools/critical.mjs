@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const { default: Beasties } = await import(createRequire('/workspace/ultron/tools/node_modules/').resolve('beasties'));
-const b = new Beasties({ path: ROOT, publicPath: '', preload: 'swap', pruneSource: false, mergeStylesheets: true, reduceInlineStyles: false, fonts: false, keyframes: 'critical', compress: true, logLevel: 'warn' });
+const b = new Beasties({ path: ROOT, publicPath: '', preload: 'media', pruneSource: false, mergeStylesheets: true, reduceInlineStyles: false, fonts: false, keyframes: 'critical', compress: true, logLevel: 'warn' });
 let tot = 0;
 for (const f of fs.readdirSync(ROOT).filter(f => f.endsWith('.html'))) {
   let html = fs.readFileSync(`${ROOT}/${f}`, 'utf8');
