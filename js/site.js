@@ -20,7 +20,7 @@
   /* ---------- header: solid + hide on scroll ---------- */
   var hdr = $("#hdr");
   var fixedHdr = d.body.getAttribute("data-hdr") === "fixed";
-  var lastY = w.scrollY, ticking = false, menuOpen = false;
+  var lastY = 0, ticking = false, menuOpen = false;
   function onScroll() {
     var y = w.scrollY;
     if (hdr) {
@@ -194,7 +194,7 @@
     var go = function (dir) { var wd = items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap || 0); rail.scrollBy({ left: dir * wd, behavior: reduce ? "auto" : "smooth" }); };
     prev.addEventListener("click", function () { go(-1); }); next.addEventListener("click", function () { go(1); });
     var t; rail.addEventListener("scroll", function () { if (!t) t = raf(function () { t = 0; paint(); }); }, { passive: true });
-    paint(); w.addEventListener("resize", paint, { passive: true });
+    raf(paint); w.addEventListener("resize", paint, { passive: true });
   });
 
   /* ---------- "como trabalhamos" progress ---------- */
@@ -249,7 +249,7 @@
   /* ---------- diagnosis ---------- */
   var diag = $("#diag");
   if (diag && G.answers) {
-    var C = new Corte($("#corte", diag)); C.zoom = true; C.cam();
+    var C = new Corte($("#corte", diag)); C.zoom = true; raf(function () { C.cam(); });
     var P = null, Rm = null, cmp = $("#cmp", diag), res = $("#res", diag);
     var cap = $("#diag-cap"), live = $("#diag-live");
     var probBtns = $$("[data-problem]", diag), roomBtns = $$("[data-room]", $("#rooms", diag));
@@ -296,7 +296,7 @@
     var C2 = new Corte(box.querySelector(".corte-view")); C2.zoom = true;
     var room = box.getAttribute("data-corte-fixed");
     if ("IntersectionObserver" in w) { var io2 = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { C2.set(room, "ok"); io2.disconnect(); } }, { rootMargin: "200px" }); io2.observe(box); } else C2.set(room, "ok");
-    C2.cam();
+    raf(function () { C2.cam(); });
   });
 
   /* ---------- shop ---------- */
@@ -449,7 +449,7 @@
   if (wiz && G.problems) {
     var steps = $$(".wp", wiz), prog = $$(".wiz-prog i", wiz), cnt = $("#wiz-count"), nextB = $("[data-next]", wiz), prevB = $("[data-prev]", wiz), barW = $("#wiz-bar");
     var S = { problema: qp.get("problema"), divisao: qp.get("divisao"), quando: null, ref: qp.get("ref"), plano: qp.get("plano") }, cur = 0;
-    var CW = $("#corte-w") ? new Corte($("#corte-w")) : null; if (CW) CW.cam();
+    var CW = $("#corte-w") ? new Corte($("#corte-w")) : null; if (CW) raf(function () { CW.cam(); });
     if (S.plano) S.problema = "outro";
     function selPaint() {
       $$("[data-w]", wiz).forEach(function (b) { b.setAttribute("aria-checked", String(S[b.getAttribute("data-w")] === b.getAttribute("data-v"))); });
@@ -497,5 +497,5 @@
 
   /* ---------- 404: lights off, one by one on hover ---------- */
   var nf = $("#corte-404");
-  if (nf) { var Cn = new Corte(nf); Cn.cam(); }
+  if (nf) { var Cn = new Corte(nf); raf(function () { Cn.cam(); }); }
 })();

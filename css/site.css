@@ -679,3 +679,4 @@ body[data-page="orcamento"] main { padding-bottom: 104px; }
 .c-cota { transition: opacity var(--d-3) var(--ease-std); }
 .c-led { scale: calc(1 / var(--s, 1)); }
 .shop-meta [data-count] { white-space: nowrap; }
+.js [data-page="cesto"] main { min-height: 100svh; }
