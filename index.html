@@ -1,361 +1,241 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GW Soluções — O ar certo, em cada divisão.</title>
-  <meta name="description" content="Climatização em Cascais: percebemos o problema, propomos o equipamento, instalamos e ficamos para a manutenção. Versão de demonstração.">
-  <link rel="canonical" href="https://rhuxta.github.io/gw-solucoes/">
-  <meta property="og:title" content="GW Soluções — O ar certo, em cada divisão.">
-  <meta property="og:description" content="Climatização em Cascais: percebemos o problema, propomos o equipamento, instalamos e ficamos para a manutenção. Versão de demonstração.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://rhuxta.github.io/gw-solucoes/">
-  <meta property="og:image" content="https://rhuxta.github.io/gw-solucoes/img/og-1200.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/site.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HVACBusiness","name":"GW Soluções","address":{"@type":"PostalAddress","streetAddress":"Travessa do Farol 8","addressLocality":"Cascais","postalCode":"2750-321","addressCountry":"PT"},"telephone":"+351210000000","email":"geral@gw-solucoes.example","description":"Versão de demonstração. Conteúdos e preços fictícios."}</script>
-  <script defer src="js/data.js"></script>
-  <script defer src="js/site.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GW Soluções — O ar certo, em cada divisão.</title>
+<meta name="description" content="Climatização e ventilação na linha de Cascais. Começamos pelo que sentes em casa, propomos a peça certa, instalamos num dia e ficamos para a manutenção.">
+<link rel="canonical" href="https://rhuxta.github.io/gw-solucoes/">
+<meta property="og:title" content="GW Soluções — O ar certo, em cada divisão.">
+<meta property="og:description" content="Climatização e ventilação na linha de Cascais. Começamos pelo que sentes em casa, propomos a peça certa, instalamos num dia e ficamos para a manutenção.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://rhuxta.github.io/gw-solucoes/">
+<meta property="og:image" content="https://rhuxta.github.io/gw-solucoes/img/og-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif" media="(max-width: 767px)" imagesrcset="img/hero-45-480.avif 480w, img/hero-45-720.avif 720w, img/hero-45-870.avif 870w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" media="(min-width: 768px)" imagesrcset="img/hero-219-1024.avif 1024w, img/hero-219-1440.avif 1440w, img/hero-219-1920.avif 1920w" imagesizes="100vw" fetchpriority="high">
+<link rel="stylesheet" href="css/gw.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HVACBusiness","name":"GW Soluções","url":"https://rhuxta.github.io/gw-solucoes/","image":"https://rhuxta.github.io/gw-solucoes/img/og-1200.jpg","address":{"@type":"PostalAddress","streetAddress":"Travessa do Farol 8","addressLocality":"Cascais","postalCode":"2750-321","addressCountry":"PT"},"telephone":"+351210000000","areaServed":["Cascais","Oeiras","Sintra"]}</script>
+<script defer src="js/data.js"></script>
+<script defer src="js/site.js"></script>
 </head>
-<body class="has-stage">
-  <a class="skip" href="#main">Saltar para o conteúdo</a>
-  <header class="top">
-    <a class="brand" href="index.html">gw<small>Soluções</small></a>
-    <nav class="desk-nav" aria-label="Principal">
-      <a href="solucoes.html">Soluções</a>
-      <a href="loja.html">Loja</a>
-      <a href="servicos.html">Serviços</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
-    <span class="grow"></span>
-    <a class="ico" href="cesto.html" title="Cesto">Cesto <span class="cart-n" aria-live="polite"></span></a>
-    <a class="ico" href="conta.html" title="Conta">Conta</a>
-    <a class="btn btn-fill desk-cta" href="orcamento.html">Pedir orçamento</a>
-    <button type="button" class="ico menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
-  </header>
-  <nav class="menu" id="menu" aria-label="Menu">
-    <a href="solucoes.html">Soluções</a>
-    <a href="loja.html">Loja</a>
-    <a href="servicos.html">Serviços</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="cesto.html">Cesto</a>
-    <a href="conta.html">Conta</a>
-    <a class="menu-cta" href="orcamento.html">Pedir orçamento</a>
-  </nav>
-
-  <div class="layout">
-    <aside class="stage">
-      <div class="stage-inner">
-        <div class="cam-frame"><svg class="cut" viewBox="0 0 880 640" role="img" aria-labelledby="cut-title">
-  <title id="cut-title">Corte da casa: sala, quarto, escritório e casa de banho, com equipamento nas paredes e cotas de exemplo</title>
-  <g class="cam">
-    <line class="ground" x1="20" y1="584" x2="860" y2="584"/>
-    <g class="rooms">
-      <rect class="room" data-room="sala" x="80" y="360" width="420" height="200"/>
-      <rect class="room" data-room="quarto" x="80" y="200" width="420" height="160"/>
-      <rect class="room" data-room="escritorio" x="500" y="200" width="300" height="160"/>
-      <rect class="room" data-room="banho" x="500" y="360" width="300" height="200"/>
-    </g>
-    <!-- materiais: soalho e azulejo -->
-    <g class="mat" aria-hidden="true">
-      <g id="soalho-sala"><line x1="88" y1="372" x2="492" y2="372"/>
-<line x1="88" y1="382" x2="492" y2="382"/>
-<line x1="88" y1="392" x2="492" y2="392"/>
-<line x1="88" y1="402" x2="492" y2="402"/>
-<line x1="88" y1="412" x2="492" y2="412"/>
-<line x1="88" y1="422" x2="492" y2="422"/>
-<line x1="88" y1="432" x2="492" y2="432"/>
-<line x1="88" y1="442" x2="492" y2="442"/>
-<line x1="88" y1="452" x2="492" y2="452"/>
-<line x1="88" y1="462" x2="492" y2="462"/>
-<line x1="88" y1="472" x2="492" y2="472"/>
-<line x1="88" y1="482" x2="492" y2="482"/>
-<line x1="88" y1="492" x2="492" y2="492"/>
-<line x1="88" y1="502" x2="492" y2="502"/>
-<line x1="88" y1="512" x2="492" y2="512"/>
-<line x1="88" y1="522" x2="492" y2="522"/>
-<line x1="88" y1="532" x2="492" y2="532"/>
-<line x1="88" y1="542" x2="492" y2="542"/>
-<line x1="88" y1="552" x2="492" y2="552"/></g>
-      <g id="soalho-quarto"><line x1="88" y1="210" x2="492" y2="210"/>
-<line x1="88" y1="220" x2="492" y2="220"/>
-<line x1="88" y1="230" x2="492" y2="230"/>
-<line x1="88" y1="240" x2="492" y2="240"/>
-<line x1="88" y1="250" x2="492" y2="250"/>
-<line x1="88" y1="260" x2="492" y2="260"/>
-<line x1="88" y1="270" x2="492" y2="270"/>
-<line x1="88" y1="280" x2="492" y2="280"/>
-<line x1="88" y1="290" x2="492" y2="290"/>
-<line x1="88" y1="300" x2="492" y2="300"/>
-<line x1="88" y1="310" x2="492" y2="310"/>
-<line x1="88" y1="320" x2="492" y2="320"/>
-<line x1="88" y1="330" x2="492" y2="330"/>
-<line x1="88" y1="340" x2="492" y2="340"/>
-<line x1="88" y1="350" x2="492" y2="350"/></g>
-      <g id="azulejo"><line x1="508" y1="368" x2="508" y2="552"/>
-<line x1="526" y1="368" x2="526" y2="552"/>
-<line x1="544" y1="368" x2="544" y2="552"/>
-<line x1="562" y1="368" x2="562" y2="552"/>
-<line x1="580" y1="368" x2="580" y2="552"/>
-<line x1="598" y1="368" x2="598" y2="552"/>
-<line x1="616" y1="368" x2="616" y2="552"/>
-<line x1="634" y1="368" x2="634" y2="552"/>
-<line x1="652" y1="368" x2="652" y2="552"/>
-<line x1="670" y1="368" x2="670" y2="552"/>
-<line x1="688" y1="368" x2="688" y2="552"/>
-<line x1="706" y1="368" x2="706" y2="552"/>
-<line x1="724" y1="368" x2="724" y2="552"/>
-<line x1="742" y1="368" x2="742" y2="552"/>
-<line x1="760" y1="368" x2="760" y2="552"/>
-<line x1="778" y1="368" x2="778" y2="552"/>
-<line x1="508" y1="368" x2="792" y2="368"/>
-<line x1="508" y1="386" x2="792" y2="386"/>
-<line x1="508" y1="404" x2="792" y2="404"/>
-<line x1="508" y1="422" x2="792" y2="422"/>
-<line x1="508" y1="440" x2="792" y2="440"/>
-<line x1="508" y1="458" x2="792" y2="458"/>
-<line x1="508" y1="476" x2="792" y2="476"/>
-<line x1="508" y1="494" x2="792" y2="494"/>
-<line x1="508" y1="512" x2="792" y2="512"/>
-<line x1="508" y1="530" x2="792" y2="530"/>
-<line x1="508" y1="548" x2="792" y2="548"/></g>
-    </g>
-    <g class="structure">
-      <path d="M80 200 L440 40 L800 200"/>
-      <path d="M80 200 H800 V560 H80 Z"/>
-      <line x1="80" y1="360" x2="800" y2="360"/>
-      <line x1="500" y1="200" x2="500" y2="560"/>
-      <!-- beirado -->
-      <path d="M70 206 L440 32 L810 206"/>
-    </g>
-    <g class="windows">
-      <rect x="108" y="408" width="78" height="100"/>
-      <line x1="147" y1="408" x2="147" y2="508"/>
-      <line x1="108" y1="458" x2="186" y2="458"/>
-      <rect x="108" y="228" width="62" height="78"/>
-      <line x1="139" y1="228" x2="139" y2="306"/>
-      <rect x="712" y="228" width="62" height="78"/>
-      <line x1="743" y1="228" x2="743" y2="306"/>
-      <rect x="720" y="408" width="52" height="78"/>
-      <line x1="746" y1="408" x2="746" y2="486"/>
-    </g>
-    <g class="door">
-      <path d="M214 560 V470 H278 V560"/>
-      <circle cx="268" cy="520" r="2.2" fill="#4589FF" stroke="none"/>
-    </g>
-    <!-- mobiliário -->
-    <g class="furn" aria-hidden="true">
-      <!-- sofá sala -->
-      <rect x="300" y="500" width="150" height="28"/>
-      <rect x="300" y="486" width="150" height="16"/>
-      <rect x="292" y="486" width="12" height="42"/>
-      <rect x="446" y="486" width="12" height="42"/>
-      <!-- mesa de centro -->
-      <rect x="330" y="460" width="70" height="22"/>
-      <!-- cama quarto -->
-      <rect x="220" y="278" width="180" height="62"/>
-      <rect x="220" y="278" width="28" height="62"/>
-      <rect x="256" y="284" width="46" height="22"/>
-      <rect x="308" y="284" width="46" height="22"/>
-      <!-- roupeiro -->
-      <rect x="400" y="230" width="70" height="120"/>
-      <line x1="435" y1="230" x2="435" y2="350"/>
-      <!-- secretária -->
-      <rect x="600" y="306" width="110" height="30"/>
-      <rect x="606" y="336" width="8" height="16"/>
-      <rect x="696" y="336" width="8" height="16"/>
-      <rect x="630" y="292" width="48" height="16"/>
-      <!-- cadeira -->
-      <rect x="636" y="338" width="28" height="14"/>
-      <!-- banho: banheira e lavatório -->
-      <rect x="540" y="500" width="120" height="36" rx="0"/>
-      <rect x="700" y="500" width="44" height="28"/>
-      <circle cx="722" cy="514" r="6" fill="none"/>
-    </g>
-    <!-- cotas de exemplo -->
-    <g class="cota" aria-hidden="true">
-      <line x1="80" y1="600" x2="800" y2="600"/>
-      <line x1="80" y1="594" x2="80" y2="606"/>
-      <line x1="800" y1="594" x2="800" y2="606"/>
-      <line x1="52" y1="200" x2="52" y2="560"/>
-      <line x1="46" y1="200" x2="58" y2="200"/>
-      <line x1="46" y1="560" x2="58" y2="560"/>
-    </g>
-    <g class="cota-t">
-      <text x="400" y="618" text-anchor="middle">8,40 m (exemplo)</text>
-      <text x="44" y="390" text-anchor="end" transform="rotate(-90 44 390)">2,70 m</text>
-    </g>
-    <g class="units">
-      <g class="unit" data-ref="UI-25" data-typ="parede" data-room="sala" transform="translate(476 424)">
-        <rect width="20" height="56"/>
-        <line x1="4" y1="8" x2="16" y2="8"/>
-        <line x1="4" y1="16" x2="16" y2="16"/>
-        <line x1="4" y1="24" x2="16" y2="24"/>
-        <text x="24" y="14">UI-25</text>
-      </g>
-      <g class="unit" data-ref="TC-35" data-typ="tecto" data-room="escritorio" transform="translate(600 204)">
-        <rect width="86" height="12"/>
-        <line x1="10" y1="12" x2="10" y2="18"/>
-        <line x1="76" y1="12" x2="76" y2="18"/>
-        <text x="0" y="28">TC-35</text>
-      </g>
-      <g class="unit" data-ref="VX-01" data-typ="parede" data-room="banho" transform="translate(778 428)">
-        <rect width="16" height="40"/>
-        <circle cx="8" cy="20" r="4" fill="none"/>
-        <text x="-38" y="54">VX-01</text>
-      </g>
-      <g class="unit" data-ref="UE-50" data-typ="exterior" data-room="sala" transform="translate(812 488)">
-        <rect width="40" height="54"/>
-        <line x1="8" y1="10" x2="32" y2="10"/>
-        <line x1="8" y1="18" x2="32" y2="18"/>
-        <line x1="8" y1="26" x2="32" y2="26"/>
-        <line x1="8" y1="34" x2="32" y2="34"/>
-        <text x="-2" y="70">UE-50</text>
-      </g>
-      <g class="unit" data-ref="TH-02" data-typ="acessorio" data-room="sala" transform="translate(330 424)">
-        <rect width="16" height="20"/>
-        <circle cx="8" cy="10" r="3" fill="none"/>
-        <text x="20" y="14">TH-02</text>
-      </g>
-    </g>
-    <g class="labels">
-      <text x="96" y="382">sala</text>
-      <text x="96" y="222">quarto</text>
-      <text x="516" y="222">escritório</text>
-      <text x="516" y="382">casa de banho</text>
-    </g>
-  </g>
-</svg></div>
-        <p class="stage-caption">A casa inteira, em corte</p>
-      </div>
-    </aside>
-
-    <main id="main" class="wrap">
-      <section class="hero-block reveal" id="hero" data-cam="overview">
-        <h1>O ar certo, em cada divisão.</h1>
-        <p class="lede">Entras pelo desconforto — calor, frio, ar parado, humidade — e sais com um sistema à medida, ou com uma peça da loja.</p>
-        <div class="actions">
-          <a class="btn btn-fill" href="#problema">Qual é o teu problema?</a>
-          <a class="btn" href="loja.html">Ver a loja</a>
-        </div>
-      </section>
-        <section class="section reveal" id="problema" data-cam="problema">
-          <p class="kicker">Passo 1 de 2</p>
-          <h2>Qual é o teu problema?</h2>
-          <p class="sub">Escolhe a situação. A divisão correspondente acende-se no corte, com a cor de estado.</p>
-          <div class="problems" id="problems" role="radiogroup" aria-label="Situação na divisão">
-            <button type="button" class="problem" role="radio" aria-checked="false" data-id="quente"><span class="tick"></span>A divisão aquece demasiado</button>
-            <button type="button" class="problem" role="radio" aria-checked="false" data-id="frio"><span class="tick"></span>Sinto frio no chão</button>
-            <button type="button" class="problem" role="radio" aria-checked="false" data-id="parado"><span class="tick"></span>O ar está parado</button>
-            <button type="button" class="problem" role="radio" aria-checked="false" data-id="humidade"><span class="tick"></span>Há humidade no vidro</button>
-          </div>
-          <p class="kicker" style="margin-top:1.4rem">Passo 2 de 2</p>
-          <h2>Em que divisão?</h2>
-          <p class="sub">Sala, quarto, escritório ou casa de banho. Podes corrigir a sugestão.</p>
-          <div class="rooms-pick" id="rooms-pick" role="radiogroup" aria-label="Divisão da casa">
-            <button type="button" class="room-btn" role="radio" aria-checked="false" data-id="sala">Sala</button>
-            <button type="button" class="room-btn" role="radio" aria-checked="false" data-id="quarto">Quarto</button>
-            <button type="button" class="room-btn" role="radio" aria-checked="false" data-id="escritorio">Escritório</button>
-            <button type="button" class="room-btn" role="radio" aria-checked="false" data-id="banho">Casa de banho</button>
-          </div>
-
-          <div class="result" id="result">
-            <p class="rec" id="result-rec"></p>
-            <p id="result-text"></p>
-            <div class="actions">
-              <a class="btn btn-fill" id="result-quote" href="orcamento.html">Pedir orçamento</a>
-              <a class="btn" id="result-product" href="loja.html">Ver o equipamento</a>
-            </div>
-          </div>
-        </section>
-
-      <section class="section reveal" id="passos" data-cam="passos">
-        <h2>Como se chega ao orçamento</h2>
-        <p class="sub">Três passos, até à visita.</p>
-        <div class="steps">
-          <div class="step"><b>Passo 1</b> Contas-nos o que se passa na divisão. Sem jargão.</div>
-          <div class="step"><b>Passo 2</b> Propomos o equipamento e o sítio onde fica, no corte da casa.</div>
-          <div class="step"><b>Passo 3</b> Marcamos visita técnica ou enviamos o orçamento.</div>
-        </div>
-      </section>
-      <section class="section reveal" id="equipamento" data-cam="equipamento">
-        <h2>Equipamento em destaque</h2>
-        <p class="sub">Peças de exemplo, fixadas às paredes do corte.</p>
-        <div class="products">
-        <a class="card" href="produto.html?ref=UI-25" data-product data-ctx="residencial" data-fn="arrefecimento" data-typ="parede">
-          <div class="thumb">UI-25<svg viewBox="0 0 96 96" aria-hidden="true" width="96" height="96"><g fill="none" stroke="#002D9C" stroke-width="1.5"><rect x="18" y="30" width="60" height="26"/><line x1="26" y1="38" x2="70" y2="38"/><line x1="26" y1="46" x2="70" y2="46"/><line x1="26" y1="54" x2="58" y2="54"/><rect x="22" y="58" width="8" height="4"/></g></svg></div>
-          <div class="body">
-            <h3>Unidade de parede</h3>
-            <p>Para uma divisão de estar. Inclui comando.</p>
-            <p class="price">449 € <span class="ex">preço de exemplo</span></p>
-          </div>
-        </a>
-        <a class="card" href="produto.html?ref=UI-12" data-product data-ctx="residencial" data-fn="arrefecimento" data-typ="parede">
-          <div class="thumb">UI-12<svg viewBox="0 0 96 96" aria-hidden="true" width="96" height="96"><g fill="none" stroke="#002D9C" stroke-width="1.5"><rect x="18" y="30" width="60" height="26"/><line x1="26" y1="38" x2="70" y2="38"/><line x1="26" y1="46" x2="70" y2="46"/><line x1="26" y1="54" x2="58" y2="54"/><rect x="22" y="58" width="8" height="4"/></g></svg></div>
-          <div class="body">
-            <h3>Unidade de parede compacta</h3>
-            <p>Para um quarto ou um escritório pequeno.</p>
-            <p class="price">329 € <span class="ex">preço de exemplo</span></p>
-          </div>
-        </a>
-        <a class="card" href="produto.html?ref=TC-35" data-product data-ctx="residencial" data-fn="arrefecimento" data-typ="tecto">
-          <div class="thumb">TC-35<svg viewBox="0 0 96 96" aria-hidden="true" width="96" height="96"><g fill="none" stroke="#002D9C" stroke-width="1.5"><rect x="18" y="28" width="60" height="40"/><line x1="48" y1="28" x2="48" y2="68"/><line x1="18" y1="48" x2="78" y2="48"/><circle cx="48" cy="48" r="8"/></g></svg></div>
-          <div class="body">
-            <h3>Unidade de tecto</h3>
-            <p>Distribui o conforto sem ocupar a parede.</p>
-            <p class="price">689 € <span class="ex">preço de exemplo</span></p>
-          </div>
-        </a>
-        </div>
-        <p class="actions" style="margin-top:1rem"><a class="btn" href="loja.html">Abrir a loja com filtros</a></p>
-      </section>
-      <section class="section reveal" id="manutencao" data-cam="manutencao">
-        <div class="panel">
-          <h2>Manutenção e conta</h2>
-          <p>Depois da instalação, os filtros, as revisões e o histórico do equipamento ficam na tua conta. Nesta versão a conta ainda é uma demonstração.</p>
-          <a class="btn" href="conta.html">Entrar na conta</a>
-        </div>
-      </section>
-      <section class="section reveal" id="sobre" data-cam="sobre">
-        <div class="panel">
-          <h2>Sobre, em Cascais</h2>
-          <p>A GW Soluções planeia e instala climatização residencial e comercial. Trabalhamos a partir de Cascais, com visita à casa ou ao escritório.</p>
-          <a class="btn" href="sobre.html">Ler mais</a>
-        </div>
-      </section>
-      <section class="section reveal" id="contacto" data-cam="contacto">
-        <h2>Pedir visita ou orçamento</h2>
-        <p class="lede">O mesmo percurso, até ao fim: o problema, a divisão, a data.</p>
-        <div class="actions">
-          <a class="btn btn-fill" href="orcamento.html">Começar o pedido</a>
-          <a class="btn" href="mailto:geral@gw-solucoes.example">Escrever-nos</a>
-        </div>
-      </section>
-      <footer class="foot">
-        <nav class="foot-nav" aria-label="Rodapé">
-          <a href="solucoes.html">Soluções</a>
-          <a href="loja.html">Loja</a>
-          <a href="servicos.html">Serviços</a>
-          <a href="sobre.html">Sobre</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="orcamento.html">Orçamento</a>
-        </nav>
-        <p>GW Soluções · Travessa do Farol 8, 2750-321 Cascais · <a href="tel:+351210000000">+351 210 000 000</a> · <a href="mailto:geral@gw-solucoes.example">geral@gw-solucoes.example</a></p>
-        <p>NIF 000 000 000 · Segunda a sexta, 9h–18h</p>
-        <p class="disclaimer">Logotipo tipográfico provisório — não é a marca final.</p>
-        <p class="disclaimer">Versão de demonstração — conteúdos e preços fictícios.</p>
-      </footer>
-
-    </main>
+<body data-page="home" data-hero>
+<a class="skip" href="#main">Saltar para o conteúdo</a>
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a class="wm" href="index.html" aria-label="GW Soluções, página inicial"><svg viewBox="0 0 22 24" aria-hidden="true"><path d="M11 1 1 9v14h20V9L11 1Z" fill="none" stroke="#161616" stroke-width="1.5"/><path d="M11 1 1 9v14h10V1Z" fill="#001141"/><path d="M11 13h6v6h-6" fill="none" stroke="#161616" stroke-width="1.5"/></svg><b>GW</b><span>Soluções</span></a>
+    <nav class="nav" aria-label="Principal"><a href="solucoes.html">Soluções</a><button type="button" class="mega-btn" aria-expanded="false" aria-controls="mega">Loja</button><a href="servicos.html">Serviços</a><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a></nav>
+    <div class="hdr-r">
+      <a class="ico-btn" href="loja.html#pesquisa" aria-label="Pesquisar na loja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg></a>
+      <a class="ico-btn acct" href="conta.html" aria-label="Conta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></svg></a>
+      <a class="ico-btn" href="cesto.html" aria-label="Cesto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8Z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg><span class="cart-n" aria-hidden="true"></span></a>
+      <a class="btn cta" href="orcamento.html">Pedir orçamento</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu">Menu <i aria-hidden="true"></i></button>
+    </div>
   </div>
+  <div class="mega" id="mega" inert>
+    <div class="grid">
+      <div class="mega-col"><h2>Climatização</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=exterior">Exterior</a></div>
+      <div class="mega-col"><h2>Ar e controlo</h2><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=controlo">Controlo</a><a href="loja.html?cat=acessorios">Acessórios</a></div>
+      <div class="mega-col"><h2>Por divisão</h2><a href="loja.html?div=sala">Sala</a><a href="loja.html?div=quarto">Quarto</a><a href="loja.html?div=escritorio">Escritório</a><a href="loja.html?div=banho">Casa de banho</a></div>
+      <div class="mega-col"><h2>Loja</h2><a href="loja.html">Ver tudo</a><a href="servicos.html">Planos de manutenção</a></div>
+      <a class="mega-feat" href="produto.html"><picture><source type="image/avif" srcset="img/p-ui-25-400.avif 400w, img/p-ui-25-800.avif 800w, img/p-ui-25-1200.avif 1200w" sizes="160px"><source type="image/webp" srcset="img/p-ui-25-400.webp 400w, img/p-ui-25-800.webp 800w, img/p-ui-25-1200.webp 1200w" sizes="160px"><img src="img/p-ui-25-800.webp" alt="" width="1200" height="1500" loading="lazy" decoding="async"></picture><span><span class="small">Em destaque</span><br><b class="h3">Unidade de parede UI-25</b><br><span class="price">449 €</span></span></a>
+    </div>
+  </div>
+</header>
+<nav class="menu" id="menu" aria-label="Menu" inert>
+  <ul class="menu-links"><li><a href="solucoes.html">Soluções</a></li><li><a href="loja.html">Loja</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="sobre.html">Sobre</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+  <a class="menu-feat" href="produto.html"><picture><source type="image/avif" srcset="img/p-ui-25-400.avif 400w, img/p-ui-25-800.avif 800w, img/p-ui-25-1200.avif 1200w" sizes="50vw"><source type="image/webp" srcset="img/p-ui-25-400.webp 400w, img/p-ui-25-800.webp 800w, img/p-ui-25-1200.webp 1200w" sizes="50vw"><img src="img/p-ui-25-800.webp" alt="" width="1200" height="1500" loading="lazy" decoding="async"></picture><span><span class="small">Em destaque</span><br><b>Unidade de parede UI-25</b><br><span class="price">449 €</span></span></a>
+  <div class="menu-foot"><a class="btn btn-wide" href="orcamento.html">Pedir orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+</nav>
+<main id="main">
+
+<section class="hero" aria-labelledby="h1">
+  <div class="grid">
+    <div class="hero-h"><h1 class="d-xl split" id="h1"><span class="w"><span style="--i:0">O</span></span> <span class="w"><span style="--i:1">ar</span></span> <span class="w"><span style="--i:2">certo,</span></span> <span class="w"><span style="--i:3">em</span></span> <span class="w"><span style="--i:4">cada</span></span> <span class="w"><span style="--i:5">divisão.</span></span></h1></div>
+    <div class="hero-side">
+      <p class="lede">Começamos pelo que sentes em casa e acabamos com a peça certa, instalada num dia.</p>
+      <div class="row"><a class="btn" href="#diag">Qual é o teu problema? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a><a class="btn-2" href="loja.html">Ver a loja <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </div>
+  <div class="hero-media" data-video-wrap>
+    <picture>
+      <source type="image/avif" media="(max-width: 767px)" srcset="img/hero-45-480.avif 480w, img/hero-45-720.avif 720w, img/hero-45-870.avif 870w" sizes="100vw">
+      <source type="image/webp" media="(max-width: 767px)" srcset="img/hero-45-480.webp 480w, img/hero-45-720.webp 720w, img/hero-45-870.webp 870w" sizes="100vw">
+      <source type="image/avif" srcset="img/hero-219-1024.avif 1024w, img/hero-219-1440.avif 1440w, img/hero-219-1920.avif 1920w" sizes="100vw">
+      <source type="image/webp" srcset="img/hero-219-1024.webp 1024w, img/hero-219-1440.webp 1440w, img/hero-219-1920.webp 1920w" sizes="100vw">
+      <img src="img/hero-219-1024.webp" alt="Sala em Cascais com luz da manhã na parede branca; uma mulher lê no sofá e uma unidade de parede discreta fica alta na parede" width="1920" height="822" fetchpriority="high">
+    </picture>
+    <video muted playsinline loop preload="none" data-video aria-hidden="true" tabindex="-1">
+      <source data-src="video/hero-45.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' media="(max-width: 767px)">
+      <source data-src="video/hero-45.h264.mp4" type="video/mp4" media="(max-width: 767px)">
+      <source data-src="video/hero-2190.av1.mp4" type='video/mp4; codecs="av01.0.08M.08"'>
+      <source data-src="video/hero-2190.h264.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="vid-btn" data-vid-btn aria-label="Pausar vídeo" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14"/><rect x="13.5" y="5" width="3.5" height="14"/></svg></button>
+  </div>
+</section>
+
+<section class="sec on-cut" aria-labelledby="diag-h" id="problema">
+  <div class="wrap"><div class="diag" id="diag">
+  <div class="diag-stage">
+    <div class="corte-view" id="corte"><div class="corte-stage">
+    <picture><source type="image/avif" srcset="img/corte-780.avif 780w, img/corte-1200.avif 1200w, img/corte-1560.avif 1560w, img/corte-2400.avif 2400w" sizes="(min-width: 1024px) 58vw, 200vw"><source type="image/webp" srcset="img/corte-780.webp 780w, img/corte-1200.webp 1200w, img/corte-1560.webp 1560w, img/corte-2400.webp 2400w" sizes="(min-width: 1024px) 58vw, 200vw"><img src="img/corte-1200.webp" alt="Maquete da casa em corte: sala e casa de banho no rés-do-chão, quarto e escritório no piso de cima" width="2400" height="1500" loading="lazy" decoding="async"></picture>
+    <div class="corte-dim"></div><div class="luz" data-room="sala" style="left:16.508%;top:63.654%;width:37.125%;height:33.2%"></div><div class="luz" data-room="banho" style="left:52.203%;top:63.654%;width:25.042%;height:33.2%"></div><div class="luz" data-room="quarto" style="left:16.508%;top:30.095%;width:37.125%;height:33.2%"></div><div class="luz" data-room="escritorio" style="left:52.203%;top:30.095%;width:25.042%;height:33.2%"></div><i class="c-led" data-led="sala" style="left:45.486%;top:63.29%"></i><i class="c-led" data-led="quarto" style="left:38.542%;top:30.595%"></i><i class="c-led" data-led="escritorio" style="left:65.278%;top:27.801%"></i><i class="c-led" data-led="banho" style="left:60.417%;top:67.936%"></i><span class="c-tag" data-tag="sala" style="left:17.708%;top:64.854%">Sala</span><span class="c-tag" data-tag="banho" style="left:53.403%;top:64.854%">Casa de banho</span><span class="c-tag" data-tag="quarto" style="left:17.708%;top:31.295%">Quarto</span><span class="c-tag" data-tag="escritorio" style="left:53.403%;top:31.295%">Escritório</span>
+    <span class="c-cota h" aria-hidden="true"><span>8,40 m</span></span><span class="c-cota v" aria-hidden="true"><span>2,80 m</span></span>
+  </div></div>
+    <p class="diag-cap"><span id="diag-cap">A casa inteira, em corte</span><span aria-hidden="true">Esc. 1:50</span></p>
+  </div>
+  <div class="diag-steps">
+    <div class="diag-block">
+      <div class="prog" aria-hidden="true"><i class="is-on"></i><i data-p2></i><span id="prog-t">1 de 2</span></div>
+      <h2 class="h2 split" id="diag-h"><span class="w"><span style="--i:0">Qual</span></span> <span class="w"><span style="--i:1">é</span></span> <span class="w"><span style="--i:2">o</span></span> <span class="w"><span style="--i:3">teu</span></span> <span class="w"><span style="--i:4">problema?</span></span></h2>
+      <p class="lede" style="margin-top:12px">Escolhe o que sentes em casa. A divisão acende na maquete.</p>
+      
+      <div class="opts" role="radiogroup" aria-labelledby="diag-h" id="probs"><button type="button" class="opt" role="radio" aria-checked="false" data-problem="quente" style="--sw:var(--red)"><i class="sw" aria-hidden="true"></i>A divisão aquece demasiado<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button><button type="button" class="opt" role="radio" aria-checked="false" data-problem="frio" style="--sw:var(--blue-50)"><i class="sw" aria-hidden="true"></i>Sinto frio ao fim do dia<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button><button type="button" class="opt" role="radio" aria-checked="false" data-problem="parado" style="--sw:var(--grey-50)"><i class="sw" aria-hidden="true"></i>O ar parece parado<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button><button type="button" class="opt" role="radio" aria-checked="false" data-problem="humidade" style="--sw:var(--yellow)"><i class="sw" aria-hidden="true"></i>Os vidros ficam embaciados<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button></div>
+    </div>
+    <div class="diag-block">
+      <h3 class="h3" id="room-h">Em que divisão?</h3>
+      <p class="small" style="margin-top:6px">Sugerimos uma. Podes trocar.</p>
+      <div class="opts" role="radiogroup" aria-labelledby="room-h" id="rooms"><button type="button" class="opt opt-room" role="radio" aria-checked="false" data-room="sala"><i class="sw" aria-hidden="true"></i>Sala<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button><button type="button" class="opt opt-room" role="radio" aria-checked="false" data-room="quarto"><i class="sw" aria-hidden="true"></i>Quarto<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button><button type="button" class="opt opt-room" role="radio" aria-checked="false" data-room="escritorio"><i class="sw" aria-hidden="true"></i>Escritório<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button><button type="button" class="opt opt-room" role="radio" aria-checked="false" data-room="banho"><i class="sw" aria-hidden="true"></i>Casa de banho<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button></div>
+    </div>
+    <p class="sr" aria-live="polite" id="diag-live"></p>
+    <section class="res" id="res" hidden aria-labelledby="res-h">
+      <div class="res-img"><img id="res-img" src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"></div>
+      <div class="res-body">
+        <p class="small" id="res-for">Para a sala que aquece</p>
+        <h3 class="h3" id="res-h">Unidade de parede UI-25</h3>
+        <p class="muted" id="res-text"></p>
+        <dl class="res-nums">
+          <div><dd><span class="num" data-m="0">31</span></dd><dt data-u="0">°C na divisão</dt></div>
+          <div><dd><span class="num" data-m="1">42</span></dd><dt data-u="1">dB de ruído</dt></div>
+          <div><dd><span class="num" data-m="2">—</span></dd><dt data-u="2">kWh/dia</dt></div>
+        </dl>
+        <div class="cmp"><span>Agora</span><input type="range" min="0" max="1" step="1" value="0" id="cmp" aria-label="Comparar agora com a solução" aria-valuetext="Agora"><span>Com a solução</span></div>
+        <div class="row"><a class="btn" id="res-quote" href="orcamento.html">Pedir orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a><a class="btn-2" id="res-prod" href="produto.html">Ver a peça <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+        <p class="small" style="margin-top:16px">Valores ilustrativos para uma divisão de 20 m².</p>
+      </div>
+    </section>
+  </div>
+</div></div>
+</section>
+
+<section class="sec-tight" aria-label="Porque a GW">
+  <div class="wrap facts">
+    <div class="fact up"><b>48 h</b><span>Da chamada à visita técnica, na linha de Cascais.</span></div>
+    <div class="fact up"><b>Um dia</b><span>Para instalar uma unidade, com o chão protegido e sem pó.</span></div>
+    <div class="fact up"><b>Cascais · Oeiras · Sintra</b><span>A nossa área, com técnicos próprios.</span></div>
+  </div>
+</section>
+
+<section class="sec on-2" aria-labelledby="eq-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2 split" id="eq-h"><span class="w"><span style="--i:0">Peças</span></span> <span class="w"><span style="--i:1">pensadas</span></span> <span class="w"><span style="--i:2">para</span></span> <span class="w"><span style="--i:3">ficar</span></span> <span class="w"><span style="--i:4">à</span></span> <span class="w"><span style="--i:5">vista.</span></span></h2>
+      <div class="rail-ctl" data-rail-ctl="eq"><button type="button" data-prev aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><output aria-live="polite">1 / 4</output><button type="button" data-next aria-label="Seguinte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+    </div>
+    <div class="rail" id="eq" tabindex="0" aria-label="Equipamentos em destaque"><article class="card" data-product data-ref="UI-25" data-cat="parede" data-ctx="residencial" data-fn="climatizacao" data-rooms="sala" data-price="449">
+  <a class="card-link" href="produto.html">
+    <div class="card-img"><picture><source type="image/avif" srcset="img/p-ui-25-400.avif 400w, img/p-ui-25-800.avif 800w, img/p-ui-25-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/p-ui-25-400.webp 400w, img/p-ui-25-800.webp 800w, img/p-ui-25-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/p-ui-25-800.webp" alt="Unidade de parede UI-25" width="1200" height="1500" class="main" loading="lazy" decoding="async" style="view-transition-name:p-ui-25"></picture><picture><source type="image/avif" srcset="img/insitu-parede-45-480.avif 480w, img/insitu-parede-45-800.avif 800w, img/insitu-parede-45-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/insitu-parede-45-480.webp 480w, img/insitu-parede-45-800.webp 800w, img/insitu-parede-45-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/insitu-parede-45-800.webp" alt="" width="1280" height="1600" class="alt" loading="lazy" decoding="async"></picture></div>
+    <div class="card-body"><span class="card-name">Unidade de parede</span><span class="price">449 €</span><span class="card-meta">UI-25 · sala</span></div>
+  </a>
+  <button type="button" class="card-add" data-add="UI-25" aria-label="Adicionar Unidade de parede ao cesto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Adicionar</span></button>
+</article><article class="card" data-product data-ref="TC-35" data-cat="tecto" data-ctx="residencial" data-fn="climatizacao" data-rooms="quarto escritorio" data-price="689">
+  <a class="card-link" href="produto-tc-35.html">
+    <div class="card-img"><picture><source type="image/avif" srcset="img/p-tc-35-400.avif 400w, img/p-tc-35-800.avif 800w, img/p-tc-35-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/p-tc-35-400.webp 400w, img/p-tc-35-800.webp 800w, img/p-tc-35-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/p-tc-35-800.webp" alt="Unidade de tecto TC-35" width="1200" height="1500" class="main" loading="lazy" decoding="async" style="view-transition-name:p-tc-35"></picture><picture><source type="image/avif" srcset="img/sit-parado-480.avif 480w, img/sit-parado-800.avif 800w, img/sit-parado-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/sit-parado-480.webp 480w, img/sit-parado-800.webp 800w, img/sit-parado-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/sit-parado-800.webp" alt="" width="2400" height="3000" class="alt" loading="lazy" decoding="async"></picture></div>
+    <div class="card-body"><span class="card-name">Unidade de tecto</span><span class="price">689 €</span><span class="card-meta">TC-35 · quarto, escritório</span></div>
+  </a>
+  <button type="button" class="card-add" data-add="TC-35" aria-label="Adicionar Unidade de tecto ao cesto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Adicionar</span></button>
+</article><article class="card" data-product data-ref="UE-50" data-cat="exterior" data-ctx="residencial" data-fn="climatizacao" data-rooms="sala quarto" data-price="920">
+  <a class="card-link" href="produto-ue-50.html">
+    <div class="card-img"><picture><source type="image/avif" srcset="img/p-ue-50-400.avif 400w, img/p-ue-50-800.avif 800w, img/p-ue-50-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/p-ue-50-400.webp 400w, img/p-ue-50-800.webp 800w, img/p-ue-50-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/p-ue-50-800.webp" alt="Unidade exterior UE-50" width="1200" height="1500" class="main" loading="lazy" decoding="async" style="view-transition-name:p-ue-50"></picture><picture><source type="image/avif" srcset="img/insitu-exterior-45-480.avif 480w, img/insitu-exterior-45-800.avif 800w, img/insitu-exterior-45-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/insitu-exterior-45-480.webp 480w, img/insitu-exterior-45-800.webp 800w, img/insitu-exterior-45-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/insitu-exterior-45-800.webp" alt="" width="1280" height="1600" class="alt" loading="lazy" decoding="async"></picture></div>
+    <div class="card-body"><span class="card-name">Unidade exterior</span><span class="price">920 €</span><span class="card-meta">UE-50 · sala, quarto</span></div>
+  </a>
+  <button type="button" class="card-add" data-add="UE-50" aria-label="Adicionar Unidade exterior ao cesto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Adicionar</span></button>
+</article><article class="card" data-product data-ref="TH-02" data-cat="controlo" data-ctx="residencial" data-fn="controlo" data-rooms="sala quarto" data-price="89">
+  <a class="card-link" href="produto-th-02.html">
+    <div class="card-img"><picture><source type="image/avif" srcset="img/p-th-02-400.avif 400w, img/p-th-02-800.avif 800w, img/p-th-02-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/p-th-02-400.webp 400w, img/p-th-02-800.webp 800w, img/p-th-02-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/p-th-02-800.webp" alt="Termóstato TH-02" width="1200" height="1500" class="main" loading="lazy" decoding="async" style="view-transition-name:p-th-02"></picture><picture><source type="image/avif" srcset="img/sit-quente-480.avif 480w, img/sit-quente-800.avif 800w, img/sit-quente-1200.avif 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><source type="image/webp" srcset="img/sit-quente-480.webp 480w, img/sit-quente-800.webp 800w, img/sit-quente-1200.webp 1200w" sizes="(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw"><img src="img/sit-quente-800.webp" alt="" width="2400" height="3000" class="alt" loading="lazy" decoding="async"></picture></div>
+    <div class="card-body"><span class="card-name">Termóstato</span><span class="price">89 €</span><span class="card-meta">TH-02 · sala, quarto</span></div>
+  </a>
+  <button type="button" class="card-add" data-add="TH-02" aria-label="Adicionar Termóstato ao cesto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Adicionar</span></button>
+</article></div>
+    <p style="margin-top:24px"><a class="btn-2" href="loja.html">Ver a loja toda <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+
+<section class="sec how" aria-labelledby="how-h">
+  <div class="grid">
+    <figure class="how-img bleed-m rv"><picture><source type="image/avif" srcset="img/oficio-800.avif 800w, img/oficio-1152.avif 1152w" sizes="(min-width: 1024px) 48vw, 100vw"><source type="image/webp" srcset="img/oficio-800.webp 800w, img/oficio-1152.webp 1152w" sizes="(min-width: 1024px) 48vw, 100vw"><img src="img/oficio-1152.webp" alt="Mãos de um técnico com luvas a nivelar o suporte de uma unidade numa parede branca, com o chão protegido" width="1152" height="768" loading="lazy" decoding="async"></picture></figure>
+    <div class="how-txt full-m">
+      <h2 class="h2 split" id="how-h"><span class="w"><span style="--i:0">Como</span></span> <span class="w"><span style="--i:1">trabalhamos.</span></span></h2>
+      <ol class="steps" data-steps><span class="steps-bar" aria-hidden="true"></span>
+        <li class="step"><span class="num" aria-hidden="true">1</span><h3 class="h3">Perceber</h3><p class="muted">Contas-nos o que sentes e onde. Se for preciso, vamos a casa medir a divisão e ver as paredes.</p></li>
+        <li class="step"><span class="num" aria-hidden="true">2</span><h3 class="h3">Propor</h3><p class="muted">Uma proposta curta: a peça, o sítio exato na parede, o preço fechado e a data.</p></li>
+        <li class="step"><span class="num" aria-hidden="true">3</span><h3 class="h3">Instalar</h3><p class="muted">Um dia de obra limpa. Deixamos tudo registado na tua conta, com a próxima revisão marcada.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec on-2 mnt" aria-labelledby="mnt-h">
+  <div class="grid">
+    <div class="mnt-txt full-m">
+      <h2 class="h2 split" id="mnt-h"><span class="w"><span style="--i:0">Depois</span></span> <span class="w"><span style="--i:1">da</span></span> <span class="w"><span style="--i:2">instalação,</span></span> <span class="w"><span style="--i:3">ficamos.</span></span></h2>
+      <p class="lede" style="margin-top:16px">Revisões, filtros e o histórico de cada equipamento, numa conta simples.</p>
+      <figure class="mnt-img rv" style="margin-top:32px"><picture><source type="image/avif" srcset="img/manutencao-480.avif 480w, img/manutencao-800.avif 800w, img/manutencao-1024.avif 1024w" sizes="(min-width: 1024px) 36vw, 100vw"><source type="image/webp" srcset="img/manutencao-480.webp 480w, img/manutencao-800.webp 800w, img/manutencao-1024.webp 1024w" sizes="(min-width: 1024px) 36vw, 100vw"><img src="img/manutencao-800.webp" alt="Mãos a retirar o filtro de uma unidade de parede branca" width="1024" height="1024" loading="lazy" decoding="async"></picture></figure>
+      <p style="margin-top:24px"><a class="btn-2" href="servicos.html#planos">Planos de manutenção <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+    <div class="mnt-ui full-m">
+      <div class="mock" aria-label="Exemplo da área de cliente">
+        <div class="mock-h"><span>A minha casa · Cascais</span><span class="data">3 equipamentos</span></div>
+        <div class="mock-row"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-25 · Sala</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge">Revisão a 12 mar</span></div>
+        <div class="mock-row"><img src="img/p-ui-12-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-12 · Quarto</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge warn">Filtro a trocar</span></div>
+        <div class="mock-row"><img src="img/p-vx-01-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>VX-01 · Casa de banho</b><span class="data">Instalada a 2 abr 2026</span></div><span class="badge">Em dia</span></div>
+        <p style="margin-top:20px"><a class="btn-2" href="conta.html">Abrir a conta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="sobre-h">
+  <picture>
+      <source type="image/avif" media="(max-width: 767px)" srcset="img/cascais-45-480.avif 480w, img/cascais-45-800.avif 800w, img/cascais-45-1200.avif 1200w, img/cascais-45-1600.avif 1600w" sizes="100vw">
+      <source type="image/webp" media="(max-width: 767px)" srcset="img/cascais-45-480.webp 480w, img/cascais-45-800.webp 800w, img/cascais-45-1200.webp 1200w, img/cascais-45-1600.webp 1600w" sizes="100vw">
+      <source type="image/avif" srcset="img/cascais-219-1024.avif 1024w, img/cascais-219-1600.avif 1600w, img/cascais-219-2400.avif 2400w" sizes="100vw">
+      <source type="image/webp" srcset="img/cascais-219-1024.webp 1024w, img/cascais-219-1600.webp 1600w, img/cascais-219-2400.webp 2400w" sizes="100vw">
+      <img src="img/cascais-219-1024.webp" alt="Rua de Cascais com casas brancas e céu limpo" width="2400" height="1029" loading="lazy" decoding="async">
+    </picture>
+  <div class="band-txt grid"><div><h2 class="h2" id="sobre-h">De Cascais, para a linha.</h2><p>Somos uma equipa pequena, com técnicos próprios, a trabalhar em casas com luz de mar e paredes antigas.</p><p style="margin-top:16px"><a class="btn-2" href="sobre.html">Conhecer a GW <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></p></div></div>
+</section>
+
+<section class="sec close" aria-labelledby="close-h"><div class="grid">
+  <div class="close-h"><h2 class="d-l split" id="close-h"><span class="w"><span style="--i:0">Diz-nos</span></span> <span class="w"><span style="--i:1">o</span></span> <span class="w"><span style="--i:2">que</span></span> <span class="w"><span style="--i:3">se</span></span> <span class="w"><span style="--i:4">passa</span></span> <span class="w"><span style="--i:5">em</span></span> <span class="w"><span style="--i:6">casa.</span></span></h2><p class="lede" style="margin-top:16px">Respondemos no mesmo dia útil, com uma proposta ou uma data para a visita.</p></div>
+  <div class="close-a"><a class="btn" href="orcamento.html">Pedir orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+</div></section>
+
+</main>
+<footer class="ft">
+  <div class="grid">
+    <div class="ft-brand">
+      <a class="wm" href="index.html" aria-label="GW Soluções, página inicial"><svg viewBox="0 0 22 24" aria-hidden="true"><path d="M11 1 1 9v14h20V9L11 1Z" fill="none" stroke="#161616" stroke-width="1.5"/><path d="M11 1 1 9v14h10V1Z" fill="#001141"/><path d="M11 13h6v6h-6" fill="none" stroke="#161616" stroke-width="1.5"/></svg><b>GW</b><span>Soluções</span></a>
+      <p>Climatização e ventilação para casas e escritórios na linha de Cascais.</p>
+      <address>Travessa do Farol 8, 2750-321 Cascais<br><a href="tel:+351210000000">+351 210 000 000</a><br><a href="mailto:geral@gw-solucoes.example">geral@gw-solucoes.example</a><br>Segunda a sexta, 9h–18h</address>
+    </div>
+    <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Diagnóstico</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Instalação</a><a href="servicos.html#planos">Manutenção</a></nav>
+    <nav class="ft-col" aria-label="Loja"><h2>Loja</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=acessorios">Acessórios</a></nav>
+    <nav class="ft-col" aria-label="Empresa"><h2>Empresa</h2><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a><a href="conta.html">Conta</a><a href="cesto.html">Cesto</a></nav>
+    <div class="ft-base"><span>© 2026 GW Soluções</span><span>NIF 500 000 000</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><a href="cesto.html">Ver cesto</a></div>
 </body>
 </html>

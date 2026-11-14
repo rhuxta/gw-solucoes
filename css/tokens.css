@@ -1,8 +1,7 @@
-/* HEX lidos do centro de cada bloco da paleta enviada (imagem 1367×382). */
+/* GW Soluções — tokens (paleta Coolors Bluegrey aprovada). blue-60 só para ações. */
 :root {
   --black: #000000;
   --white: #FFFFFF;
-
   --blue-100: #001141;
   --blue-90: #001D6C;
   --blue-80: #002D9C;
@@ -13,7 +12,6 @@
   --blue-30: #A6C8FF;
   --blue-20: #D0E2FF;
   --blue-10: #EDF5FF;
-
   --grey-100: #161616;
   --grey-90: #262626;
   --grey-80: #393939;
@@ -24,19 +22,52 @@
   --grey-30: #C6C6C6;
   --grey-20: #E0E0E0;
   --grey-10: #F4F4F4;
+  --red: #DA1E28;
+  --orange: #FF832B;
+  --yellow: #FDDC69;
+  --green: #24A148;
 
-  --red: #DA1E28;      /* quente */
-  --orange: #FF832B;   /* aviso / corrente */
-  --yellow: #FDDC69;   /* atenção / humidade */
-  --green: #24A148;    /* ok */
-
+  /* papéis */
   --ink: var(--grey-100);
-  --muted: var(--grey-70);
-  --bg: var(--grey-10);
-  --paper: var(--white);
+  --ink-2: var(--grey-70);
+  --ink-3: var(--grey-60);
   --line: var(--grey-20);
   --line-strong: var(--grey-30);
-  --accent: var(--blue-60);
-  --accent-ink: var(--white);
-  --canvas: var(--blue-100);
+  --surface: var(--white);
+  --surface-2: var(--grey-10);
+  --surface-cut: var(--blue-10);
+  --action: var(--blue-60);
+  --action-hover: var(--blue-70);
+  --link-on-tint: var(--blue-70);
+  --annot: var(--blue-90);
+  --poche: var(--blue-100);
+
+  /* grelha 4/8/12 */
+  --cols: 4; --m: 20px; --g: 12px; --maxw: 1312px;
+  --hdr: 56px;
+  /* espaçamento */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px; --s-11: 160px;
+  --section: clamp(6rem, 4.514rem + 6.095vw, 10rem);
+  /* tipo */
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --fs-display-xl: clamp(2.75rem, 1.357rem + 5.714vw, 6.5rem);
+  --fs-display-l: clamp(2.25rem, 1.414rem + 3.429vw, 4.5rem);
+  --fs-h2: clamp(1.75rem, 1.286rem + 1.905vw, 3rem);
+  --fs-h3: clamp(1.375rem, 1.236rem + 0.571vw, 1.75rem);
+  --fs-body-l: clamp(1.125rem, 1.055rem + 0.286vw, 1.3125rem);
+  --fs-body: clamp(1rem, 0.977rem + 0.095vw, 1.0625rem);
+  --fs-small: 0.875rem;
+  --fs-num-xl: clamp(2.5rem, 1.943rem + 2.286vw, 4rem);
+  --fs-data: clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem);
+  /* motion */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-std: cubic-bezier(.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(.4, 0, 1, 1);
+  --d-1: 120ms; --d-2: 200ms; --d-3: 320ms; --d-4: 480ms; --d-5: 800ms; --d-6: 1200ms;
+  --shadow-fixed: 0 -1px 0 var(--grey-20), 0 -8px 24px rgb(22 22 22 / .06);
 }
+@media (min-width: 768px)  { :root { --cols: 8;  --m: 32px; --g: 20px; } }
+@media (min-width: 1024px) { :root { --cols: 12; --m: 40px; --g: 20px; --hdr: 64px; } }
+@media (min-width: 1440px) { :root { --m: 64px; --g: 24px; } }

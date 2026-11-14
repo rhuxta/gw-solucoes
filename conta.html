@@ -1,83 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Conta — em breve, demonstração — GW Soluções</title>
-  <meta name="description" content="A área de cliente ainda não está disponível. Esta página existe para testar a navegação. Sem login e sem palavra-passe.">
-  <link rel="canonical" href="https://rhuxta.github.io/gw-solucoes/conta.html">
-  <meta property="og:title" content="Conta — em breve, demonstração — GW Soluções">
-  <meta property="og:description" content="A área de cliente ainda não está disponível. Esta página existe para testar a navegação. Sem login e sem palavra-passe.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://rhuxta.github.io/gw-solucoes/conta.html">
-  <meta property="og:image" content="https://rhuxta.github.io/gw-solucoes/img/og-1200.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/site.css">
-  
-  <script defer src="js/data.js"></script>
-  <script defer src="js/site.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Conta · GW Soluções</title>
+<meta name="description" content="A tua conta GW: equipamentos, revisões e encomendas.">
+<link rel="canonical" href="https://rhuxta.github.io/gw-solucoes/conta.html">
+<meta property="og:title" content="Conta · GW Soluções">
+<meta property="og:description" content="A tua conta GW: equipamentos, revisões e encomendas.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://rhuxta.github.io/gw-solucoes/conta.html">
+<meta property="og:image" content="https://rhuxta.github.io/gw-solucoes/img/og-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/gw.css">
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="js/data.js"></script>
+<script defer src="js/site.js"></script>
 </head>
-<body>
-  <a class="skip" href="#main">Saltar para o conteúdo</a>
-  <header class="top">
-    <a class="brand" href="index.html">gw<small>Soluções</small></a>
-    <nav class="desk-nav" aria-label="Principal">
-      <a href="solucoes.html">Soluções</a>
-      <a href="loja.html">Loja</a>
-      <a href="servicos.html">Serviços</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
-    <span class="grow"></span>
-    <a class="ico" href="cesto.html" title="Cesto">Cesto <span class="cart-n" aria-live="polite"></span></a>
-    <a class="ico" href="conta.html" title="Conta">Conta</a>
-    <a class="btn btn-fill desk-cta" href="orcamento.html">Pedir orçamento</a>
-    <button type="button" class="ico menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
-  </header>
-  <nav class="menu" id="menu" aria-label="Menu">
-    <a href="solucoes.html">Soluções</a>
-    <a href="loja.html">Loja</a>
-    <a href="servicos.html">Serviços</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="cesto.html">Cesto</a>
-    <a href="conta.html">Conta</a>
-    <a class="menu-cta" href="orcamento.html">Pedir orçamento</a>
-  </nav>
+<body data-page="conta">
+<a class="skip" href="#main">Saltar para o conteúdo</a>
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a class="wm" href="index.html" aria-label="GW Soluções, página inicial"><svg viewBox="0 0 22 24" aria-hidden="true"><path d="M11 1 1 9v14h20V9L11 1Z" fill="none" stroke="#161616" stroke-width="1.5"/><path d="M11 1 1 9v14h10V1Z" fill="#001141"/><path d="M11 13h6v6h-6" fill="none" stroke="#161616" stroke-width="1.5"/></svg><b>GW</b><span>Soluções</span></a>
+    <nav class="nav" aria-label="Principal"><a href="solucoes.html">Soluções</a><button type="button" class="mega-btn" aria-expanded="false" aria-controls="mega">Loja</button><a href="servicos.html">Serviços</a><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a></nav>
+    <div class="hdr-r">
+      <a class="ico-btn" href="loja.html#pesquisa" aria-label="Pesquisar na loja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg></a>
+      <a class="ico-btn acct" href="conta.html" aria-label="Conta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></svg></a>
+      <a class="ico-btn" href="cesto.html" aria-label="Cesto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8Z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg><span class="cart-n" aria-hidden="true"></span></a>
+      <a class="btn cta" href="orcamento.html">Pedir orçamento</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu">Menu <i aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <div class="mega" id="mega" inert>
+    <div class="grid">
+      <div class="mega-col"><h2>Climatização</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=exterior">Exterior</a></div>
+      <div class="mega-col"><h2>Ar e controlo</h2><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=controlo">Controlo</a><a href="loja.html?cat=acessorios">Acessórios</a></div>
+      <div class="mega-col"><h2>Por divisão</h2><a href="loja.html?div=sala">Sala</a><a href="loja.html?div=quarto">Quarto</a><a href="loja.html?div=escritorio">Escritório</a><a href="loja.html?div=banho">Casa de banho</a></div>
+      <div class="mega-col"><h2>Loja</h2><a href="loja.html">Ver tudo</a><a href="servicos.html">Planos de manutenção</a></div>
+      <a class="mega-feat" href="produto.html"><picture><source type="image/avif" srcset="img/p-ui-25-400.avif 400w, img/p-ui-25-800.avif 800w, img/p-ui-25-1200.avif 1200w" sizes="160px"><source type="image/webp" srcset="img/p-ui-25-400.webp 400w, img/p-ui-25-800.webp 800w, img/p-ui-25-1200.webp 1200w" sizes="160px"><img src="img/p-ui-25-800.webp" alt="" width="1200" height="1500" loading="lazy" decoding="async"></picture><span><span class="small">Em destaque</span><br><b class="h3">Unidade de parede UI-25</b><br><span class="price">449 €</span></span></a>
+    </div>
+  </div>
+</header>
+<nav class="menu" id="menu" aria-label="Menu" inert>
+  <ul class="menu-links"><li><a href="solucoes.html">Soluções</a></li><li><a href="loja.html">Loja</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="sobre.html">Sobre</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+  <a class="menu-feat" href="produto.html"><picture><source type="image/avif" srcset="img/p-ui-25-400.avif 400w, img/p-ui-25-800.avif 800w, img/p-ui-25-1200.avif 1200w" sizes="50vw"><source type="image/webp" srcset="img/p-ui-25-400.webp 400w, img/p-ui-25-800.webp 800w, img/p-ui-25-1200.webp 1200w" sizes="50vw"><img src="img/p-ui-25-800.webp" alt="" width="1200" height="1500" loading="lazy" decoding="async"></picture><span><span class="small">Em destaque</span><br><b>Unidade de parede UI-25</b><br><span class="price">449 €</span></span></a>
+  <div class="menu-foot"><a class="btn btn-wide" href="orcamento.html">Pedir orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+</nav>
+<main id="main">
 
-    <main id="main" class="wrap page-main">
-      <h1 class="reveal">Conta</h1>
-      <div class="soon reveal">
-        <p><strong>Em breve, demonstração.</strong></p>
-        <p>O login ainda não funciona. Não pedimos palavra-passe. Quando a conta existir, vais encontrar aqui as encomendas, os equipamentos e as manutenções.</p>
+<section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Olá, Inês.</h1><p class="lede">A tua casa em Cascais, num só sítio.</p></div></div></section>
+<section class="sec" style="padding-top:0"><div class="grid">
+  <div class="full acc-main">
+    <div class="acc-tabs" role="tablist" aria-label="Conta"><button type="button" role="tab" aria-selected="true" aria-controls="t-eq" id="tb-eq">Equipamentos</button><button type="button" role="tab" aria-selected="false" aria-controls="t-rev" id="tb-rev" tabindex="-1">Revisões</button><button type="button" role="tab" aria-selected="false" aria-controls="t-enc" id="tb-enc" tabindex="-1">Encomendas</button></div>
+    <div role="tabpanel" id="t-eq" aria-labelledby="tb-eq">
+      <div class="mock" style="margin:0;padding:0">
+        <div class="mock-row"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-25 · Sala</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge">Revisão a 12 mar</span></div>
+        <div class="mock-row"><img src="img/p-ui-12-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>UI-12 · Quarto</b><span class="data">Instalada a 12 mar 2026</span></div><span class="badge warn">Filtro a trocar</span></div>
+        <div class="mock-row"><img src="img/p-vx-01-400.webp" alt="" width="400" height="500" loading="lazy"><div><b>VX-01 · Casa de banho</b><span class="data">Instalada a 2 abr 2026</span></div><span class="badge">Em dia</span></div>
       </div>
-      <p class="reveal">Podes continuar pela loja ou pedir um orçamento — o percurso de visita já se testa nesta versão.</p>
-      <div class="actions reveal">
-        <a class="btn btn-fill" href="loja.html">Ir à loja</a>
-        <a class="btn" href="orcamento.html">Pedir orçamento</a>
-      </div>
-      <footer class="foot">
-        <nav class="foot-nav" aria-label="Rodapé">
-          <a href="solucoes.html">Soluções</a>
-          <a href="loja.html">Loja</a>
-          <a href="servicos.html">Serviços</a>
-          <a href="sobre.html">Sobre</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="orcamento.html">Orçamento</a>
-        </nav>
-        <p>GW Soluções · Travessa do Farol 8, 2750-321 Cascais · <a href="tel:+351210000000">+351 210 000 000</a> · <a href="mailto:geral@gw-solucoes.example">geral@gw-solucoes.example</a></p>
-        <p>NIF 000 000 000 · Segunda a sexta, 9h–18h</p>
-        <p class="disclaimer">Logotipo tipográfico provisório — não é a marca final.</p>
-        <p class="disclaimer">Versão de demonstração — conteúdos e preços fictícios.</p>
-      </footer>
+    </div>
+    <div role="tabpanel" id="t-rev" aria-labelledby="tb-rev" hidden><table class="spec"><caption class="sr">Revisões</caption><tbody><tr><th scope="row">12 mar 2027</th><td>Revisão anual · UI-25, UI-12</td></tr><tr><th scope="row">2 abr 2027</th><td>Revisão anual · VX-01</td></tr><tr><th scope="row">14 set 2026</th><td>Troca de filtro · UI-12</td></tr></tbody></table></div>
+    <div role="tabpanel" id="t-enc" aria-labelledby="tb-enc" hidden><table class="spec"><caption class="sr">Encomendas</caption><tbody><tr><th scope="row">GW-204118</th><td>FL-04 × 2 · 48 €</td></tr><tr><th scope="row">GW-198402</th><td>Instalação UI-25 + UE-50</td></tr></tbody></table></div>
+  </div>
+  <div class="full acc-side" style="margin-top:48px">
+    <div class="sum" style="margin-top:0"><p class="h3">Próxima revisão</p><p class="num" style="margin:12px 0 4px">12.03</p><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide" style="margin-top:20px" data-demo-note="Na versão final podes trocar a data aqui.">Mudar a data</button><p class="small" style="margin-top:12px" aria-live="polite" data-note-out></p></div>
+    <p class="note" style="margin-top:16px">Área de cliente de demonstração, sem dados reais.</p>
+  </div>
+</div></section>
 
-    </main>
+</main>
+<footer class="ft">
+  <div class="grid">
+    <div class="ft-brand">
+      <a class="wm" href="index.html" aria-label="GW Soluções, página inicial"><svg viewBox="0 0 22 24" aria-hidden="true"><path d="M11 1 1 9v14h20V9L11 1Z" fill="none" stroke="#161616" stroke-width="1.5"/><path d="M11 1 1 9v14h10V1Z" fill="#001141"/><path d="M11 13h6v6h-6" fill="none" stroke="#161616" stroke-width="1.5"/></svg><b>GW</b><span>Soluções</span></a>
+      <p>Climatização e ventilação para casas e escritórios na linha de Cascais.</p>
+      <address>Travessa do Farol 8, 2750-321 Cascais<br><a href="tel:+351210000000">+351 210 000 000</a><br><a href="mailto:geral@gw-solucoes.example">geral@gw-solucoes.example</a><br>Segunda a sexta, 9h–18h</address>
+    </div>
+    <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Diagnóstico</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Instalação</a><a href="servicos.html#planos">Manutenção</a></nav>
+    <nav class="ft-col" aria-label="Loja"><h2>Loja</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=acessorios">Acessórios</a></nav>
+    <nav class="ft-col" aria-label="Empresa"><h2>Empresa</h2><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a><a href="conta.html">Conta</a><a href="cesto.html">Cesto</a></nav>
+    <div class="ft-base"><span>© 2026 GW Soluções</span><span>NIF 500 000 000</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><a href="cesto.html">Ver cesto</a></div>
 </body>
 </html>
