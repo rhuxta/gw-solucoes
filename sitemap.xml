@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Substitui REPO pelo nome do repositório no GitHub Pages. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://rhuxta.github.io/REPO/index.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/solucoes.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/loja.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/produto.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/orcamento.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/servicos.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/sobre.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/contacto.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/conta.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/cesto.html</loc></url>
-  <url><loc>https://rhuxta.github.io/REPO/404.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/solucoes.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/loja.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/produto.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/orcamento.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/servicos.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/sobre.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/contacto.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/conta.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/cesto.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/404.html</loc></url>
 </urlset>
