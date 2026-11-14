@@ -41,7 +41,7 @@ page('index.html', {
       <h2 class="h2 split" id="eq-h">Peças pensadas para ficar à vista.</h2>
       <div class="rail-ctl" data-rail-ctl="eq"><button type="button" data-prev aria-label="Anterior">${I.left}</button><output aria-live="polite">1 / 4</output><button type="button" data-next aria-label="Seguinte">${I.right}</button></div>
     </div>
-    <div class="rail" id="eq" tabindex="0" role="group" aria-label="Equipamentos em destaque">${feat4.map(p => card(p, { sizes: '(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw', where: false })).join('')}</div>
+    <div class="rail" id="eq" tabindex="0" role="region" aria-label="Equipamentos em destaque">${feat4.map(p => card(p, { sizes: '(min-width: 1024px) 24vw, (min-width: 768px) 45vw, 78vw', where: false })).join('')}</div>
     <p class="mt-24"><a class="btn-2" href="loja.html">Ver a loja toda ${I.arrow}</a></p>
   </div>
 </section>
@@ -171,14 +171,14 @@ for (const p of D.products) {
   <nav class="crumb pp-crumb full" aria-label="Caminho"><a href="loja.html">Loja</a><span aria-hidden="true">/</span><a href="loja.html?cat=${p.cat}">${D.cats.find(c => c[0] === p.cat)[1]}</a></nav>
   <div class="pp-head"><h1 class="d-l pp-name">${p.name} ${p.short}</h1><p class="pp-price-m" aria-hidden="true">${eur(p.price)}</p></div>
   <div class="pp-media">
-    <div class="gal" id="gal" tabindex="0" role="group" aria-label="Imagens do produto">${gal.map((g, i) => `<figure class="${g[2]}">${pic(g[0], { alt: g[1], sizes: '(min-width: 1024px) 56vw, 100vw', prio: i === 0, lazy: i > 0, vt: i === 0 ? 'p-' + p.ref.toLowerCase() : '' })}</figure>`).join('')}</div>
+    <div class="gal" id="gal" tabindex="0" role="region" aria-label="Imagens do produto">${gal.map((g, i) => `<figure class="${g[2]}">${pic(g[0], { alt: g[1], sizes: '(min-width: 1024px) 56vw, 100vw', prio: i === 0, lazy: i > 0, vt: i === 0 ? 'p-' + p.ref.toLowerCase() : '' })}</figure>`).join('')}</div>
     <div class="gal-ind" aria-hidden="true">${gal.map((g, i) => `<i${i === 0 ? ' class="is-on"' : ''}></i>`).join('')}</div>
     ${is25 ? `<button type="button" class="btn-3d" data-goto-3d>${I.cube} Ver em 3D</button>` : ''}
   </div>
   <div class="pp-side">
     <div class="pp-buy" id="buy">
       <p class="short">${p.desc}</p>
-      <p class="price-l">${eur(p.price)}</p>
+      <div class="price-l">${eur(p.price)}</div>
       <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : 'IVA incluído · instalação à parte'}</p>
       <p class="mt-12"><span class="badge${p.price == null ? ' q' : ''}">${p.stock}</span></p>
       <fieldset class="fs-0 mt-20"><legend class="lbl">${p.fn === 'climatizacao' ? 'Potência' : 'Versão'}</legend>
@@ -195,7 +195,7 @@ for (const p of D.products) {
 <div class="pp-flow">
 <div class="pp-rail"><aside class="pp-stick" aria-label="Comprar ${p.name} ${p.short}">
   <p class="pp-stick-n">${p.name} ${p.short}</p>
-  <p class="price-l">${eur(p.price)}</p>
+  <div class="price-l">${eur(p.price)}</div>
   <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : 'IVA incluído · instalação à parte'}</p>
   <div class="pp-cta">${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}">Pedir estudo ${I.arrow}</a>` : `<button type="button" class="btn" data-add="${p.ref}">Adicionar ao cesto</button><a class="btn-2" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>`}</div>
 </aside></div>
@@ -438,7 +438,7 @@ page('conta.html', {
     <div role="tabpanel" id="t-enc" aria-labelledby="tb-enc" hidden><table class="spec"><caption class="sr">Encomendas</caption><tbody><tr><th scope="row">GW-204118</th><td>FL-04 × 2 · 48 €</td></tr><tr><th scope="row">GW-198402</th><td>Instalação UI-25 + UE-50</td></tr></tbody></table></div>
   </div>
   <div class="full acc-side mt-48">
-    <div class="sum mt-0"><p class="h3">Próxima revisão</p><p class="num" style="margin:12px 0 4px">12.03</p><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide mt-20" data-demo-note="Pedido de nova data registado. Confirmamos por email.">Mudar a data</button><p class="small mt-12" aria-live="polite" data-note-out></p></div>
+    <div class="sum mt-0"><p class="h3">Próxima revisão</p><div class="num" style="margin:12px 0 4px">12.03</div><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide mt-20" data-demo-note="Pedido de nova data registado. Confirmamos por email.">Mudar a data</button><p class="small mt-12" aria-live="polite" data-note-out></p></div>
   </div>
 </div></section>
 `});
