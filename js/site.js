@@ -486,7 +486,7 @@
       var need = ["problema", "divisao", "quando"][cur];
       if (need && !S[need]) { cnt.textContent = "Escolhe uma opção para continuar."; var first = steps[cur].querySelector("[data-w]"); if (first) first.focus(); return; }
       if (cur === 3) { var f = $("#wiz-form"); var bad = [f.nome, f.email].find(function (i) { return !i.checkValidity(); }); if (bad) { bad.reportValidity(); bad.focus(); return; } }
-      if (cur === 4) { $("#w-ref").textContent = "GW-" + String(Date.now()).slice(-6); }
+      if (cur === 4) { $("#w-ref").textContent = "OW-" + String(Date.now()).slice(-6); }
       go(cur + 1);
     });
     prevB.addEventListener("click", function () { go(Math.max(0, cur - 1), true); });

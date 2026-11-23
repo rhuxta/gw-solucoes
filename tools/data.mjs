@@ -1,8 +1,8 @@
 export const company = {
-  name: "GW Soluções",
+  name: "OW Soluções",
   address: "Travessa do Farol 8, 2750-321 Cascais",
   hours: "Segunda a sexta, 9h–18h",
-  email: "geral@gw-solucoes.example",
+  email: "geral@ow-solucoes.example",
   tel: "+351 210 000 000",
   telHref: "tel:+351210000000",
   nif: "500 000 000",

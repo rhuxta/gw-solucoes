@@ -28,7 +28,7 @@ const I = {
   tool: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6Z"/></svg>',
   ar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3"/><path d="M8 10h8v5H8z"/></svg>'
 };
-const WM = `<svg viewBox="0 0 22 24" aria-hidden="true"><path d="M11 1 1 9v14h20V9L11 1Z" fill="none" stroke="#161616" stroke-width="1.5"/><path d="M11 1 1 9v14h10V1Z" fill="#001141"/><path d="M11 13h6v6h-6" fill="none" stroke="#161616" stroke-width="1.5"/></svg>`;
+const WM = `<svg viewBox="0 0 22 24" aria-hidden="true"><path d="M11 1 1 9v14h20V9L11 1Z" fill="none" stroke="#161616" stroke-width="1.5"/><path d="M11 1 1 9v14h10V1Z" fill="#001141"/><path d="M11 13h6v6h-6Z" fill="none" stroke="#161616" stroke-width="1.5"/></svg>`;
 
 /* ---------- responsive picture ---------- */
 function pic(name, { alt = '', sizes = '100vw', cls = '', lazy = true, prio = false, vt = '', imgCls = '', ratio } = {}) {
@@ -80,7 +80,7 @@ function header(page, opts = {}) {
   return `<a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="hdr" id="hdr">
   <div class="hdr-in">
-    <a class="wm" href="index.html" aria-label="GW Soluções, página inicial">${WM}<b>GW</b><span>Soluções</span></a>
+    <a class="wm" href="index.html" aria-label="OW Soluções, página inicial">${WM}<b>OW</b><span>Soluções</span></a>
     <nav class="nav" aria-label="Principal">${links}</nav>
     <div class="hdr-r">
       <a class="ico-btn" href="loja.html#pesquisa" aria-label="Pesquisar na loja">${I.search}</a>
@@ -111,14 +111,14 @@ function footer() {
   return `<footer class="ft">
   <div class="grid">
     <div class="ft-brand">
-      <a class="wm" href="index.html" aria-label="GW Soluções, página inicial">${WM}<b>GW</b><span>Soluções</span></a>
+      <a class="wm" href="index.html" aria-label="OW Soluções, página inicial">${WM}<b>OW</b><span>Soluções</span></a>
       <p>Climatização e ventilação para casas e escritórios na linha de Cascais.</p>
       <address>${esc(c.address)}<br><a href="${c.telHref}">${c.tel}</a><br><a href="mailto:${c.email}">${c.email}</a><br>${c.hours}</address>
     </div>
     <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Diagnóstico</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Instalação</a><a href="servicos.html#planos">Manutenção</a></nav>
     <nav class="ft-col" aria-label="Loja"><h2>Loja</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=acessorios">Acessórios</a></nav>
     <nav class="ft-col" aria-label="Empresa"><h2>Empresa</h2><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a><a href="conta.html">Conta</a><a href="cesto.html">Cesto</a></nav>
-    <div class="ft-base"><span>© 2026 GW Soluções</span><span>NIF ${c.nif}</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
+    <div class="ft-base"><span>© 2026 OW Soluções</span><span>NIF ${c.nif}</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><a href="cesto.html">Ver cesto</a></div>`;
