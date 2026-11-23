@@ -1,11 +1,11 @@
 import { I, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, finish } from './build.mjs';
 const c = D.company;
-const LD = JSON.stringify({ '@context': 'https://schema.org', '@type': 'HVACBusiness', name: 'GW Soluções', url: BASE, image: BASE + 'img/og-1200.jpg', address: { '@type': 'PostalAddress', streetAddress: 'Travessa do Farol 8', addressLocality: 'Cascais', postalCode: '2750-321', addressCountry: 'PT' }, telephone: '+351210000000', areaServed: ['Cascais', 'Oeiras', 'Sintra'] });
+const LD = JSON.stringify({ '@context': 'https://schema.org', '@type': 'HVACBusiness', name: 'OW Soluções', url: BASE, image: BASE + 'img/og-1200.jpg', address: { '@type': 'PostalAddress', streetAddress: 'Travessa do Farol 8', addressLocality: 'Cascais', postalCode: '2750-321', addressCountry: 'PT' }, telephone: '+351210000000', areaServed: ['Cascais', 'Oeiras', 'Sintra'] });
 
 /* =================== HOME =================== */
 const feat4 = ['UI-25', 'TC-35', 'UE-50', 'TH-02'].map(r => P[r]);
 page('index.html', {
-  title: 'GW Soluções — O ar certo, em cada divisão.',
+  title: 'OW Soluções — O ar certo, em cada divisão.',
   desc: 'Climatização e ventilação na linha de Cascais. Começamos pelo que sentes em casa, propomos a peça certa, instalamos num dia e ficamos para a manutenção.',
   page: 'home', hero: true, jsonld: LD, preloadImg: preloadHero('hero-45', 'hero-219'),
   body: `
@@ -27,7 +27,7 @@ page('index.html', {
   <div class="wrap">${diagnosis({})}</div>
 </section>
 
-<section class="sec-tight" aria-label="Porque a GW">
+<section class="sec-tight" aria-label="Porque a OW">
   <div class="wrap facts">
     <div class="fact up"><b>48 h</b><span>Da chamada à visita técnica, na linha de Cascais.</span></div>
     <div class="fact up"><b>Um dia</b><span>Para instalar uma unidade, com o chão protegido e sem pó.</span></div>
@@ -82,7 +82,7 @@ page('index.html', {
 
 <section class="band" aria-labelledby="sobre-h">
   ${heroPicture('cascais-45', 'cascais-219', 'Rua de Cascais com casas brancas e céu limpo', false)}
-  <div class="band-txt grid"><div><h2 class="h2" id="sobre-h">De Cascais, para a linha.</h2><p>Somos uma equipa pequena, com técnicos próprios, a trabalhar em casas com luz de mar e paredes antigas.</p><p class="mt-16"><a class="btn-2" href="sobre.html">Conhecer a GW ${I.arrow}</a></p></div></div>
+  <div class="band-txt grid"><div><h2 class="h2" id="sobre-h">De Cascais, para a linha.</h2><p>Somos uma equipa pequena, com técnicos próprios, a trabalhar em casas com luz de mar e paredes antigas.</p><p class="mt-16"><a class="btn-2" href="sobre.html">Conhecer a OW ${I.arrow}</a></p></div></div>
 </section>
 
 ${closing()}
@@ -90,7 +90,7 @@ ${closing()}
 
 /* =================== SOLUÇÕES =================== */
 page('solucoes.html', {
-  title: 'Soluções — Diagnóstico por divisão · GW Soluções',
+  title: 'Soluções — Diagnóstico por divisão · OW Soluções',
   desc: 'Diz-nos o que sentes em casa: calor, frio, ar parado ou humidade. A maquete mostra a divisão e a peça certa para ela.',
   page: 'solucoes',
   body: `
@@ -130,7 +130,7 @@ order.forEach((r, i) => {
   if (i === 6) cards.push(`<a class="tile" href="servicos.html" data-tile>${pic('oficio', { alt: '', sizes: '(min-width: 1024px) 48vw, 100vw' })}<p>Cada peça da loja pode vir com instalação, num dia.<span>Ver serviços</span></p></a>`);
 });
 page('loja.html', {
-  title: 'Loja — Climatização e ventilação · GW Soluções',
+  title: 'Loja — Climatização e ventilação · OW Soluções',
   desc: 'Unidades de parede e de tecto, unidades exteriores, ventilação, termóstatos e filtros. Filtra por divisão, contexto e função.',
   page: 'loja', hdrFixed: true,
   body: `
@@ -243,9 +243,9 @@ ${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><
 </div></section>
 <div class="buybar" id="buybar" aria-hidden="true"><div class="bb-t"><b>${p.name} ${p.short}</b><span>${eur(p.price)}</span></div>${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}" tabindex="-1">Pedir estudo</a>` : `<button type="button" class="btn" data-add="${p.ref}" tabindex="-1">Adicionar</button>`}</div>
 `;
-  const ld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Product', name: `${p.name} ${p.short}`, sku: p.ref, image: BASE + `img/${pImg(p.ref)}-800.webp`, description: p.lede, brand: { '@type': 'Brand', name: 'GW Soluções' }, ...(p.price ? { offers: { '@type': 'Offer', priceCurrency: 'EUR', price: p.price, availability: 'https://schema.org/InStock' } } : {}) });
+  const ld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Product', name: `${p.name} ${p.short}`, sku: p.ref, image: BASE + `img/${pImg(p.ref)}-800.webp`, description: p.lede, brand: { '@type': 'Brand', name: 'OW Soluções' }, ...(p.price ? { offers: { '@type': 'Offer', priceCurrency: 'EUR', price: p.price, availability: 'https://schema.org/InStock' } } : {}) });
   page(p.slug, {
-    title: `${p.name} ${p.short} — Loja · GW Soluções`,
+    title: `${p.name} ${p.short} — Loja · OW Soluções`,
     desc: `${p.lede}`,
     page: 'produto', hdrFixed: true, jsonld: ld,
     preloadImg: `<link rel="preload" as="image" type="image/avif" imagesrcset="${M[gal[0][0]].widths.map(w => `img/${gal[0][0]}-${w}.avif ${w}w`).join(', ')}" imagesizes="(min-width: 1024px) 56vw, 100vw" fetchpriority="high">\n`,
@@ -267,7 +267,7 @@ const faqs = [
   ['Como funciona a garantia?', 'Três anos em peças e mão de obra nos equipamentos que instalamos, com a manutenção em dia.']
 ];
 page('servicos.html', {
-  title: 'Serviços — Instalação e manutenção · GW Soluções',
+  title: 'Serviços — Instalação e manutenção · OW Soluções',
   desc: 'Visita técnica, instalação num dia e planos de manutenção para climatização e ventilação na linha de Cascais.',
   page: 'servicos',
   body: `
@@ -300,8 +300,8 @@ ${closing('Marca a primeira visita.', 'Pedir orçamento')}
 
 /* =================== SOBRE =================== */
 page('sobre.html', {
-  title: 'Sobre — Uma equipa de Cascais · GW Soluções',
-  desc: 'A GW Soluções planeia, instala e mantém climatização e ventilação em casas e escritórios da linha de Cascais.',
+  title: 'Sobre — Uma equipa de Cascais · OW Soluções',
+  desc: 'A OW Soluções planeia, instala e mantém climatização e ventilação em casas e escritórios da linha de Cascais.',
   page: 'sobre', preloadImg: preloadHero('costa-45', 'costa-219'),
   body: `
 <section class="hero-l" aria-labelledby="h1">
@@ -314,7 +314,7 @@ page('sobre.html', {
 <section class="sec" aria-labelledby="hist-h"><div class="grid">
   <div class="full"><h2 class="h2 split" id="hist-h">Começámos por resolver o calor de uma sala virada a poente.</h2></div>
   <div class="full body mt-32">
-    <p>A GW Soluções nasceu em Cascais em 2014, com dois técnicos e uma carrinha. Hoje somos onze, sempre com equipas próprias e sem subempreitadas.</p>
+    <p>A OW Soluções nasceu em Cascais em 2014, com dois técnicos e uma carrinha. Hoje somos onze, sempre com equipas próprias e sem subempreitadas.</p>
     <p>Trabalhamos devagar onde é preciso: medir a divisão, escolher a parede certa, esconder o tubo. E depressa onde conta: a visita em 48 horas e a instalação num dia.</p>
     <p>Gostamos de casas antigas. Sabemos onde passam as vigas, como se fura uma parede de pedra sem a estragar e porque é que a sala virada a sul precisa de outra potência.</p>
   </div>
@@ -340,8 +340,8 @@ ${closing('Vamos conhecer a tua casa.', 'Pedir visita')}
 
 /* =================== CONTACTO =================== */
 page('contacto.html', {
-  title: 'Contacto · GW Soluções',
-  desc: 'Telefone, email e morada da GW Soluções em Cascais. Envia uma mensagem e respondemos no mesmo dia útil.',
+  title: 'Contacto · OW Soluções',
+  desc: 'Telefone, email e morada da OW Soluções em Cascais. Envia uma mensagem e respondemos no mesmo dia útil.',
   page: 'contacto',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l split" id="h1">Fala connosco.</h1><p class="lede">Respondemos no mesmo dia útil.</p></div></div></section>
@@ -371,7 +371,7 @@ page('contacto.html', {
 
 /* =================== ORÇAMENTO =================== */
 page('orcamento.html', {
-  title: 'Pedir orçamento · GW Soluções',
+  title: 'Pedir orçamento · OW Soluções',
   desc: 'Cinco passos curtos: o problema, a divisão, a data e o contacto. Respondemos no mesmo dia útil.',
   page: 'orcamento',
   body: `
@@ -392,7 +392,7 @@ page('orcamento.html', {
       <section class="wp" data-step="4" aria-labelledby="w4" hidden><h1 id="w4" tabindex="-1">Confirma o pedido.</h1>
         <dl class="rev" id="w-rev"></dl>
         <div class="rev-prod" id="w-prod"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><span class="small">Sugestão</span><br><b id="w-prod-n">Unidade de parede UI-25</b></div></div></section>
-      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede mt-12">Referência <span class="data" id="w-ref">GW-000000</span>. Ligamos-te no mesmo dia útil para marcar a visita.</p><p class="mt-24"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
+      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede mt-12">Referência <span class="data" id="w-ref">OW-000000</span>. Ligamos-te no mesmo dia útil para marcar a visita.</p><p class="mt-24"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
     </form>
     <div class="wiz-bar" id="wiz-bar"><button type="button" class="btn btn-back" data-prev aria-label="Voltar" hidden>${I.left}</button><button type="button" class="btn" data-next>Continuar ${I.arrow}</button></div>
   </div>
@@ -401,8 +401,8 @@ page('orcamento.html', {
 
 /* =================== CESTO =================== */
 page('cesto.html', {
-  title: 'Cesto · GW Soluções',
-  desc: 'O teu cesto na loja da GW Soluções.',
+  title: 'Cesto · OW Soluções',
+  desc: 'O teu cesto na loja da OW Soluções.',
   page: 'cesto',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Cesto</h1></div></div></section>
@@ -419,8 +419,8 @@ page('cesto.html', {
 
 /* =================== CONTA =================== */
 page('conta.html', {
-  title: 'Conta · GW Soluções',
-  desc: 'A tua conta GW: equipamentos, revisões e encomendas.',
+  title: 'Conta · OW Soluções',
+  desc: 'A tua conta OW: equipamentos, revisões e encomendas.',
   page: 'conta',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Olá, Inês.</h1><p class="lede">A tua casa em Cascais, num só sítio.</p></div></div></section>
@@ -435,7 +435,7 @@ page('conta.html', {
       </div>
     </div>
     <div role="tabpanel" id="t-rev" aria-labelledby="tb-rev" hidden><table class="spec"><caption class="sr">Revisões</caption><tbody><tr><th scope="row">12 mar 2027</th><td>Revisão anual · UI-25, UI-12</td></tr><tr><th scope="row">2 abr 2027</th><td>Revisão anual · VX-01</td></tr><tr><th scope="row">14 set 2026</th><td>Troca de filtro · UI-12</td></tr></tbody></table></div>
-    <div role="tabpanel" id="t-enc" aria-labelledby="tb-enc" hidden><table class="spec"><caption class="sr">Encomendas</caption><tbody><tr><th scope="row">GW-204118</th><td>FL-04 × 2 · 48 €</td></tr><tr><th scope="row">GW-198402</th><td>Instalação UI-25 + UE-50</td></tr></tbody></table></div>
+    <div role="tabpanel" id="t-enc" aria-labelledby="tb-enc" hidden><table class="spec"><caption class="sr">Encomendas</caption><tbody><tr><th scope="row">OW-204118</th><td>FL-04 × 2 · 48 €</td></tr><tr><th scope="row">OW-198402</th><td>Instalação UI-25 + UE-50</td></tr></tbody></table></div>
   </div>
   <div class="full acc-side mt-48">
     <div class="sum mt-0"><p class="h3">Próxima revisão</p><div class="num" style="margin:12px 0 4px">12.03</div><p class="small">UI-25 e UI-12 · manhã</p><button type="button" class="btn btn-wide mt-20" data-demo-note="Pedido de nova data registado. Confirmamos por email.">Mudar a data</button><p class="small mt-12" aria-live="polite" data-note-out></p></div>
@@ -445,7 +445,7 @@ page('conta.html', {
 
 /* =================== 404 =================== */
 page('404.html', {
-  title: 'Página não encontrada · GW Soluções',
+  title: 'Página não encontrada · OW Soluções',
   desc: 'Esta página não existe.',
   page: '404',
   extraHead: '<base href="/gw-solucoes/">\n',

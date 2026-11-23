@@ -1,4 +1,4 @@
-# GW Soluções — v2 «Maquete viva» (demonstração)
+# OW Soluções — v2 «Maquete viva» (demonstração)
 
 Site estático em HTML, CSS e JavaScript sem framework. As páginas são **geradas** a partir de modelos em `tools/`. Conteúdos, preços e contactos são fictícios.
 
