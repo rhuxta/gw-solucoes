@@ -137,10 +137,10 @@
     var b = e.target.closest("[data-add]");
     if (!b) return;
     var ref = b.getAttribute("data-add"), l = readCart(), f = l.find(function (i) { return i.ref === ref; });
-    if (f) f.qty += 1; else l.push({ ref: ref, qty: 1 });
+    if (f) f.qty += 1; else l.push({ ref: ref, qty: 1, pack: "completo" });
     writeCart(l);
     var p = G.products && G.products.find(function (x) { return x.ref === ref; });
-    showToast((p ? p.name + " " + p.ref : ref) + " no cesto");
+    showToast((p ? p.name + " " + p.ref : ref) + (p && (p.fn === "controlo" || p.fn === "manutencao") ? " no cesto" : " no cesto, com instalação"));
   });
   var cartList = $("#cart-list");
   if (cartList && G.products) {
@@ -149,12 +149,20 @@
       $("#cart-empty").hidden = !!items.length;
       $("#cart-side").hidden = !items.length;
       cartList.parentNode.hidden = !items.length;
+      var PHV = function (t) { return '<span class="phv">[' + t + ']</span>'; };
+      var refs = [];
       cartList.innerHTML = items.map(function (i) {
         var p = G.products.find(function (x) { return x.ref === i.ref; }) || G.products[0];
-        sub += (p.price || 0) * i.qty;
-        return '<div class="ci"><img src="img/p-' + p.ref.toLowerCase() + '-400.webp" alt="" width="400" height="500"><div><b>' + p.name + " " + p.ref + '</b><span class="data">' + eur(p.price) + '</span><div class="qty" role="group" aria-label="Quantidade de ' + p.name + '"><button type="button" data-q="-1" data-r="' + p.ref + '" aria-label="Menos um">−</button><output>' + i.qty + '</output><button type="button" data-q="1" data-r="' + p.ref + '" aria-label="Mais um">+</button></div></div><button type="button" class="rm" data-rm="' + p.ref + '">Remover</button></div>';
+        sub += (p.price || 0) * i.qty; refs.push(p.ref);
+        var acc = p.fn === "controlo" || p.fn === "manutencao", pk = i.pack || "completo";
+        var lines = acc
+          ? '<li><span>Acessório</span><span class="data">' + eur(p.price) + '</span></li><li><span>Segue com o teu pacote ou na próxima manutenção</span><span></span></li>'
+          : '<li><span>Equipamento ' + p.ref + '</span><span class="data">' + eur(p.price) + '</span></li><li><span>Entrega em casa, pelo fornecedor</span><span class="data">' + PHV("a confirmar") + '</span></li><li><span>Instalação OW</span><span class="data">' + PHV("preço €") + '</span></li>' + (pk === "completo" ? '<li><span><b>1.ª manutenção incluída</b></span><span class="data">incluída</span></li>' : "");
+        var choose = acc ? "" : '<fieldset class="ci-pk"><legend class="sr">Pacote para ' + p.name + '</legend><label class="chk"><input type="radio" name="pk-' + p.ref + '" value="base" data-pk="' + p.ref + '"' + (pk === "base" ? " checked" : "") + '> Equipamento + instalação</label><label class="chk"><input type="radio" name="pk-' + p.ref + '" value="completo" data-pk="' + p.ref + '"' + (pk === "completo" ? " checked" : "") + '> Pacote completo, com 1.ª manutenção</label></fieldset>';
+        return '<div class="ci ci-pack"><img src="img/p-' + p.ref.toLowerCase() + '-400.webp" alt="" width="400" height="500"><div><span class="lbl">' + (acc ? "Acessório" : "Pacote com instalação") + '</span><b>' + p.name + " " + p.ref + '</b><ul class="ci-lines">' + lines + '</ul>' + choose + '<div class="qty" role="group" aria-label="Quantidade de ' + p.name + '"><button type="button" data-q="-1" data-r="' + p.ref + '" aria-label="Menos um">−</button><output>' + i.qty + '</output><button type="button" data-q="1" data-r="' + p.ref + '" aria-label="Mais um">+</button></div></div><button type="button" class="rm" data-rm="' + p.ref + '">Remover</button></div>';
       }).join("");
-      $("#c-sub").textContent = eur(sub); $("#c-tot").textContent = eur(sub);
+      var go = $("#c-go"); if (go) go.href = "orcamento.html?ref=" + refs.join(",") + "&from=cesto";
+      $("#c-sub").textContent = eur(sub);
       html.classList.add("cart-ready");
     };
     paintCart();
@@ -163,8 +171,10 @@
       if (q) { var it = l.find(function (i) { return i.ref === q.getAttribute("data-r"); }); it.qty = Math.max(1, it.qty + Number(q.getAttribute("data-q"))); writeCart(l); paintCart(); var again = cartList.querySelector('[data-r="' + it.ref + '"][data-q="' + q.getAttribute("data-q") + '"]'); if (again) again.focus(); }
       if (rm) { writeCart(l.filter(function (i) { return i.ref !== rm.getAttribute("data-rm"); })); paintCart(); var h = $("#h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus(); } }
     });
-    var co = $("[data-checkout]");
-    if (co) co.addEventListener("click", function () { $("#co-note").textContent = "Encomenda reservada. Enviamos o resumo e o pagamento por email."; });
+    cartList.addEventListener("change", function (e) {
+      var r = e.target.closest("[data-pk]"); if (!r) return;
+      var l = readCart(), it = l.find(function (i) { return i.ref === r.getAttribute("data-pk"); }); if (it) { it.pack = r.value; writeCart(l); paintCart(); var again = cartList.querySelector('[data-pk="' + it.ref + '"][value="' + r.value + '"]'); if (again) again.focus(); }
+    });
   }
 
   /* ---------- small demo bits ---------- */

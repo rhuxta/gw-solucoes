@@ -1,6 +1,16 @@
-import { I, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, finish } from './build.mjs';
+import { miniCasa, I, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, finish } from './build.mjs';
 const c = D.company;
 const LD = JSON.stringify({ '@context': 'https://schema.org', '@type': 'HVACBusiness', name: 'OW Soluções', url: BASE, image: BASE + 'img/og-1200.jpg', address: { '@type': 'PostalAddress', streetAddress: 'Travessa do Farol 8', addressLocality: 'Cascais', postalCode: '2750-321', addressCountry: 'PT' }, telephone: '+351210000000', areaServed: ['Cascais', 'Oeiras', 'Sintra'] });
+
+
+/* entrada única do funil: pela casa ou pelo problema (home e soluções) */
+const PH = t => `<span class="phv">[${t}]</span>`;
+const entry = ({ h = 'Por onde começamos?', id = 'entry-h' } = {}) => `<div class="grid en">
+  <div class="en-head"><h2 class="h2 split" id="${id}">${h}</h2><p class="lede mt-16">Pela divisão ou pelo que sentes. Os dois caminhos levam ao mesmo pedido, já preenchido com o que escolheres.</p></div>
+  <div class="en-casa" data-3d-slot="casa" data-3d-mode="explorar"><p class="en-k">Pela casa</p>${miniCasa({ mode: 'link' })}<p class="small mt-12">Toca numa divisão para começar por ela.</p></div>
+  <div class="en-prob"><p class="en-k">Pelo problema</p><ul class="en-list">${D.problems.map(p => `<li><a class="en-a" href="orcamento.html?problema=${p.id}&amp;divisao=${p.room}"><i class="sw" style="--sw:var(--${p.state})" aria-hidden="true"></i><span>${p.label}</span>${I.arrow}</a></li>`).join('')}<li><a class="en-a" href="orcamento.html?problema=todo-ano"><i class="sw" aria-hidden="true"></i><span>Quero conforto o ano todo</span>${I.arrow}</a></li></ul>
+  <p class="small mt-16">Já sabes a peça? <a class="lnk" href="loja.html">Escolhe na loja</a> e segue com instalação.</p></div>
+</div>`;
 
 /* =================== HOME =================== */
 const feat4 = ['UI-25', 'TC-35', 'UE-50', 'TH-02'].map(r => P[r]);
@@ -13,25 +23,25 @@ page('index.html', {
   <div class="grid">
     <div class="hero-h"><h1 class="d-xl split" id="h1">O ar certo, em cada divisão.</h1></div>
     <div class="hero-side">
-      <p class="lede">Começamos pelo que sentes em casa e acabamos com a peça certa, instalada num dia.</p>
-      <div class="row"><a class="btn" href="#diag">Qual é o teu problema? ${I.arrow}</a><a class="btn-2" href="loja.html">Ver a loja ${I.arrow}</a></div>
+      <p class="lede">Começamos pelo que sentes em casa e acabamos com a peça certa, entregue e instalada pela nossa equipa.</p>
+      <div class="row"><a class="btn" href="orcamento.html">Pedir orçamento ${I.arrow}</a><a class="btn-2" href="#comecar">Começar pela casa ${I.arrow}</a></div>
     </div>
   </div>
-  <div class="hero-media" data-video-wrap>
+  <div class="hero-media" data-video-wrap data-3d-slot="percurso">
     ${heroPicture('hero-45', 'hero-219', 'Sala em Cascais com luz da manhã na parede branca; uma mulher lê no sofá e uma unidade de parede discreta fica alta na parede')}
     ${video('hero', {})}
   </div>
 </section>
 
-<section class="sec on-cut" aria-labelledby="diag-h" id="problema">
-  <div class="wrap">${diagnosis({})}</div>
+<section class="sec on-cut" aria-labelledby="entry-h" id="comecar">
+  ${entry({})}
 </section>
 
 <section class="sec-tight" aria-label="Porque a OW">
   <div class="wrap facts">
-    <div class="fact up"><b>48 h</b><span>Da chamada à visita técnica, na linha de Cascais.</span></div>
-    <div class="fact up"><b>Um dia</b><span>Para instalar uma unidade, com o chão protegido e sem pó.</span></div>
-    <div class="fact up"><b>Cascais · Oeiras · Sintra</b><span>A nossa área, com técnicos próprios.</span></div>
+    <div class="fact up"><b>Visita antes de pagar</b><span>Validamos a casa e o equipamento. Só pagas depois de confirmado.</span></div>
+    <div class="fact up"><b>Entregue em casa</b><span>O fornecedor entrega o equipamento na tua morada. A OW instala.</span></div>
+    <div class="fact up"><b>1.ª manutenção incluída</b><span>No pacote completo, com contrato de manutenção opcional.</span></div>
   </div>
 </section>
 
@@ -52,9 +62,9 @@ page('index.html', {
     <div class="how-txt full-m">
       <h2 class="h2 split" id="how-h">Como trabalhamos.</h2>
       <ol class="steps" data-steps><span class="steps-bar" aria-hidden="true"></span>
-        <li class="step"><span class="num" aria-hidden="true">1</span><h3 class="h3">Perceber</h3><p class="muted">Contas-nos o que sentes e onde. Se for preciso, vamos a casa medir a divisão e ver as paredes.</p></li>
-        <li class="step"><span class="num" aria-hidden="true">2</span><h3 class="h3">Propor</h3><p class="muted">Uma proposta curta: a peça, o sítio exato na parede, o preço fechado e a data.</p></li>
-        <li class="step"><span class="num" aria-hidden="true">3</span><h3 class="h3">Instalar</h3><p class="muted">Um dia de obra limpa. Deixamos tudo registado na tua conta, com a próxima revisão marcada.</p></li>
+        <li class="step"><span class="num" aria-hidden="true">1</span><h3 class="h3">Pedes online</h3><p class="muted">A casa, as divisões e o que sentes. Recebes logo uma estimativa com instalação e marcas a visita técnica.</p></li>
+        <li class="step"><span class="num" aria-hidden="true">2</span><h3 class="h3">Validamos em casa</h3><p class="muted">Medimos, escolhemos a parede e confirmamos o equipamento certo. Só aí pagas.</p></li>
+        <li class="step"><span class="num" aria-hidden="true">3</span><h3 class="h3">Entregamos e instalamos</h3><p class="muted">O fornecedor entrega em tua casa. Depois marcas a instalação, e a 1.ª manutenção fica registada na conta.</p></li>
       </ol>
     </div>
   </div>
@@ -85,34 +95,34 @@ page('index.html', {
   <div class="band-txt grid"><div><h2 class="h2" id="sobre-h">De Cascais, para a linha.</h2><p>Somos uma equipa pequena, com técnicos próprios, a trabalhar em casas com luz de mar e paredes antigas.</p><p class="mt-16"><a class="btn-2" href="sobre.html">Conhecer a OW ${I.arrow}</a></p></div></div>
 </section>
 
-${closing()}
+${closing('Diz-nos o que se passa em casa.', 'Pedir orçamento com instalação')}
 `});
 
 /* =================== SOLUÇÕES =================== */
 page('solucoes.html', {
-  title: 'Soluções — Diagnóstico por divisão · OW Soluções',
-  desc: 'Diz-nos o que sentes em casa: calor, frio, ar parado ou humidade. A maquete mostra a divisão e a peça certa para ela.',
+  title: 'Soluções — Por divisão ou por problema · OW Soluções',
+  desc: 'Calor, frio, ar parado ou humidade: começa pela divisão ou pelo problema e recebe uma estimativa com instalação.',
   page: 'solucoes',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid"><div class="full">
   <h1 class="d-l split" id="h1">Começa pelo que sentes.</h1>
-  <p class="lede">Escolhe uma situação. A maquete acende a divisão e mostramos a peça certa, com números.</p>
+  <p class="lede">Escolhe a divisão ou o problema. Abrimos o pedido já preenchido, com a estimativa e a visita técnica no fim.</p>
 </div></div></section>
-<section class="sec on-cut" style="padding-top:48px" aria-labelledby="diag-h">
-  <div class="wrap">${diagnosis({ withPhotos: true, h: 'O que se passa em casa?', sub: 'Toca numa fotografia.' })}</div>
+<section class="sec on-cut" style="padding-top:48px" aria-labelledby="entry-h">
+  ${entry({ h: 'O que se passa em casa?' })}
 </section>
 <section class="sec" aria-labelledby="sol-h">
   <div class="wrap">
     <h2 class="h2 split" id="sol-h">Quatro problemas, quatro caminhos.</h2>
     <div class="duo mt-48">
-      <figure class="rv">${pic('sit-quente', { alt: 'Sol forte numa parede branca', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Calor.</b> Unidade de parede ou de tecto, com potência medida para a divisão.</figcaption></figure>
-      <figure class="rv">${pic('sit-frio', { alt: 'Quarto com azulejo azul e luz fria', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Frio.</b> Bomba de calor silenciosa, pensada para a noite.</figcaption></figure>
-      <figure class="rv">${pic('sit-parado', { alt: 'Sombra de janela numa parede, com cortina', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Ar parado.</b> Ventilação com caixa compacta, sem abrir janelas.</figcaption></figure>
-      <figure class="rv">${pic('sit-humidade', { alt: 'Vidro embaciado com gotas', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Humidade.</b> Temperatura estável e extração pontual.</figcaption></figure>
+      <figure class="rv">${pic('sit-quente', { alt: 'Sol forte numa parede branca', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Calor.</b> Unidade de parede ou de tecto, com potência medida para a divisão. <a class="lnk" href="orcamento.html?problema=quente&amp;divisao=sala">Começar por aqui</a></figcaption></figure>
+      <figure class="rv">${pic('sit-frio', { alt: 'Quarto com azulejo azul e luz fria', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Frio.</b> Bomba de calor silenciosa, pensada para a noite. <a class="lnk" href="orcamento.html?problema=frio&amp;divisao=quarto">Começar por aqui</a></figcaption></figure>
+      <figure class="rv">${pic('sit-parado', { alt: 'Sombra de janela numa parede, com cortina', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Ar parado.</b> Ventilação com caixa compacta, sem abrir janelas. <a class="lnk" href="orcamento.html?problema=parado&amp;divisao=escritorio">Começar por aqui</a></figcaption></figure>
+      <figure class="rv">${pic('sit-humidade', { alt: 'Vidro embaciado com gotas', sizes: '(min-width: 768px) 46vw, 100vw' })}<figcaption><b>Humidade.</b> Temperatura estável e extração pontual. <a class="lnk" href="orcamento.html?problema=humidade&amp;divisao=banho">Começar por aqui</a></figcaption></figure>
     </div>
   </div>
 </section>
-${closing('Preferes que alguém veja?', 'Marcar visita')}
+${closing('Preferes que alguém veja?', 'Pedir orçamento e visita')}
 `});
 
 /* =================== LOJA =================== */
@@ -127,7 +137,7 @@ const filters = (pfx) => `
 const cards = [];
 order.forEach((r, i) => {
   cards.push(card(P[r], { feat: i === 0, lazy: i > 2 }));
-  if (i === 6) cards.push(`<a class="tile" href="servicos.html" data-tile>${pic('oficio', { alt: '', sizes: '(min-width: 1024px) 48vw, 100vw' })}<p>Cada peça da loja pode vir com instalação, num dia.<span>Ver serviços</span></p></a>`);
+  if (i === 6) cards.push(`<a class="tile" href="servicos.html" data-tile>${pic('oficio', { alt: '', sizes: '(min-width: 1024px) 48vw, 100vw' })}<p>Cada peça da loja pode seguir como pacote, com instalação pela OW.<span>Ver serviços</span></p></a>`);
 });
 page('loja.html', {
   title: 'Loja — Climatização e ventilação · OW Soluções',
@@ -136,7 +146,7 @@ page('loja.html', {
   body: `
 <div class="grid shop-top">
   <h1 class="d-l split" id="h1">Loja</h1>
-  <p class="lede">Peças para cada divisão, com instalação se quiseres.</p>
+  <p class="lede">Peças para cada divisão, vendidas com instalação pela nossa equipa.</p>
   <div class="shop-meta"><span class="small" data-count>10 artigos</span><label class="sort">Ordenar <select data-sort aria-label="Ordenar artigos"><option value="rel">Relevância</option><option value="asc">Preço, do mais baixo</option><option value="desc">Preço, do mais alto</option></select></label></div>
 </div>
 <div class="tabs" id="pesquisa"><div class="tabs-in" role="group" aria-label="Categoria">${D.cats.map(([k, v], i) => `<button type="button" class="tab" data-cat="${k}" aria-pressed="${i === 0}">${v}</button>`).join('')}</div></div>
@@ -166,11 +176,18 @@ for (const p of D.products) {
     ? [['p-ui-25-hi', 'Unidade de parede UI-25, vista a três quartos', 'p'], ['p-ui-25-front', 'UI-25 vista de frente', 'p sq'], ['p-ui-25-detail', 'Detalhe do LED e da aleta da UI-25', 'p sq'], ['sala-32', 'UI-25 instalada numa sala em Cascais', 'wide']]
     : [[pImg(p.ref), `${p.name} ${p.short}`, 'p'], [M[p.insitu] ? p.insitu : p.insitu + '-45', `${p.name} em contexto`, 'wide']];
   const roomRec = p.rooms[0];
+  const isAcc = ['controlo', 'manutencao'].includes(p.fn);
+  const fun = `orcamento.html?ref=${p.ref}&amp;divisao=${roomRec}`;
+  const cta = isAcc
+    ? `<button type="button" class="btn" data-add="${p.ref}">Adicionar ao cesto</button><a class="btn-2" href="${fun}">Juntar a um pedido com instalação ${I.arrow}</a>`
+    : `<a class="btn" href="${fun}">${p.price == null ? 'Pedir estudo com instalação' : 'Comprar com instalação'} ${I.arrow}</a>${p.price == null ? '' : `<button type="button" class="btn-2" data-add="${p.ref}">Juntar ao cesto, como pacote</button>`}`;
+  const pk = isAcc ? '' : `<dl class="pk"><div><dt>Equipamento</dt><dd>${p.price == null ? PH('preço €') : eur(p.price)}</dd></div><div><dt>Instalação OW</dt><dd>${PH('preço €')}</dd></div><div class="pk-t"><dt>Pacote com instalação</dt><dd>${PH('de €')} – ${PH('até €')}</dd></div></dl>
+      <p class="small mt-12">Preço fechado na visita técnica. Só pagas depois de confirmarmos o equipamento certo.</p>`;
   const bodyP = `
 <div class="grid pp" data-ref="${p.ref}">
   <nav class="crumb pp-crumb full" aria-label="Caminho"><a href="loja.html">Loja</a><span aria-hidden="true">/</span><a href="loja.html?cat=${p.cat}">${D.cats.find(c => c[0] === p.cat)[1]}</a></nav>
   <div class="pp-head"><h1 class="d-l pp-name">${p.name} ${p.short}</h1><p class="pp-price-m" aria-hidden="true">${eur(p.price)}</p></div>
-  <div class="pp-media">
+  <div class="pp-media" data-3d-slot="produto" data-3d-ref="${p.ref}">
     <div class="gal" id="gal" tabindex="0" role="region" aria-label="Imagens do produto">${gal.map((g, i) => `<figure class="${g[2]}">${pic(g[0], { alt: g[1], sizes: '(min-width: 1024px) 56vw, 100vw', prio: i === 0, lazy: i > 0, vt: i === 0 ? 'p-' + p.ref.toLowerCase() : '' })}</figure>`).join('')}</div>
     <div class="gal-ind" aria-hidden="true">${gal.map((g, i) => `<i${i === 0 ? ' class="is-on"' : ''}></i>`).join('')}</div>
     ${is25 ? `<button type="button" class="btn-3d" data-goto-3d>${I.cube} Ver em 3D</button>` : ''}
@@ -179,13 +196,14 @@ for (const p of D.products) {
     <div class="pp-buy" id="buy">
       <p class="short">${p.desc}</p>
       <div class="price-l">${eur(p.price)}</div>
-      <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : 'IVA incluído · instalação à parte'}</p>
+      <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : (isAcc ? 'IVA incluído' : 'Equipamento · IVA incluído')}</p>
+      ${pk}
       <p class="mt-12"><span class="badge${p.price == null ? ' q' : ''}">${p.stock}</span></p>
       <fieldset class="fs-0 mt-20"><legend class="lbl">${p.fn === 'climatizacao' ? 'Potência' : 'Versão'}</legend>
         <div class="seg">${p.power.map((v, i) => `<label><input type="radio" name="pw" value="${esc(v)}"${i === 0 ? ' checked' : ''}><span>${v}</span></label>`).join('')}</div>
       </fieldset>
-      <div class="pp-cta">${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}">Pedir estudo ${I.arrow}</a>` : `<button type="button" class="btn" data-add="${p.ref}">Adicionar ao cesto</button><a class="btn-2" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>`}</div>
-      <ul class="pp-assure"><li>${I.truck}<span>Entrega em 2 a 3 dias úteis na linha de Cascais.</span></li><li>${I.tool}<span>Instalação num dia, com chão protegido.</span></li><li>${I.shield}<span>3 anos de garantia, peças e mão de obra.</span></li></ul>
+      <div class="pp-cta" id="comprar">${cta}</div>
+      <ul class="pp-assure"><li>${I.shield}<span>Visita técnica primeiro. Pagas só quando o equipamento certo estiver confirmado.</span></li><li>${I.truck}<span>O fornecedor entrega em tua casa. Prazo: ${PH('a confirmar')}.</span></li><li>${I.tool}<span>Marcas a instalação depois da entrega. 1.ª manutenção incluída no pacote completo.</span></li></ul>
     </div>
   </div>
 </div>
@@ -196,20 +214,20 @@ for (const p of D.products) {
 <div class="pp-rail"><aside class="pp-stick" aria-label="Comprar ${p.name} ${p.short}">
   <p class="pp-stick-n">${p.name} ${p.short}</p>
   <div class="price-l">${eur(p.price)}</div>
-  <p class="vat">${p.price == null ? 'Preço depois da visita técnica' : 'IVA incluído · instalação à parte'}</p>
-  <div class="pp-cta">${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}">Pedir estudo ${I.arrow}</a>` : `<button type="button" class="btn" data-add="${p.ref}">Adicionar ao cesto</button><a class="btn-2" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>`}</div>
+  <p class="vat">${isAcc ? 'IVA incluído' : `Pacote com instalação: ${PH('de €')} – ${PH('até €')}`}</p>
+  <div class="pp-cta">${cta}</div>
 </aside></div>
-<section class="sec ch" id="visao" aria-labelledby="visao-h"><div class="grid"><div class="ch-main">
+<section class="sec ch" data-chapter="visao" id="visao" aria-labelledby="visao-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="visao-h">${p.lede}</h2>
   <dl class="keys">${p.key.map(k => `<div><dd><span class="num">${k[0]}${k[1] ? `<small>${k[1]}</small>` : ''}</span></dd><dt>${k[2]}</dt></div>`).join('')}</dl>
   <figure class="ov-img rv">${pic(is25 ? 'insitu-parede' : (M[p.insitu] ? p.insitu : p.insitu + '-45'), { alt: `${p.name} numa casa`, sizes: '(min-width: 1024px) 56vw, 100vw' })}</figure>
 </div></div></section>
-<section class="sec on-cut ch" id="casa" aria-labelledby="casa-h"><div class="grid"><div class="ch-main">
+<section class="sec on-cut ch" data-chapter="casa" id="casa" aria-labelledby="casa-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="casa-h">Fica na ${D.roomNames[roomRec].toLowerCase()}${p.cat === 'parede' ? ', a 2,1 m do chão' : ''}.</h2>
   <div class="corte-box" data-corte-fixed="${roomRec}">${corte({ id: 'corte-p', sizes: '(min-width: 1024px) 56vw, 200vw' })}</div>
   <p class="diag-cap pi-0"><span>${D.roomNames[roomRec]} · com a solução instalada</span><span aria-hidden="true">Esc. 1:50</span></p>
 </div></div></section>
-${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><div class="grid"><div class="ch-main xpl-pin">
+${is25 ? `<section class="sec ch xpl-sec" data-chapter="pecas" id="pecas" aria-labelledby="pecas-h"><div class="grid"><div class="ch-main xpl-pin">
   <h2 class="h2 ch-h split" id="pecas-h">Peça a peça.</h2>
   <div class="xpl" data-xpl>
     <div class="xpl-view">
@@ -225,23 +243,23 @@ ${is25 ? `<section class="sec ch xpl-sec" id="pecas" aria-labelledby="pecas-h"><
   </div>
   <ol class="calls-list"><li><div><b>Frente</b><span>Painel liso, abre para cima para trocar o filtro.</span></div></li><li><div><b>Filtro</b><span>Lavável, com troca anual registada na conta.</span></div></li><li><div><b>Permutador</b><span>Alumínio e cobre; é aqui que o calor muda de sítio.</span></div></li><li><div><b>Ventilador</b><span>Tangencial, de baixa rotação: 19 dB(A) no modo noite.</span></div></li></ol>
 </div></div></section>` : ''}
-<section class="sec on-2 ch" id="spec" aria-labelledby="spec-h"><div class="grid"><div class="ch-main">
+<section class="sec on-2 ch" data-chapter="spec" id="spec" aria-labelledby="spec-h"><div class="grid"><div class="ch-main">
   <h2 class="h2 ch-h split" id="spec-h">Especificações</h2>
   <table class="spec" data-spec><caption class="sr">Especificações técnicas de ${p.name} ${p.short}</caption><tbody>${p.specs.map((s, i) => `<tr${i >= 6 ? ' class="more"' : ''}><th scope="row">${s[0]}</th><td>${s[1]}</td></tr>`).join('')}</tbody></table>
   ${p.specs.length > 6 ? `<p class="mt-16"><button type="button" class="btn-2" data-spec-all aria-expanded="false">Ver todas (${p.specs.length})</button></p>` : ''}
 </div></div></section>
 </div>
-<section class="sec ch" id="inst" aria-labelledby="inst-h"><div class="grid"><div class="ch-main">
-  <h2 class="h2 ch-h split" id="inst-h">Instalação, num dia.</h2>
+<section class="sec ch" data-chapter="inst" id="inst" aria-labelledby="inst-h"><div class="grid"><div class="ch-main">
+  <h2 class="h2 ch-h split" id="inst-h">Com instalação, por esta ordem.</h2>
   <figure class="inst-img rv">${pic('oficio', { alt: 'Técnico a nivelar o suporte da unidade', sizes: '(min-width: 1024px) 56vw, 100vw' })}</figure>
-  <ol class="ol-steps"><li>Visita técnica para medir e escolher a parede.</li><li>Proposta com preço fechado e data.</li><li>Instalação limpa e registo na tua conta.</li></ol>
-  <a class="btn" href="orcamento.html?ref=${p.ref}">Pedir orçamento com instalação ${I.arrow}</a>
+  <ol class="ol-steps"><li>Visita técnica para medir e confirmar o equipamento certo.</li><li>Preço fechado. Só então pagas.</li><li>O fornecedor entrega o equipamento em tua casa.</li><li>Com a entrega confirmada, marcas a instalação. Lembramos-te 48 h e 2 h antes.</li><li>1.ª manutenção incluída no pacote completo.</li></ol>
+  <a class="btn" href="${fun}">${isAcc ? 'Juntar a um pedido com instalação' : 'Comprar com instalação'} ${I.arrow}</a>
 </div></div></section>
 <section class="sec on-2" aria-labelledby="also-h"><div class="wrap">
   <h2 class="h2 split mb-48" id="also-h">Também vais precisar.</h2>
   <div class="rail">${also(p.ref).map(x => card(x, { sizes: '(min-width: 1024px) 24vw, 78vw', where: false })).join('')}</div>
 </div></section>
-<div class="buybar" id="buybar" aria-hidden="true"><div class="bb-t"><b>${p.name} ${p.short}</b><span>${eur(p.price)}</span></div>${p.price == null ? `<a class="btn" href="orcamento.html?ref=${p.ref}" tabindex="-1">Pedir estudo</a>` : `<button type="button" class="btn" data-add="${p.ref}" tabindex="-1">Adicionar</button>`}</div>
+<div class="buybar" id="buybar" aria-hidden="true"><div class="bb-t"><b>${p.name} ${p.short}</b><span>${eur(p.price)}</span></div>${isAcc ? `<button type="button" class="btn" data-add="${p.ref}" tabindex="-1">Adicionar</button>` : `<a class="btn" href="${fun}" tabindex="-1">${p.price == null ? 'Pedir estudo' : 'Comprar com instalação'}</a>`}</div>
 `;
   const ld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Product', name: `${p.name} ${p.short}`, sku: p.ref, image: BASE + `img/${pImg(p.ref)}-800.webp`, description: p.lede, brand: { '@type': 'Brand', name: 'OW Soluções' }, ...(p.price ? { offers: { '@type': 'Offer', priceCurrency: 'EUR', price: p.price, availability: 'https://schema.org/InStock' } } : {}) });
   page(p.slug, {
@@ -272,15 +290,15 @@ page('servicos.html', {
   page: 'servicos',
   body: `
 <section class="ph" aria-labelledby="h1"><div class="grid">
-  <div class="full span-all"><h1 class="d-l split" id="h1">Instalamos num dia. Ficamos para sempre.</h1><p class="lede">Da visita à revisão anual, com a mesma equipa.</p></div>
+  <div class="full span-all"><h1 class="d-l split" id="h1">Validamos, instalamos e ficamos.</h1><p class="lede">Da visita técnica à revisão anual, com a mesma equipa. A 1.ª manutenção vem incluída no pacote completo.</p></div>
 </div></section>
 <figure class="media-hero rv m-0">${heroPicture('oficio-45', 'oficio', 'Mãos de técnico a nivelar um suporte numa parede branca', false)}</figure>
 <section class="sec" aria-labelledby="proc-h"><div class="grid">
   <div class="full"><h2 class="h2 split" id="proc-h">O que acontece, por ordem.</h2></div>
   <div class="full facts mt-48">
-    <div class="fact up"><b>Visita</b><span>Medimos a divisão, vemos as paredes e o quadro elétrico. Grátis com orçamento aceite.</span></div>
-    <div class="fact up"><b>Instalação</b><span>Chão protegido, furação limpa, calha pintada da cor da parede.</span></div>
-    <div class="fact up"><b>Entrega</b><span>Explicamos o comando, registamos tudo na tua conta e marcamos a primeira revisão.</span></div>
+    <div class="fact up"><b>Visita técnica</b><span>Medimos a divisão, vemos as paredes e o quadro elétrico, e confirmamos o equipamento certo. Custo: ${PH('a confirmar')}.</span></div>
+    <div class="fact up"><b>Pagamento e entrega</b><span>Pagas depois de confirmado o equipamento. O fornecedor entrega-o em tua casa.</span></div>
+    <div class="fact up"><b>Instalação</b><span>Marcas a data depois da entrega. Lembramos-te 48 h e 2 h antes. Chão protegido e furação limpa.</span></div>
   </div>
 </div></section>
 <section class="sec on-2" id="planos" aria-labelledby="plans-h"><div class="wrap">
@@ -295,7 +313,7 @@ page('servicos.html', {
   ${pic('manutencao', { alt: 'Troca do filtro de uma unidade de parede', sizes: '100vw' })}
   <div class="band-txt grid"><div><h2 class="h2" id="mnt2-h">Um filtro limpo muda tudo.</h2><p>Na revisão, trocamos o filtro e deixamos a data da próxima na tua conta.</p></div></div>
 </section>
-${closing('Marca a primeira visita.', 'Pedir orçamento')}
+${closing('Marca a visita técnica.', 'Pedir orçamento e visita')}
 `});
 
 /* =================== SOBRE =================== */
@@ -335,7 +353,7 @@ page('sobre.html', {
   <div class="full ct-form"><h2 class="h2 split" id="loc-h">Onde estamos.</h2><p class="lede" style="margin:16px 0 24px">${c.address}. Atendimento ${c.hours.toLowerCase()}.</p><a class="btn-2" href="${c.maps}" rel="noopener" target="_blank">Abrir no mapa ${I.arrow}</a></div>
   <figure class="full ct-side rv mt-32">${pic('cascais-45', { alt: 'Rua de Cascais com casas brancas', sizes: '(min-width: 1024px) 34vw, 100vw' })}</figure>
 </div></section>
-${closing('Vamos conhecer a tua casa.', 'Pedir visita')}
+${closing('Vamos conhecer a tua casa.', 'Pedir orçamento e visita')}
 `});
 
 /* =================== CONTACTO =================== */
@@ -369,32 +387,134 @@ page('contacto.html', {
 </div></section>
 `});
 
-/* =================== ORÇAMENTO =================== */
+/* =================== ORÇAMENTO: o funil único =================== */
+const FSTEPS = ['A tua casa', 'Divisões', 'O que já existe', 'Recomendação', 'Visita técnica', 'Contacto'];
+const seg = (name, opts, cls = '') => `<div class="seg${cls ? ' ' + cls : ''}">${opts.map(([v, l]) => `<label><input type="radio" name="${name}" value="${v}"><span>${l}</span></label>`).join('')}</div>`;
+const err = id => `<p class="err" id="${id}" hidden></p>`;
+const fProbs = [...D.problems.map(p => [p.id, p.label]), ['todo-ano', 'Quero conforto o ano todo']];
+const roomRow = (k, v) => `<div class="rm" data-room="${k}">
+  <label class="rm-chk"><input type="checkbox" name="room" value="${k}" aria-controls="rm-${k}"><span class="rm-box" aria-hidden="true"></span><span class="rm-n">${v}</span><span class="rm-s data" data-rm-sum="${k}"></span></label>
+  <div class="rm-det" id="rm-${k}" hidden>
+    <div class="fld"><label for="p-${k}">O que se passa na ${v.toLowerCase()}?</label><select id="p-${k}" name="p-${k}" aria-describedby="e-p-${k}"><option value="">Escolhe</option>${fProbs.map(([id, l]) => `<option value="${id}">${l}</option>`).join('')}</select>${err('e-p-' + k)}</div>
+    <fieldset class="fs-0" aria-describedby="e-a-${k}"><legend class="lbl">Área aproximada</legend>${seg('a-' + k, [['a', 'Até 15 m²'], ['b', '15–25'], ['c', '25–35'], ['d', '+35 m²']])}${err('e-a-' + k)}</fieldset>
+  </div>
+</div>`;
 page('orcamento.html', {
-  title: 'Pedir orçamento · OW Soluções',
-  desc: 'Cinco passos curtos: o problema, a divisão, a data e o contacto. Respondemos no mesmo dia útil.',
-  page: 'orcamento',
+  title: 'Pedir orçamento com instalação · OW Soluções',
+  desc: 'Seis passos: a casa, as divisões, o que já existe, a recomendação com instalação, a visita técnica e o contacto. Só pagas depois de confirmarmos o equipamento.',
+  page: 'orcamento', hdrFixed: true,
+  extraHead: '<script defer src="js/funil.js"></script>\n',
   body: `
-<div class="grid wiz" id="wizard">
-  <aside class="wiz-side" aria-hidden="true">${corte({ id: 'corte-w', sizes: '50vw', tags: true, cotas: false })}</aside>
-  <div class="wiz-main">
-    <div class="wiz-prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-    <p class="wiz-count" id="wiz-count" aria-live="polite">Passo 1 de 5</p>
-    <form id="wiz-form" novalidate>
-      <section class="wp" data-step="0" aria-labelledby="w0"><h1 id="w0" tabindex="-1">O que se passa em casa?</h1><p class="small">Escolhe o mais próximo.</p>
-        <div class="opts" role="radiogroup" aria-labelledby="w0">${D.problems.map(p => `<button type="button" class="opt" role="radio" aria-checked="false" data-w="problema" data-v="${p.id}" style="--sw:var(--${p.state})"><i class="sw" aria-hidden="true"></i>${p.label}${I.check}</button>`).join('')}<button type="button" class="opt" role="radio" aria-checked="false" data-w="problema" data-v="outro"><i class="sw" aria-hidden="true"></i>Outra coisa, ou manutenção${I.check}</button></div></section>
-      <section class="wp" data-step="1" aria-labelledby="w1" hidden><h1 id="w1" tabindex="-1">Em que divisão?</h1><p class="small">A maquete acende a divisão escolhida.</p>
-        <div class="opts" role="radiogroup" aria-labelledby="w1">${Object.entries(D.roomNames).map(([k, v]) => `<button type="button" class="opt opt-room" role="radio" aria-checked="false" data-w="divisao" data-v="${k}"><i class="sw" aria-hidden="true"></i>${v}${I.check}</button>`).join('')}<button type="button" class="opt opt-room" role="radio" aria-checked="false" data-w="divisao" data-v="varias"><i class="sw" aria-hidden="true"></i>Várias divisões${I.check}</button></div></section>
-      <section class="wp" data-step="2" aria-labelledby="w2" hidden><h1 id="w2" tabindex="-1">Para quando?</h1><p class="small">Marcamos a visita a seguir.</p>
-        <div class="opts" role="radiogroup" aria-labelledby="w2">${[['ja', 'Esta semana'], ['mes', 'Este mês'], ['ver', 'Só quero perceber o preço']].map(([k, v]) => `<button type="button" class="opt opt-room" role="radio" aria-checked="false" data-w="quando" data-v="${k}"><i class="sw" aria-hidden="true"></i>${v}${I.check}</button>`).join('')}</div></section>
-      <section class="wp" data-step="3" aria-labelledby="w3" hidden><h1 id="w3" tabindex="-1">Como te contactamos?</h1><p class="small">Só usamos isto para responder.</p>
-        <div class="form"><div class="fld"><label for="w-nome">Nome</label><input id="w-nome" name="nome" autocomplete="name" required></div><div class="fld"><label for="w-email">Email</label><input id="w-email" name="email" type="email" autocomplete="email" required></div><div class="fld"><label for="w-tel">Telefone <span class="muted">(opcional)</span></label><input id="w-tel" name="tel" type="tel" autocomplete="tel"></div></div></section>
-      <section class="wp" data-step="4" aria-labelledby="w4" hidden><h1 id="w4" tabindex="-1">Confirma o pedido.</h1>
-        <dl class="rev" id="w-rev"></dl>
-        <div class="rev-prod" id="w-prod"><img src="img/p-ui-25-400.webp" alt="" width="400" height="500" loading="lazy"><div><span class="small">Sugestão</span><br><b id="w-prod-n">Unidade de parede UI-25</b></div></div></section>
-      <section class="wp" data-step="5" aria-labelledby="w5" hidden><h1 id="w5" tabindex="-1">Pedido registado.</h1><p class="lede mt-12">Referência <span class="data" id="w-ref">OW-000000</span>. Ligamos-te no mesmo dia útil para marcar a visita.</p><p class="mt-24"><a class="btn-2" href="loja.html">Ver a loja enquanto esperas ${I.arrow}</a></p></section>
+<div class="fn" id="funil">
+  <div class="grid fn-top">
+    <div class="fn-bar6" aria-hidden="true">${FSTEPS.map(() => '<i></i>').join('')}</div>
+    <nav class="fn-tabs" aria-label="Passos do pedido"><ol>${FSTEPS.map((n, i) => `<li><button type="button" data-goto="${i + 1}" disabled><span>${n}</span></button></li>`).join('')}</ol></nav>
+    <p class="fn-count" id="fn-count">Passo 1 de 6 · A tua casa</p>
+  </div>
+  <div class="grid fn-body">
+    <form class="fn-main" id="fn-form" novalidate>
+      <noscript><p class="lede">Este pedido precisa de JavaScript. Liga-nos para o ${D.company.tel} ou escreve para ${D.company.email}.</p></noscript>
+      <div class="fn-known" id="fn-known" hidden><p class="lbl">Já sabemos isto:</p><p class="fn-known-t" id="fn-known-t"></p><button type="button" class="btn-2" data-goto-known>Alterar</button></div>
+
+      <section class="fs" data-step="1" aria-labelledby="s1">
+        <h1 class="fs-h" id="s1" tabindex="-1">Onde fica a casa?</h1>
+        <p class="lede">Confirmamos se chegamos aí. Leva um minuto.</p>
+        <div class="fld fld-cp mt-32"><label for="f-cp">Código postal</label><input id="f-cp" name="cp" inputmode="numeric" autocomplete="postal-code" placeholder="2750-321" maxlength="8" aria-describedby="cp-st e-cp" required>${err('e-cp')}<div class="zone" id="cp-st" aria-live="polite"></div></div>
+        <div class="fn-fora" id="fn-fora" hidden>
+          <p><b>Fora da zona?</b> Deixa o email e avisamos-te quando chegarmos aí.</p>
+          <div class="fn-fora-r"><div class="fld"><label for="f-fora">Email</label><input id="f-fora" type="email" autocomplete="email"></div><button type="button" class="btn" data-fora>Avisem-me</button></div>
+          <p class="small" id="fora-out" aria-live="polite"></p>
+        </div>
+        <fieldset class="fs-0 mt-32" aria-describedby="e-tipo"><legend class="lbl">Tipo de casa</legend>${seg('tipo', [['apartamento', 'Apartamento'], ['moradia', 'Moradia']])}${err('e-tipo')}</fieldset>
+        <fieldset class="fs-0 mt-16" aria-describedby="e-tip"><legend class="lbl">Tipologia</legend>${seg('tipologia', [['T0', 'T0'], ['T1', 'T1'], ['T2', 'T2'], ['T3', 'T3'], ['T4+', 'T4+']])}${err('e-tip')}</fieldset>
+      </section>
+
+      <section class="fs" data-step="2" aria-labelledby="s2" hidden>
+        <h1 class="fs-h" id="s2" tabindex="-1">Que divisões queres climatizar?</h1>
+        <p class="lede">Toca na casa ou escolhe da lista. Podes escolher várias.</p>
+        <div class="fn-casa" data-3d-slot="casa" data-3d-mode="escolher">${miniCasa({ id: 'mc-main' })}</div>
+        <div class="rooms" role="group" aria-labelledby="s2" aria-describedby="e-rooms">${Object.entries(D.roomNames).map(([k, v]) => roomRow(k, v)).join('')}</div>
+        ${err('e-rooms')}
+        <p class="small mt-16">Mais divisões, ou um espaço comercial? Diz-nos nas notas do último passo.</p>
+      </section>
+
+      <section class="fs" data-step="3" aria-labelledby="s3" hidden>
+        <h1 class="fs-h" id="s3" tabindex="-1">O que já existe em casa?</h1>
+        <p class="lede">Ajuda-nos a escolher o equipamento e a preparar a visita.</p>
+        <fieldset class="fs-0 mt-32" aria-describedby="e-ex"><legend class="lbl">Climatização atual</legend><div class="radios">${[['nada', 'Nada'], ['ac', 'Ar condicionado antigo'], ['central', 'Aquecimento central'], ['outro', 'Outro']].map(([v, l]) => `<label class="chk"><input type="radio" name="existe" value="${v}"> ${l}</label>`).join('')}</div>${err('e-ex')}</fieldset>
+        <fieldset class="fs-0 mt-24"><legend class="lbl">Onde pode ficar a unidade exterior? <span class="muted">(opcional)</span></legend>${seg('exterior', [['varanda', 'Varanda'], ['fachada', 'Fachada'], ['telhado', 'Telhado'], ['nao-sei', 'Não sei']])}</fieldset>
+        <fieldset class="fs-0 mt-16"><legend class="lbl">Fotografias <span class="muted">(opcional, poupam uma ida a casa)</span></legend>
+          <div class="photos">${[['parede', 'Parede da divisão'], ['quadro', 'Quadro elétrico'], ['ext', 'Local da unidade exterior']].map(([k, l]) => `<label class="ph-tile"><input type="file" accept="image/*" name="foto-${k}" class="sr"><span class="ph-img" data-ph="${k}" aria-hidden="true">${I.plus}</span><span>${l}</span></label>`).join('')}</div>
+          <p class="small mt-12">Nesta demonstração as fotografias não saem do teu aparelho.</p></fieldset>
+      </section>
+
+      <section class="fs" data-step="4" aria-labelledby="s4" hidden>
+        <h1 class="fs-h" id="s4" tabindex="-1">A tua recomendação.</h1>
+        <p class="lede">Escolhemos o equipamento pelo que nos disseste. O preço fecha-se na visita técnica.</p>
+        <ul class="rec" id="rec"></ul>
+        <fieldset class="pkgs fs-0 mt-32" aria-describedby="e-pk"><legend class="lbl">Escolhe o pacote</legend>
+          <label class="pkg"><input type="radio" name="pacote" value="base"><span class="pkg-b"><span class="pkg-n">Equipamento + instalação</span><span class="pkg-p">${PH('de €')} – ${PH('até €')}</span><span class="pkg-l"><span>Equipamento entregue em casa pelo fornecedor</span><span>Instalação pela equipa OW</span></span></span></label>
+          <label class="pkg"><input type="radio" name="pacote" value="completo"><span class="pkg-b"><span class="pkg-tag">Recomendado</span><span class="pkg-n">Pacote completo</span><span class="pkg-p">${PH('de €')} – ${PH('até €')}</span><span class="pkg-l"><span>Equipamento entregue em casa pelo fornecedor</span><span>Instalação pela equipa OW</span><span><b>1.ª manutenção incluída</b></span><span id="pk-plano">Contrato de manutenção opcional, desde ${PH('preço €/ano')}</span></span></span></label>
+          ${err('e-pk')}
+        </fieldset>
+        <div class="fn-note mt-24"><p><b>Ainda não pagas nada.</b> O preço confirma-se na visita técnica. O pagamento só acontece depois de confirmarmos o equipamento certo para a tua casa.</p></div>
+      </section>
+
+      <section class="fs" data-step="5" aria-labelledby="s5" hidden>
+        <h1 class="fs-h" id="s5" tabindex="-1">Quando podemos passar aí?</h1>
+        <p class="lede">Escolhe um dia para a <b>visita técnica</b>: medimos, vemos as paredes e confirmamos o equipamento. A instalação marcas depois, quando o equipamento chegar.</p>
+        <fieldset class="fs-0 mt-32" aria-describedby="e-dia"><legend class="lbl">Dia da visita técnica · próximos 10 dias úteis</legend><div class="days" id="days"></div>${err('e-dia')}</fieldset>
+        <fieldset class="fs-0 mt-24" aria-describedby="e-per"><legend class="lbl">Período</legend>${seg('periodo', [['manha', 'Manhã · 9–13 h'], ['tarde', 'Tarde · 14–18 h']])}${err('e-per')}</fieldset>
+        <div class="fld mt-8"><label for="f-morada">Morada da visita</label><input id="f-morada" name="morada" autocomplete="street-address" placeholder="Rua e número, andar" aria-describedby="e-morada" required>${err('e-morada')}</div>
+        <p class="small mt-16">É um pedido de visita: ligamos-te para a confirmar. Custo da visita: ${PH('a confirmar')}.</p>
+      </section>
+
+      <section class="fs" data-step="6" aria-labelledby="s6" hidden>
+        <h1 class="fs-h" id="s6" tabindex="-1">Como te contactamos?</h1>
+        <p class="lede">Só usamos isto para confirmar a visita e o teu pedido.</p>
+        <div class="form mt-32">
+          <div class="fld"><label for="f-nome">Nome</label><input id="f-nome" name="nome" autocomplete="name" aria-describedby="e-nome" required>${err('e-nome')}</div>
+          <div class="fld-2">
+            <div class="fld"><label for="f-tel">Telemóvel</label><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="912 345 678" aria-describedby="e-tel" required>${err('e-tel')}</div>
+            <div class="fld"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email" required>${err('e-email')}</div>
+          </div>
+          <div class="fld"><label for="f-nif">NIF <span class="muted">(opcional, para a fatura)</span></label><input id="f-nif" name="nif" inputmode="numeric" maxlength="9" aria-describedby="e-nif">${err('e-nif')}</div>
+          <div class="fld"><label for="f-notas">Notas <span class="muted">(opcional)</span></label><textarea id="f-notas" name="notas" rows="3" placeholder="Horários, acesso ao prédio, mais divisões…"></textarea></div>
+          <label class="chk chk-top"><input type="checkbox" name="rgpd" aria-describedby="e-rgpd"> <span>Aceito que a OW Soluções use estes dados para responder a este pedido, como descrito na política de privacidade.</span></label>${err('e-rgpd')}
+          <label class="chk chk-top"><input type="checkbox" name="lembretes"> <span>Quero receber lembretes de manutenção. <span class="muted">(opcional)</span></span></label>
+        </div>
+      </section>
+
+      <section class="fs fs-ok" data-step="7" aria-labelledby="s7" hidden>
+        <p class="ok-k">${I.check}<span>Pedido enviado</span></p>
+        <h1 class="fs-h" id="s7" tabindex="-1">Obrigado<span id="ok-nome"></span>.</h1>
+        <p class="lede">Referência <b class="data ok-ref" id="ok-ref">OW-000000</b>. Ligamos-te para confirmar a visita técnica. Prazo de resposta: ${PH('a confirmar')}.</p>
+        <div class="row mt-24"><button type="button" class="btn" data-ics>Adicionar ao calendário ${I.arrow}</button><a class="btn-2" href="conta.html">Criar conta para acompanhar ${I.arrow}</a></div>
+        <dl class="rev mt-40" id="ok-sum"></dl>
+        <h2 class="h3 mt-48">O que acontece a seguir</h2>
+        <ol class="next">
+          <li class="is-now"><b>Confirmamos a visita técnica por telefone.</b><span>No dia e período que escolheste, ou noutro que te dê mais jeito.</span></li>
+          <li><b>Na visita, confirmamos o equipamento certo.</b><span>Medimos, escolhemos a parede e fechamos o preço do pacote.</span></li>
+          <li><b>Só então pagas.</b><span>Enviamos o pagamento com o preço fechado. Nada é cobrado antes.</span></li>
+          <li><b>O fornecedor entrega o equipamento em tua casa.</b><span>Prazo de entrega: ${PH('a confirmar')}. Avisamos-te quando sair.</span></li>
+          <li><b>Com a entrega confirmada, marcas a instalação.</b><span>Escolhes o dia na tua conta. Enviamos lembretes 48 h e 2 h antes.</span></li>
+          <li><b>Ficamos para a manutenção.</b><span id="ok-mnt">A 1.ª manutenção vem incluída no pacote completo. Depois, podes ficar com um contrato de manutenção.</span></li>
+        </ol>
+        <p class="mt-32"><button type="button" class="btn-2" data-reset>Começar outro pedido</button></p>
+      </section>
+
+      <div class="fn-nav" id="fn-nav"><button type="button" class="fn-back" data-back>${I.left}<span>Voltar</span></button><button type="button" class="btn" data-next><span data-next-t>Continuar</span> ${I.arrow}</button></div>
+      <p class="sr" id="fn-live" aria-live="polite"></p>
     </form>
-    <div class="wiz-bar" id="wiz-bar"><button type="button" class="btn btn-back" data-prev aria-label="Voltar" hidden>${I.left}</button><button type="button" class="btn" data-next>Continuar ${I.arrow}</button></div>
+    <aside class="fn-side" aria-label="Resumo do pedido">
+      <div class="fn-sum">
+        <p class="lbl">O teu pedido</p>
+        ${miniCasa({ id: 'mc-side', small: true })}
+        <dl class="fn-dl" id="fn-dl"></dl>
+        <div class="fn-est"><span>Estimativa com instalação</span><b>${PH('de €')} – ${PH('até €')}</b></div>
+        <p class="small mt-12">Pagas só depois de confirmarmos o equipamento, na visita técnica.</p>
+      </div>
+    </aside>
   </div>
 </div>
 `});
@@ -405,13 +525,13 @@ page('cesto.html', {
   desc: 'O teu cesto na loja da OW Soluções.',
   page: 'cesto',
   body: `
-<section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Cesto</h1></div></div></section>
+<section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">Cesto</h1><p class="lede">Cada peça segue como pacote: equipamento, entrega em casa e instalação pela OW.</p></div></div></section>
 <section class="sec pt-0"><div class="grid">
   <div class="full cart-main"><div class="cart-items" id="cart-list" aria-live="polite"></div></div>
   <div class="full cart-side" id="cart-side">
-    <div class="sum"><div><span>Subtotal</span><span class="data" id="c-sub">0 €</span></div><div><span>Entrega</span><span class="data">Grátis</span></div><div class="tot"><span>Total</span><span id="c-tot">0 €</span></div>
-    <button type="button" class="btn btn-wide mt-20" data-checkout>Finalizar compra ${I.arrow}</button>
-    <p class="small mt-12" id="co-note" aria-live="polite"></p></div>
+    <div class="sum"><p class="lbl">Resumo do pacote</p><div><span>Equipamento</span><span class="data" id="c-sub">0 €</span></div><div><span>Instalação OW</span><span class="data">${PH('de €')} – ${PH('até €')}</span></div><div><span>Entrega em casa, pelo fornecedor</span><span class="data">${PH('a confirmar')}</span></div><div class="tot"><span>Total estimado</span><span>${PH('de €')} – ${PH('até €')}</span></div>
+    <a class="btn btn-wide mt-20" id="c-go" href="orcamento.html">Continuar: casa e visita técnica ${I.arrow}</a>
+    <p class="small mt-12">Ainda não pagas nada. Fechamos o preço na visita técnica e só cobramos depois de confirmarmos o equipamento certo.</p></div>
   </div>
   <div class="full" id="cart-empty" hidden><div class="empty-cart">${pic('p-ui-25', { alt: '', sizes: '360px' })}<div><p class="h2">O cesto está vazio.</p><p class="lede" style="margin:12px 0 24px">Começa pela peça que mais instalamos.</p><a class="btn" href="loja.html">Ir à loja ${I.arrow}</a></div></div></div>
 </div></section>

@@ -106,6 +106,7 @@ function header(page, opts = {}) {
   <div class="menu-foot"><a class="btn btn-wide" href="orcamento.html">Pedir orçamento ${I.arrow}</a></div>
 </nav>`;
 }
+
 function footer() {
   const c = D.company;
   return `<footer class="ft">
@@ -115,7 +116,7 @@ function footer() {
       <p>Climatização e ventilação para casas e escritórios na linha de Cascais.</p>
       <address>${esc(c.address)}<br><a href="${c.telHref}">${c.tel}</a><br><a href="mailto:${c.email}">${c.email}</a><br>${c.hours}</address>
     </div>
-    <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Diagnóstico</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Instalação</a><a href="servicos.html#planos">Manutenção</a></nav>
+    <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Por problema</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Como funciona</a><a href="servicos.html#planos">Manutenção</a></nav>
     <nav class="ft-col" aria-label="Loja"><h2>Loja</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=acessorios">Acessórios</a></nav>
     <nav class="ft-col" aria-label="Empresa"><h2>Empresa</h2><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a><a href="conta.html">Conta</a><a href="cesto.html">Cesto</a></nav>
     <div class="ft-base"><span>© 2026 OW Soluções</span><span>NIF ${c.nif}</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
@@ -151,8 +152,8 @@ function card(p, { feat = false, sizes = '(min-width: 1024px) 22vw, (min-width: 
   const box = rr ? `left:${rr[0][0]}%;top:${rr[0][1]}%;width:${(rr[1][0] - rr[0][0]).toFixed(2)}%;height:${(rr[2][1] - rr[0][1]).toFixed(2)}%` : '';
   const alt = M[p.insitu + '-45'] ? p.insitu + '-45' : p.insitu;
   const add = p.price == null
-    ? `<a class="card-add" href="orcamento.html?ref=${p.ref}" aria-label="Pedir estudo para ${p.name}">${I.arrow}<span>Pedir estudo</span></a>`
-    : `<button type="button" class="card-add" data-add="${p.ref}" aria-label="Adicionar ${p.name} ao cesto">${I.plus}<span>Adicionar</span></button>`;
+    ? `<a class="card-add" href="orcamento.html?ref=${p.ref}" aria-label="Pedir estudo com instalação para ${p.name}">${I.arrow}<span>Pedir estudo</span></a>`
+    : `<button type="button" class="card-add" data-add="${p.ref}" aria-label="Adicionar ${p.name} ao cesto, com instalação">${I.plus}<span>Adicionar</span></button>`;
   return `<article class="card${feat ? ' is-feat' : ''}" data-product data-ref="${p.ref}" data-cat="${p.cat}" data-ctx="${p.ctx}" data-fn="${p.fn}" data-rooms="${p.rooms.join(' ')}" data-price="${p.price ?? 99999}">
   <a class="card-link" href="${p.slug}">
     <div class="card-img">${pic(pImg(p.ref), { alt: `${p.name} ${p.short}`, sizes: feat ? '(min-width: 1024px) 22vw, (min-width: 768px) 60vw, 100vw' : sizes, lazy, imgCls: 'main', vt: 'p-' + p.ref.toLowerCase() })}${pic(alt, { alt: '', sizes, imgCls: 'alt' })}${where && rr ? `<span class="card-where" aria-hidden="true"><img src="img/corte-mini-320.webp" alt="" width="320" height="${Math.round(320 * ROOMS.h / ROOMS.w)}" loading="lazy"><i style="${box}"></i></span>` : ''}</div>
@@ -242,22 +243,42 @@ function heroPicture(n45, n219, alt, prio = true) {
 const preloadHero = (n45, n219) => `<link rel="preload" as="image" type="image/avif" media="(max-width: 767px)" imagesrcset="${M[n45].widths.map(w => `img/${n45}-${w}.avif ${w}w`).join(', ')}" imagesizes="100vw" fetchpriority="high">
 <link rel="preload" as="image" type="image/avif" media="(min-width: 768px)" imagesrcset="${M[n219].widths.map(w => `img/${n219}-${w}.avif ${w}w`).join(', ')}" imagesizes="100vw" fetchpriority="high">
 `;
-const closing = (h = 'Diz-nos o que se passa em casa.', cta = 'Pedir orçamento') => `<section class="sec close" aria-labelledby="close-h"><div class="grid">
-  <div class="close-h"><h2 class="d-l split" id="close-h">${h}</h2><p class="lede mt-16">Respondemos no mesmo dia útil, com uma proposta ou uma data para a visita.</p></div>
-  <div class="close-a"><a class="btn" href="orcamento.html">${cta} ${I.arrow}</a></div>
+const closing = (h = 'Diz-nos o que se passa em casa.', cta = 'Pedir orçamento', href = 'orcamento.html') => `<section class="sec close" aria-labelledby="close-h"><div class="grid">
+  <div class="close-h"><h2 class="d-l split" id="close-h">${h}</h2><p class="lede mt-16">Seis passos curtos: a casa, as divisões, a estimativa com instalação e a visita técnica. Só pagas depois de confirmarmos o equipamento.</p></div>
+  <div class="close-a"><a class="btn" href="${href}">${cta} ${I.arrow}</a></div>
 </div></section>`;
+
+
+/* ---------- mini-casa (SVG): entrada do funil e passo 2 ---------- */
+// Corte simplificado: sala e casa de banho no rés-do-chão, quarto e escritório em cima.
+const CASA = { quarto: [48, 128, 188, 88], escritorio: [244, 128, 188, 88], sala: [48, 224, 248, 88], banho: [304, 224, 128, 88] };
+function miniCasa({ mode = 'toggle', id = '', href = r => `orcamento.html?divisao=${r}`, small = false } = {}) {
+  const rooms = Object.entries(CASA).map(([k, [x, y, w, h]]) => {
+    const inner = `<rect class="mc-r" x="${x}" y="${y}" width="${w}" height="${h}"/><rect class="mc-u" x="${x + w - 44}" y="${y + 10}" width="32" height="9"/><text class="mc-t" x="${x + 12}" y="${y + h - 14}">${D.roomNames[k]}</text><path class="mc-k" d="M${x + w - 30} ${y + h - 22}l5 5 10-10"/>`;
+    return mode === 'link'
+      ? `<a class="mc-room" data-mc="${k}" href="${href(k)}" aria-label="${D.roomNames[k]}: começar o pedido por esta divisão">${inner}</a>`
+      : `<g class="mc-room" data-mc="${k}">${inner}</g>`;
+  }).join('');
+  return `<svg class="mc${small ? ' mc-s' : ''}" data-3d-fallback="casa" ${id ? `id="${id}" ` : ''}viewBox="0 0 480 344"${mode === 'link' ? ' role="group" aria-label="A casa em corte: escolhe uma divisão"' : ' aria-hidden="true" focusable="false"'}>
+  <path class="mc-roof" d="M24 124 240 22l216 102"/><path class="mc-attic" d="M56 116 240 36l184 80Z"/>
+  <path class="mc-wall" d="M40 120h400v200H40Z"/>
+  ${rooms}
+  <path class="mc-gl" d="M8 322h464"/>
+  <text class="mc-cota" x="240" y="340" text-anchor="middle">Esc. 1:100</text>
+</svg>`;
+}
 
 /* ---------- css, data.js, sitemap ---------- */
 const PAGES = [];
 function finish() {
-  const css = ['tokens.css', 'fonts.css', 'site.css'].map(f => fs.readFileSync(`${ROOT}/css/${f}`, 'utf8')).join('\n')
+  const css = ['tokens.css', 'fonts.css', 'site.css', 'funil.css'].map(f => fs.readFileSync(`${ROOT}/css/${f}`, 'utf8')).join('\n')
     .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n').replace(/\n+/g, '\n').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}');
   fs.writeFileSync(`${ROOT}/css/gw.css`, `:root{--car:${ROOMS.w} / ${ROOMS.h}}` + css.trim() + '\n');
-  const data = { products: D.products.map(p => ({ ref: p.ref, name: p.name, short: p.short, price: p.price, slug: p.slug })), problems: D.problems.map(p => ({ id: p.id, label: p.label, room: p.room })), answers: D.answers, recs: D.recs, comfort: D.comfort, comfortUnits: D.comfortUnits, roomNames: D.roomNames, rooms: { rooms: ROOMS.rooms, ar: ROOMS.h / ROOMS.w } };
+  const data = { cats: D.cats, products: D.products.map(p => ({ ref: p.ref, name: p.name, short: p.short, price: p.price, slug: p.slug, cat: p.cat, fn: p.fn, rooms: p.rooms, desc: p.desc, lede: p.lede, stock: p.stock, power: p.power })), problems: D.problems.map(p => ({ id: p.id, label: p.label, room: p.room })), answers: D.answers, recs: D.recs, comfort: D.comfort, comfortUnits: D.comfortUnits, roomNames: D.roomNames, rooms: { rooms: ROOMS.rooms, ar: ROOMS.h / ROOMS.w } };
   fs.writeFileSync(`${ROOT}/js/data.js`, '/* gerado por tools/build.mjs */\nwindow.GW=' + JSON.stringify(data) + ';\n');
   const files = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && f !== '404.html').sort((a, b) => a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b));
   fs.writeFileSync(`${ROOT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map(f => `  <url><loc>${BASE}${f === 'index.html' ? '' : f}</loc></url>`).join('\n')}\n</urlset>\n`);
   console.log('css', css.length, 'bytes; data.js; sitemap', files.length);
 }
 
-export { finish, I, WM, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, ROOT };
+export { miniCasa, finish, I, WM, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, ROOT };
