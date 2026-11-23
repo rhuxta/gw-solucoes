@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var $ = function (s, r) { return (r || d).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); };
   var reduce = w.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var KEY = "ow-funil", N = 6;
-  var NAMES = ["A tua casa", "Divisões", "O que já existe", "Recomendação", "Visita técnica", "Contacto"];
+  var KEY = "ow-funil", N = 7, OK = 8;
+  var NAMES = ["A tua casa", "Divisões", "O que já existe", "Recomendação", "Visita técnica", "Contacto", "Rever e enviar"];
   var PROBS = { quente: "A divisão aquece demasiado", frio: "Sinto frio ao fim do dia", parado: "O ar parece parado", humidade: "Os vidros ficam embaciados", "todo-ano": "Conforto o ano todo" };
   var AREAS = { a: "até 15 m²", b: "15–25 m²", c: "25–35 m²", d: "mais de 35 m²" };
   var EXISTE = { nada: "Nada", ac: "Ar condicionado antigo", central: "Aquecimento central", outro: "Outro" };
@@ -83,14 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target.closest("[data-fora]")) { var em = $("#f-fora"); $("#fora-out").textContent = em.checkValidity() && em.value ? "Obrigado. Avisamos-te por email quando chegarmos à tua zona." : "Escreve um email válido."; }
   });
 
-  /* ---- mini-casa: clicar numa divisão = marcar a caixa correspondente ---- */
-  var mcMain = $("#mc-main"), mcSide = $("#mc-side");
-  if (mcMain) mcMain.addEventListener("click", function (e) {
-    var g = e.target.closest("[data-mc]"); if (!g) return;
-    var cb = $('input[name="room"][value="' + g.getAttribute("data-mc") + '"]', form); cb.checked = !cb.checked; cb.dispatchEvent(new Event("change", { bubbles: true }));
-    if (cb.checked) { var sel = $("#p-" + cb.value); if (sel && !sel.value) sel.focus(); }
-  });
-  function paintCasa(svg) { if (!svg) return; $$("[data-mc]", svg).forEach(function (g) { var r = g.getAttribute("data-mc"); g.classList.toggle("is-on", !!S.rooms[r]); g.classList.toggle("is-ok", S.step >= 4 && !!S.rooms[r]); }); }
+  /* ---- casa 3D: a mini-casa SVG saiu. Quando o 3D entrar em [data-3d-slot="casa"], ouve "ow:funil" e
+     marca as divisões chamando o checkbox correspondente (input[name=room]); a lista é sempre a interface verdadeira. ---- */
 
   /* ---- dias úteis ---- */
   (function () {
@@ -148,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (n === 2) {
       var rs = Object.keys(S.rooms);
-      if (!rs.length) bad.push(setErr("e-rooms", "Escolhe pelo menos uma divisão, na casa ou na lista.", $('input[name="room"]', form)));
+      if (!rs.length) bad.push(setErr("e-rooms", "Escolhe pelo menos uma divisão.", $('input[name="room"]', form)));
       rs.forEach(function (r) {
         if (!S.rooms[r].p) bad.push(setErr("e-p-" + r, "Diz-nos o que se passa na " + RN[r].toLowerCase() + ".", $("#p-" + r)));
         if (!S.rooms[r].a) bad.push(setErr("e-a-" + r, "Escolhe a área aproximada.", $('input[name="a-' + r + '"]', form)));
@@ -167,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!/^9\d{8}$/.test(tel)) bad.push(setErr("e-tel", "Escreve um telemóvel português com 9 dígitos, a começar por 9.", form.tel));
       if (!form.email.value || !form.email.checkValidity()) bad.push(setErr("e-email", "Escreve um email válido, por exemplo nome@email.pt.", form.email));
       if (S.nif && !/^\d{9}$/.test(S.nif.replace(/\s/g, ""))) bad.push(setErr("e-nif", "O NIF tem 9 dígitos. Podes deixar em branco.", form.nif));
-      if (!S.rgpd) bad.push(setErr("e-rgpd", "Precisamos do teu consentimento para responder ao pedido.", form.rgpd));
+      if (!S.rgpd) bad.push(setErr("e-rgpd", "Para enviarmos o pedido, confirma que leste a política de privacidade.", form.rgpd));
     }
     if (bad.length) { live.textContent = bad.length === 1 ? "Falta corrigir um campo." : "Faltam corrigir " + bad.length + " campos."; bad[0].focus(); }
     return !bad.length;
@@ -176,25 +170,26 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---- navegação entre passos ---- */
   function go(n, opts) {
     opts = opts || {};
-    n = Math.max(1, Math.min(S.done ? 7 : S.max, n));
+    n = Math.max(1, Math.min(S.done ? OK : S.max, n)); if (S.done && n < OK) n = OK;
     S.step = n; save();
     steps.forEach(function (s) { var on = +s.getAttribute("data-step") === n; s.hidden = !on; if (on && !reduce) { s.classList.remove("is-in"); void s.offsetWidth; s.classList.add("is-in"); } });
     if (n === 4) paintRec();
-    if (n === 7) paintOk();
+    if (n === 7) paintReview();
+    if (n === OK) paintOk();
     paint();
     if (!opts.silent) { var h = steps[n - 1].querySelector("h1"); if (h) h.focus({ preventScroll: true }); w.scrollTo(0, 0); }
-    if (!opts.pop) history[opts.replace ? "replaceState" : "pushState"]({ s: n }, "", "#passo-" + (n === 7 ? "confirmacao" : n));
+    if (!opts.pop) history[opts.replace ? "replaceState" : "pushState"]({ s: n }, "", "#passo-" + (n === OK ? "confirmacao" : n));
   }
   function paint() {
-    var n = S.step; root.classList.toggle("is-done", n === 7);
-    bars.forEach(function (b, i) { b.className = i < n - 1 || n === 7 ? "is-done" : i === n - 1 ? "is-on" : ""; });
+    var n = S.step; root.classList.toggle("is-done", n === OK);
+    bars.forEach(function (b, i) { b.className = i < n - 1 || n === OK ? "is-done" : i === n - 1 ? "is-on" : ""; });
     tabs.forEach(function (t, i) { var k = i + 1; t.disabled = S.done || k > S.max; if (k === n) t.setAttribute("aria-current", "step"); else t.removeAttribute("aria-current"); t.classList.toggle("is-done", k < S.max && k !== n); });
-    cnt.textContent = n === 7 ? "Pedido enviado" : "Passo " + n + " de " + N + " · " + NAMES[n - 1];
-    backB.hidden = n === 1; nav.hidden = n === 7;
-    var lab = n === 6 ? "Enviar pedido" : n === 4 ? 'Continuar<span class="fn-long"> para a visita técnica</span>' : n === 5 ? 'Continuar<span class="fn-long"> para o contacto</span>' : "Continuar";
+    cnt.textContent = n === OK ? "Pedido enviado" : "Passo " + n + " de " + N + " · " + NAMES[n - 1];
+    backB.hidden = n === 1; nav.hidden = n === OK;
+    var lab = S.edit && n < 7 ? 'Guardar<span class="fn-long"> e voltar à revisão</span>' : n === 7 ? "Enviar pedido" : n === 6 ? "Rever pedido" : n === 4 ? 'Continuar<span class="fn-long"> para a visita técnica</span>' : n === 5 ? 'Continuar<span class="fn-long"> para o contacto</span>' : "Continuar";
     if (nextT.innerHTML !== lab) nextT.innerHTML = lab; /* não recriar o texto a meio de um clique */
-    paintKnown(); paintCasa(mcMain); paintCasa(mcSide); paintSum();
-    /* gancho para a fase 3D (conceito B): a cena ouve este evento e acende/enquadra as divisões */
+    paintKnown(); paintSum();
+    /* gancho para a fase 3D (casa em corte, conceito A): a cena ouve este evento e acende/enquadra as divisões */
     d.dispatchEvent(new CustomEvent("ow:funil", { detail: { step: n, rooms: Object.keys(S.rooms), lit: n >= 4 } }));
     ROOMS.forEach(function (r) { var s = $('[data-rm-sum="' + r + '"]'), o = S.rooms[r]; if (s) s.textContent = o && o.p && o.a ? (PROBS[o.p] ? AREAS[o.a] : "") : ""; });
   }
@@ -218,6 +213,22 @@ document.addEventListener("DOMContentLoaded", function () {
     return R;
   }
   function paintSum() { $("#fn-dl").innerHTML = sumRows().map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("") || '<div><dt>Ainda vazio</dt><dd>Vai-se preenchendo a cada passo.</dd></div>'; }
+  /* ---- revisão (passo 7): tudo o que vai ser enviado, com Editar por bloco ---- */
+  var EXT = { varanda: "Varanda", fachada: "Fachada", telhado: "Telhado", "nao-sei": "Não sei" };
+  function rows(n) {
+    var r = [], x = function (k, v, raw) { if (v) r.push([k, raw ? v : esc(v)]); };
+    if (n === 1) { x("Código postal", S.cp); x("Tipo de casa", S.tipo === "moradia" ? "Moradia" : S.tipo === "apartamento" ? "Apartamento" : ""); x("Tipologia", S.tipologia); }
+    if (n === 2) ROOMS.forEach(function (k) { var o = S.rooms[k]; if (o) x(RN[k], [PROBS[o.p], AREAS[o.a]].filter(Boolean).join(" · ")); });
+    if (n === 3) { x("Climatização atual", EXISTE[S.existe]); x("Unidade exterior", EXT[S.exterior] || "Por decidir na visita"); var f = $$('.ph-tile input[type="file"]', form).filter(function (i) { return i.files && i.files.length; }).length; x("Fotografias", f ? f + (f === 1 ? " anexada" : " anexadas") : "Nenhuma"); }
+    if (n === 4) { x("Equipamento", lines().map(function (l) { return l.p.name + " " + l.p.ref + (l.n > 1 ? " × " + l.n : ""); }).join(", ")); x("Pacote", S.pacote === "completo" ? "Completo, com 1.ª manutenção" : "Equipamento + instalação"); x("Estimativa", ph("de €") + " – " + ph("até €") + " · fecha-se na visita", true); }
+    if (n === 5) { x("Dia", dayLabel(S.dia)); x("Período", S.periodo === "manha" ? "Manhã · 9–13 h" : S.periodo === "tarde" ? "Tarde · 14–18 h" : ""); x("Morada", S.morada); }
+    if (n === 6) { x("Nome", S.nome); x("Telemóvel", S.tel); x("Email", S.email); x("NIF", S.nif); x("Notas", S.notas); x("Privacidade", S.rgpd ? "Política de privacidade lida" : ""); x("Lembretes", S.lembretes ? "Sim, quero lembretes de manutenção" : "Não"); }
+    return r;
+  }
+  function paintReview() {
+    $$("[data-rv]", root).forEach(function (dl) { var n = +dl.getAttribute("data-rv"); dl.innerHTML = rows(n).map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + r[1] + "</dd></div>"; }).join("") || "<div><dt>—</dt><dd>Falta preencher</dd></div>"; });
+  }
+  root.addEventListener("click", function (e) { var b = e.target.closest("[data-edit]"); if (!b) return; S.edit = true; save(); go(+b.getAttribute("data-edit")); });
   function paintOk() {
     $("#ok-ref").textContent = S.code; $("#ok-nome").textContent = S.nome ? ", " + S.nome.trim().split(/\s+/)[0] : "";
     var R = sumRows().concat([["Contacto", (S.nome || "") + " · " + (S.tel || "") + " · " + (S.email || "")]]);
@@ -228,7 +239,10 @@ document.addEventListener("DOMContentLoaded", function () {
   nextB.addEventListener("click", function () {
     var n = S.step; collect();
     if (!check(n)) return;
-    if (n === 6) { S.code = "OW-" + String(Math.floor(100000 + Math.random() * 900000)); S.done = true; try { localStorage.removeItem("gw-cesto"); } catch (e) {} save(); go(7); return; }
+    /* o pedido só é enviado no passo 7 (revisão), depois de o cliente ver tudo */
+    if (n === 7) { for (var k = 1; k < 7; k++) { if (!check(k)) { S.edit = true; go(k); check(k); return; } }
+      S.edit = false; S.code = "OW-" + String(Math.floor(100000 + Math.random() * 900000)); S.done = true; try { localStorage.removeItem("gw-cesto"); } catch (e) {} save(); go(OK); return; }
+    if (S.edit && S.max >= 7) { S.edit = false; go(7); return; }
     S.max = Math.max(S.max, n + 1); go(n + 1);
   });
   backB.addEventListener("click", function () { go(S.step - 1); });
@@ -250,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---- arranque: continuar onde ficaste ---- */
   fill();
-  var start = S.done ? 7 : S.step;
+  var start = S.done ? OK : S.step;
   if (S.known && !S.done) { if (!CP.test(S.cp || "")) start = 1; else { S.max = Math.max(S.max, 2); start = 2; } S.known = start <= 2; }
   var hm = location.hash.match(/passo-(\d)/); if (hm && !S.done) start = +hm[1];
   go(start, { silent: true, replace: true });

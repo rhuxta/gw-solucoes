@@ -1,4 +1,5 @@
-import { miniCasa, I, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, finish } from './build.mjs';
+import fs from 'fs';
+import { casaSlot, ROOM_ORDER, I, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, finish } from './build.mjs';
 const c = D.company;
 const LD = JSON.stringify({ '@context': 'https://schema.org', '@type': 'HVACBusiness', name: 'OW Soluções', url: BASE, image: BASE + 'img/og-1200.jpg', address: { '@type': 'PostalAddress', streetAddress: 'Travessa do Farol 8', addressLocality: 'Cascais', postalCode: '2750-321', addressCountry: 'PT' }, telephone: '+351210000000', areaServed: ['Cascais', 'Oeiras', 'Sintra'] });
 
@@ -7,7 +8,7 @@ const LD = JSON.stringify({ '@context': 'https://schema.org', '@type': 'HVACBusi
 const PH = t => `<span class="phv">[${t}]</span>`;
 const entry = ({ h = 'Por onde começamos?', id = 'entry-h' } = {}) => `<div class="grid en">
   <div class="en-head"><h2 class="h2 split" id="${id}">${h}</h2><p class="lede mt-16">Pela divisão ou pelo que sentes. Os dois caminhos levam ao mesmo pedido, já preenchido com o que escolheres.</p></div>
-  <div class="en-casa" data-3d-slot="casa" data-3d-mode="explorar"><p class="en-k">Pela casa</p>${miniCasa({ mode: 'link' })}<p class="small mt-12">Toca numa divisão para começar por ela.</p></div>
+  <div class="en-casa"><p class="en-k">Pela casa</p>${casaSlot()}<ul class="en-rooms" data-3d-fallback="casa" aria-label="Começar por uma divisão">${ROOM_ORDER.map(k => `<li><a class="en-r" data-room="${k}" href="orcamento.html?divisao=${k}"><span>${D.roomNames[k]}</span>${I.arrow}</a></li>`).join('')}</ul></div>
   <div class="en-prob"><p class="en-k">Pelo problema</p><ul class="en-list">${D.problems.map(p => `<li><a class="en-a" href="orcamento.html?problema=${p.id}&amp;divisao=${p.room}"><i class="sw" style="--sw:var(--${p.state})" aria-hidden="true"></i><span>${p.label}</span>${I.arrow}</a></li>`).join('')}<li><a class="en-a" href="orcamento.html?problema=todo-ano"><i class="sw" aria-hidden="true"></i><span>Quero conforto o ano todo</span>${I.arrow}</a></li></ul>
   <p class="small mt-16">Já sabes a peça? <a class="lnk" href="loja.html">Escolhe na loja</a> e segue com instalação.</p></div>
 </div>`;
@@ -388,7 +389,7 @@ page('contacto.html', {
 `});
 
 /* =================== ORÇAMENTO: o funil único =================== */
-const FSTEPS = ['A tua casa', 'Divisões', 'O que já existe', 'Recomendação', 'Visita técnica', 'Contacto'];
+const FSTEPS = ['A tua casa', 'Divisões', 'O que já existe', 'Recomendação', 'Visita técnica', 'Contacto', 'Rever e enviar'];
 const seg = (name, opts, cls = '') => `<div class="seg${cls ? ' ' + cls : ''}">${opts.map(([v, l]) => `<label><input type="radio" name="${name}" value="${v}"><span>${l}</span></label>`).join('')}</div>`;
 const err = id => `<p class="err" id="${id}" hidden></p>`;
 const fProbs = [...D.problems.map(p => [p.id, p.label]), ['todo-ano', 'Quero conforto o ano todo']];
@@ -401,7 +402,7 @@ const roomRow = (k, v) => `<div class="rm" data-room="${k}">
 </div>`;
 page('orcamento.html', {
   title: 'Pedir orçamento com instalação · OW Soluções',
-  desc: 'Seis passos: a casa, as divisões, o que já existe, a recomendação com instalação, a visita técnica e o contacto. Só pagas depois de confirmarmos o equipamento.',
+  desc: 'Sete passos: a casa, as divisões, o que já existe, a recomendação com instalação, a visita técnica, o contacto e a revisão antes de enviar. Só pagas depois de confirmarmos o equipamento.',
   page: 'orcamento', hdrFixed: true,
   extraHead: '<script defer src="js/funil.js"></script>\n',
   body: `
@@ -409,7 +410,7 @@ page('orcamento.html', {
   <div class="grid fn-top">
     <div class="fn-bar6" aria-hidden="true">${FSTEPS.map(() => '<i></i>').join('')}</div>
     <nav class="fn-tabs" aria-label="Passos do pedido"><ol>${FSTEPS.map((n, i) => `<li><button type="button" data-goto="${i + 1}" disabled><span>${n}</span></button></li>`).join('')}</ol></nav>
-    <p class="fn-count" id="fn-count">Passo 1 de 6 · A tua casa</p>
+    <p class="fn-count" id="fn-count">Passo 1 de 7 · A tua casa</p>
   </div>
   <div class="grid fn-body">
     <form class="fn-main" id="fn-form" novalidate>
@@ -431,9 +432,9 @@ page('orcamento.html', {
 
       <section class="fs" data-step="2" aria-labelledby="s2" hidden>
         <h1 class="fs-h" id="s2" tabindex="-1">Que divisões queres climatizar?</h1>
-        <p class="lede">Toca na casa ou escolhe da lista. Podes escolher várias.</p>
-        <div class="fn-casa" data-3d-slot="casa" data-3d-mode="escolher">${miniCasa({ id: 'mc-main' })}</div>
-        <div class="rooms" role="group" aria-labelledby="s2" aria-describedby="e-rooms">${Object.entries(D.roomNames).map(([k, v]) => roomRow(k, v)).join('')}</div>
+        <p class="lede">Escolhe da lista. Podes escolher várias.</p>
+        <div class="fn-casa" data-3d-slot="casa" data-3d-mode="escolher" hidden></div>
+        <div class="rooms mt-32" data-3d-fallback="casa" role="group" aria-labelledby="s2" aria-describedby="e-rooms">${Object.entries(D.roomNames).map(([k, v]) => roomRow(k, v)).join('')}</div>
         ${err('e-rooms')}
         <p class="small mt-16">Mais divisões, ou um espaço comercial? Diz-nos nas notas do último passo.</p>
       </section>
@@ -480,17 +481,27 @@ page('orcamento.html', {
           </div>
           <div class="fld"><label for="f-nif">NIF <span class="muted">(opcional, para a fatura)</span></label><input id="f-nif" name="nif" inputmode="numeric" maxlength="9" aria-describedby="e-nif">${err('e-nif')}</div>
           <div class="fld"><label for="f-notas">Notas <span class="muted">(opcional)</span></label><textarea id="f-notas" name="notas" rows="3" placeholder="Horários, acesso ao prédio, mais divisões…"></textarea></div>
-          <label class="chk chk-top"><input type="checkbox" name="rgpd" aria-describedby="e-rgpd"> <span>Aceito que a OW Soluções use estes dados para responder a este pedido, como descrito na política de privacidade.</span></label>${err('e-rgpd')}
-          <label class="chk chk-top"><input type="checkbox" name="lembretes"> <span>Quero receber lembretes de manutenção. <span class="muted">(opcional)</span></span></label>
+          <label class="chk chk-top"><input type="checkbox" name="rgpd" aria-describedby="e-rgpd"> <span>Li a <a class="lnk" href="privacidade.html" target="_blank" rel="noopener">política de privacidade<span class="sr"> (abre noutro separador)</span></a> e compreendo que a OW Soluções vai usar estes dados para responder a este pedido.</span></label>${err('e-rgpd')}
+          <label class="chk chk-top"><input type="checkbox" name="lembretes"> <span>Quero receber lembretes de manutenção. <span class="muted">(opcional; podes retirar este consentimento quando quiseres)</span></span></label>
         </div>
       </section>
 
-      <section class="fs fs-ok" data-step="7" aria-labelledby="s7" hidden>
+      <section class="fs" data-step="7" aria-labelledby="s7r" hidden>
+        <h1 class="fs-h" id="s7r" tabindex="-1">Confirma o teu pedido.</h1>
+        <p class="lede">Revê tudo antes de enviar. Nada é enviado até carregares em «Enviar pedido».</p>
+        <div class="rv mt-32" id="rv">
+${[[1, 'A tua casa'], [2, 'Divisões'], [3, 'O que já existe'], [4, 'Pacote'], [5, 'Visita técnica'], [6, 'Contacto']].map(([n, t]) => `          <section class="rv-b" aria-labelledby="rv-h${n}"><div class="rv-t"><h2 class="rv-h" id="rv-h${n}">${t}</h2><button type="button" class="lnk-b rv-e" data-edit="${n}">Editar<span class="sr"> ${t.toLowerCase()}</span></button></div><dl class="rv-dl" data-rv="${n}"></dl></section>`).join('\n')}
+        </div>
+        <div class="fn-note mt-24"><p>Usamos estes dados só para responder a este pedido, como explicado na <a class="lnk" href="privacidade.html" target="_blank" rel="noopener">política de privacidade<span class="sr"> (abre noutro separador)</span></a>. <b>Ainda não pagas nada.</b> O preço fecha-se na visita técnica.</p></div>
+      </section>
+
+      <section class="fs fs-ok" data-step="8" aria-labelledby="s7" hidden>
         <p class="ok-k">${I.check}<span>Pedido enviado</span></p>
         <h1 class="fs-h" id="s7" tabindex="-1">Obrigado<span id="ok-nome"></span>.</h1>
         <p class="lede">Referência <b class="data ok-ref" id="ok-ref">OW-000000</b>. Ligamos-te para confirmar a visita técnica. Prazo de resposta: ${PH('a confirmar')}.</p>
         <div class="row mt-24"><button type="button" class="btn" data-ics>Adicionar ao calendário ${I.arrow}</button><a class="btn-2" href="conta.html">Criar conta para acompanhar ${I.arrow}</a></div>
         <dl class="rev mt-40" id="ok-sum"></dl>
+        <p class="small mt-16">Tratamos os teus dados como descrito na <a class="lnk" href="privacidade.html">política de privacidade</a>.</p>
         <h2 class="h3 mt-48">O que acontece a seguir</h2>
         <ol class="next">
           <li class="is-now"><b>Confirmamos a visita técnica por telefone.</b><span>No dia e período que escolheste, ou noutro que te dê mais jeito.</span></li>
@@ -509,7 +520,6 @@ page('orcamento.html', {
     <aside class="fn-side" aria-label="Resumo do pedido">
       <div class="fn-sum">
         <p class="lbl">O teu pedido</p>
-        ${miniCasa({ id: 'mc-side', small: true })}
         <dl class="fn-dl" id="fn-dl"></dl>
         <div class="fn-est"><span>Estimativa com instalação</span><b>${PH('de €')} – ${PH('até €')}</b></div>
         <p class="small mt-12">Pagas só depois de confirmarmos o equipamento, na visita técnica.</p>
@@ -576,4 +586,59 @@ page('404.html', {
   <div class="full mt-48"><div class="corte">${corte({ id: 'corte-404', dark: true, sizes: '100vw', cotas: false })}</div></div>
 </div></section>
 `});
+/* =================== LEGAL =================== */
+/* Copy: Shakespeare, /workspace/shakespeare/ow-legal/ (23 nov 2026), copiada para legal/. Rascunho por rever por jurista.
+   Placeholders [ ] ficam visíveis (.phv). Rotas internas /x → x.html (o site vive numa subpasta). */
+const LROUTE = { '/privacidade': 'privacidade.html', '/cookies': 'cookies.html', '/termos': 'termos.html', '/livro-de-reclamacoes': 'livro-de-reclamacoes.html', '/avisos-legais': 'avisos-legais.html' };
+function inl(t) {
+  let out = '', i = 0;
+  while (i < t.length) {
+    const ch = t[i];
+    if (ch === '[') {
+      let dep = 0, j = i;
+      for (; j < t.length; j++) { if (t[j] === '[') dep++; else if (t[j] === ']' && --dep === 0) break; }
+      if (j >= t.length) { out += esc(ch); i++; continue; }
+      const inner = t.slice(i + 1, j);
+      const m = t.slice(j + 1).match(/^\(([^)\s]+)\)/);
+      if (m) { const u = m[1], ext = /^https?:/.test(u); const href = ext ? u : (LROUTE[u] || u);
+        out += `<a class="lnk" href="${href}"${ext ? ' rel="noopener" target="_blank"' : ''}>${inl(inner)}${ext ? '<span class="sr"> (abre noutro separador)</span>' : ''}</a>`; i = j + 1 + m[0].length; continue; }
+      out += `<span class="phv">[${inl(inner)}]</span>`; i = j + 1; continue;
+    }
+    if (t.startsWith('**', i)) { const k = t.indexOf('**', i + 2); if (k > 0) { out += `<b>${inl(t.slice(i + 2, k))}</b>`; i = k + 2; continue; } }
+    if (ch === '`') { const k = t.indexOf('`', i + 1); if (k > 0) { out += `<code>${esc(t.slice(i + 1, k))}</code>`; i = k + 1; continue; } }
+    out += esc(ch); i++;
+  }
+  return out;
+}
+function md(src) {
+  const L = src.replace(/\r/g, '').split('\n'); let h1 = '', upd = '', html = '', list = null, para = [];
+  const flush = () => { if (para.length) { html += `<p>${inl(para.join(' '))}</p>\n`; para = []; } if (list) { html += `<${list.t}>${list.items.map(x => `<li>${inl(x)}</li>`).join('')}</${list.t}>\n`; list = null; } };
+  for (const ln of L) {
+    let m;
+    if (!ln.trim()) { flush(); continue; }
+    if ((m = ln.match(/^# (.*)/))) { flush(); h1 = m[1]; continue; }
+    if (!upd && /^Última atualização:/.test(ln)) { upd = ln; continue; }
+    if ((m = ln.match(/^(#{2,4}) (.*)/))) { flush(); const lv = m[1].length; const id = m[2].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); html += `<h${lv} id="${id}">${inl(m[2])}</h${lv}>\n`; continue; }
+    if ((m = ln.match(/^- (.*)/))) { if (para.length) { html += `<p>${inl(para.join(' '))}</p>\n`; para = []; } if (!list || list.t !== 'ul') { flush(); list = { t: 'ul', items: [] }; } list.items.push(m[1]); continue; }
+    if ((m = ln.match(/^\d+\. (.*)/))) { if (!list || list.t !== 'ol') { flush(); list = { t: 'ol', items: [] }; } list.items.push(m[1]); continue; }
+    if (list) flush();
+    para.push(ln.trim());
+  }
+  flush(); return { h1, upd, html };
+}
+for (const [file, src, desc] of [
+  ['privacidade.html', 'politica-de-privacidade.md', 'Que dados pessoais a OW Soluções trata, para que fins, com que base legal, durante quanto tempo, e quais são os teus direitos.'],
+  ['cookies.html', 'cookies-e-medicoes.md', 'Que informação o sítio da OW Soluções guarda no teu equipamento e como medimos a audiência sem cookies.'],
+  ['termos.html', 'termos-e-condicoes.md', 'Termos e condições de venda de equipamento e serviços de climatização da OW Soluções.'],
+  ['livro-de-reclamacoes.html', 'livro-de-reclamacoes-e-ral.md', 'Livro de Reclamações eletrónico e resolução alternativa de litígios de consumo.'],
+  ['avisos-legais.html', 'avisos-legais.md', 'Identificação da OW Soluções enquanto prestador de serviços da sociedade da informação.'],
+]) {
+  const { h1, upd, html } = md(fs.readFileSync(new URL(`../legal/${src}`, import.meta.url), 'utf8'));
+  page(file, { title: `${h1} · OW Soluções`, desc, page: 'legal', body: `
+<section class="ph" aria-labelledby="h1"><div class="grid"><div class="full"><h1 class="d-l" id="h1">${inl(h1)}</h1>${upd ? `<p class="lg-upd">${inl(upd)}</p>` : ''}
+<p class="lg-draft">Rascunho por rever por um jurista. Os campos entre [ ] ainda vão ser preenchidos pela OW Soluções.</p></div></div></section>
+<section class="sec pt-0"><div class="grid"><article class="legal">
+${html}</article></div></section>
+` });
+}
 finish();

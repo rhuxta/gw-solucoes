@@ -114,12 +114,13 @@ function footer() {
     <div class="ft-brand">
       <a class="wm" href="index.html">${WM}<b>OW</b> <span>Soluções</span><span class="sr">, página inicial</span></a>
       <p>Climatização e ventilação para casas e escritórios na linha de Cascais.</p>
-      <address>${esc(c.address)}<br><a href="${c.telHref}">${c.tel}</a><br><a href="mailto:${c.email}">${c.email}</a><br>${c.hours}</address>
     </div>
     <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Por problema</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Como funciona</a><a href="servicos.html#planos">Manutenção</a></nav>
     <nav class="ft-col" aria-label="Loja"><h2>Loja</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=acessorios">Acessórios</a></nav>
     <nav class="ft-col" aria-label="Empresa"><h2>Empresa</h2><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a><a href="conta.html">Conta</a><a href="cesto.html">Cesto</a></nav>
-    <div class="ft-base"><span>© 2026 OW Soluções</span><span>NIF ${c.nif}</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
+    <div class="ft-lr"><p class="ft-lr-k">Reclamações</p><a class="ft-lr-a" href="https://www.livroreclamacoes.pt" rel="noopener" target="_blank"><span><b>Livro de Reclamações</b><span class="small">Plataforma oficial · livroreclamacoes.pt<span class="sr"> (abre noutro separador)</span></span></span>${I.arrow}</a></div>
+    <nav class="ft-legal" aria-label="Informação legal"><a href="avisos-legais.html">Avisos legais</a><a href="privacidade.html">Política de privacidade</a><a href="cookies.html">Cookies e medições</a><a href="termos.html">Termos e condições</a><a href="https://www.livroreclamacoes.pt" rel="noopener" target="_blank">Livro de Reclamações<span class="sr"> (plataforma oficial, abre noutro separador)</span></a><a href="livro-de-reclamacoes.html">Reclamações e RAL</a></nav>
+    <div class="ft-base"><span>OW Soluções · <span class="phv">[denominação social]</span> · NIF <span class="phv">[NIF]</span> · <span class="phv">[morada]</span> · <span class="phv">[email]</span> · <span class="phv">[telefone]</span></span><span>© 2026 OW Soluções</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><a href="cesto.html">Ver cesto</a></div>`;
@@ -244,29 +245,19 @@ const preloadHero = (n45, n219) => `<link rel="preload" as="image" type="image/a
 <link rel="preload" as="image" type="image/avif" media="(min-width: 768px)" imagesrcset="${M[n219].widths.map(w => `img/${n219}-${w}.avif ${w}w`).join(', ')}" imagesizes="100vw" fetchpriority="high">
 `;
 const closing = (h = 'Diz-nos o que se passa em casa.', cta = 'Pedir orçamento', href = 'orcamento.html') => `<section class="sec close" aria-labelledby="close-h"><div class="grid">
-  <div class="close-h"><h2 class="d-l split" id="close-h">${h}</h2><p class="lede mt-16">Seis passos curtos: a casa, as divisões, a estimativa com instalação e a visita técnica. Só pagas depois de confirmarmos o equipamento.</p></div>
+  <div class="close-h"><h2 class="d-l split" id="close-h">${h}</h2><p class="lede mt-16">Passos curtos: a casa, as divisões, a estimativa com instalação, a visita técnica e uma revisão antes de enviar. Só pagas depois de confirmarmos o equipamento.</p></div>
   <div class="close-a"><a class="btn" href="${href}">${cta} ${I.arrow}</a></div>
 </div></section>`;
 
 
 /* ---------- mini-casa (SVG): entrada do funil e passo 2 ---------- */
 // Corte simplificado: sala e casa de banho no rés-do-chão, quarto e escritório em cima.
-const CASA = { quarto: [48, 128, 188, 88], escritorio: [244, 128, 188, 88], sala: [48, 224, 248, 88], banho: [304, 224, 128, 88] };
-function miniCasa({ mode = 'toggle', id = '', href = r => `orcamento.html?divisao=${r}`, small = false } = {}) {
-  const rooms = Object.entries(CASA).map(([k, [x, y, w, h]]) => {
-    const inner = `<rect class="mc-r" x="${x}" y="${y}" width="${w}" height="${h}"/><rect class="mc-u" x="${x + w - 44}" y="${y + 10}" width="32" height="9"/><text class="mc-t" x="${x + 12}" y="${y + h - 14}">${D.roomNames[k]}</text><path class="mc-k" d="M${x + w - 30} ${y + h - 22}l5 5 10-10"/>`;
-    return mode === 'link'
-      ? `<a class="mc-room" data-mc="${k}" href="${href(k)}" aria-label="${D.roomNames[k]}: começar o pedido por esta divisão">${inner}</a>`
-      : `<g class="mc-room" data-mc="${k}">${inner}</g>`;
-  }).join('');
-  return `<svg class="mc${small ? ' mc-s' : ''}" data-3d-fallback="casa" ${id ? `id="${id}" ` : ''}viewBox="0 0 480 344"${mode === 'link' ? ' role="group" aria-label="A casa em corte: escolhe uma divisão"' : ' aria-hidden="true" focusable="false"'}>
-  <path class="mc-roof" d="M24 124 240 22l216 102"/><path class="mc-attic" d="M56 116 240 36l184 80Z"/>
-  <path class="mc-wall" d="M40 120h400v200H40Z"/>
-  ${rooms}
-  <path class="mc-gl" d="M8 322h464"/>
-  <text class="mc-cota" x="240" y="340" text-anchor="middle">Esc. 1:100</text>
-</svg>`;
+/* Lugar reservado para a casa 3D em corte (conceito A). A mini-casa SVG saiu (23 nov 2026, decisão do Rhuston).
+   O 3D monta-se dentro de [data-3d-slot="casa"]; sem 3D, a lista de divisões ao lado é a interface (data-3d-fallback="casa"). */
+function casaSlot({ mode = 'explorar' } = {}) {
+  return `<div class="slot3d" data-3d-slot="casa" data-3d-mode="${mode}" aria-hidden="true"><span class="slot3d-n">Casa 3D em preparação</span><span class="slot3d-c">Corte · pé-direito 2,70 m</span></div>`;
 }
+const ROOM_ORDER = ['sala', 'quarto', 'escritorio', 'banho'];
 
 /* ---------- css, data.js, sitemap ---------- */
 const PAGES = [];
@@ -281,4 +272,4 @@ function finish() {
   console.log('css', css.length, 'bytes; data.js; sitemap', files.length);
 }
 
-export { miniCasa, finish, I, WM, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, ROOT };
+export { casaSlot, ROOM_ORDER, finish, I, WM, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, ROOT };
