@@ -1,0 +1,125 @@
+/* =========================================================================
+   OW Soluções — tokens da loja (esboço, folha v1.0 ainda por fechar)
+   ÚNICO ficheiro com valores. Componentes (loja.css) só usam var(--…).
+   Paleta: IBM Carbon (famílias 10–100). Azul 60 só para ações.
+   Quando a folha v1.0 fechar, troca-se só este ficheiro.
+   ========================================================================= */
+
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/IBMPlexSans-Regular.woff2') format('woff2');}
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/IBMPlexSans-Medium.woff2') format('woff2');}
+@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/IBMPlexSans-SemiBold.woff2') format('woff2');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/IBMPlexMono-Regular.woff2') format('woff2');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/IBMPlexMono-Medium.woff2') format('woff2');}
+
+:root{
+  /* ---- 1. Paleta Carbon (degraus 10–100) ---- */
+  --white:#FFFFFF; --black:#000000;
+  --gray-10:#F4F4F4; --gray-20:#E0E0E0; --gray-30:#C6C6C6; --gray-40:#A8A8A8; --gray-50:#8D8D8D;
+  --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#262626; --gray-100:#161616;
+  --gray-10-hover:#E8E8E8;   /* Carbon layer-hover-01 (tema g10) */
+  --cool-gray-10:#F2F4F8; --cool-gray-20:#DDE1E6; --cool-gray-30:#C1C7CD; --cool-gray-40:#A2A9B0; --cool-gray-50:#878D96;
+  --cool-gray-60:#697077; --cool-gray-70:#4D5358; --cool-gray-80:#343A3F; --cool-gray-90:#21272A; --cool-gray-100:#121619;
+  --blue-10:#EDF5FF; --blue-20:#D0E2FF; --blue-30:#A6C8FF; --blue-40:#78A9FF; --blue-50:#4589FF;
+  --blue-60:#0F62FE; --blue-70:#0043CE; --blue-80:#002D9C; --blue-90:#001D6C; --blue-100:#001141;
+  /* apoio (só com papel: erro, sucesso, aviso) */
+  --red-60:#DA1E28; --green-60:#198038; --yellow-30:#F1C21B;
+
+  /* ---- 2. Papéis (tokens por função, à Carbon) ---- */
+  /* fundo e camadas */
+  --background:var(--gray-10);          /* campo da página #F4F4F4 */
+  --layer-01:var(--white);              /* cartões, painéis */
+  --layer-02:var(--gray-10);            /* media dentro de cartões */
+  --layer-accent:var(--gray-20);
+  --card-active:var(--gray-10-hover);  /* toque (:active) no cartão: #E8E8E8, layer-hover Carbon g10 */
+  --dark-card-active:var(--blue-80);
+  --pick-line:var(--dark-bg);   /* «Recomendado»: linha de 3px no topo do cartão, #001141 */
+  --pick-line-w:3px;
+  --overlay:rgb(22 22 22 / .5);
+  --hero-scrim-0:rgb(22 22 22 / .1); --hero-scrim-1:rgb(22 22 22 / .7);
+  /* texto */
+  --text-primary:var(--gray-100);
+  --text-secondary:var(--gray-70);
+  --text-helper:var(--gray-60);         /* 5,0:1 em #F4F4F4 — mínimo para texto pequeno */
+  --text-on-color:var(--white);
+  --text-inverse:var(--white);
+  /* bordas */
+  --border-subtle:var(--gray-20);
+  --border-strong:var(--gray-50);       /* 3:1 em branco — controlos */
+  --border-interactive:var(--blue-60);
+  /* ação (azul só aqui) */
+  --interactive:var(--blue-60);
+  --interactive-hover:var(--blue-70);
+  --interactive-active:var(--blue-80);
+  --link:var(--blue-70);                /* ligações de texto: 7,0:1 em branco */
+  --link-hover:var(--blue-80);
+  --focus:var(--blue-60);
+  --focus-inset:var(--white);
+  /* campo escuro (vitrine por divisão e fecho) */
+  --dark-bg:var(--blue-100);            /* #001141 — decidido 23 nov */
+  --dark-layer:var(--blue-90);
+  --dark-text:var(--white);
+  --dark-text-2:var(--blue-20);         /* 14:1 em #001141 */
+  --dark-border:var(--blue-80);
+  --dark-link:var(--blue-30);
+  --dark-focus:var(--white);
+  /* estados */
+  --support-success:var(--green-60);
+  --support-error:var(--red-60);
+
+  /* ---- 3. Tipo (IBM Plex) — hierarquia ---- */
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --fs-display:clamp(2rem,1.55rem + 2.2vw,3.5rem);
+  --fs-h1:clamp(1.75rem,1.45rem + 1.4vw,2.625rem);
+  --fs-h2:clamp(1.5rem,1.3rem + 1vw,2.25rem);
+  --fs-h3:clamp(1.125rem,1.07rem + .25vw,1.25rem);
+  --fs-body-l:clamp(1.0625rem,1.02rem + .2vw,1.1875rem);
+  --fs-body:1rem;
+  --fs-small:.875rem;
+  --fs-data:.8125rem;
+  --fs-price-l:clamp(1.75rem,1.6rem + .7vw,2.25rem);
+  --fw-regular:400; --fw-medium:500; --fw-semibold:600;
+  --lh-tight:1.15; --lh-heading:1.25; --lh-body:1.5;
+  --ls-display:-.02em; --ls-mono:.02em;
+
+  /* ---- 4. Espaço (base 4) e grelha 4/8/12 ---- */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  --m:16px; --g:12px; --maxw:1312px; --section:var(--s-8);
+  --hdr:56px;
+  --hit:44px;                 /* alvo mínimo de toque */
+  --hit-l:52px;               /* botões principais ao alcance do polegar */
+  --bw:1px; --bw-2:2px; --focus-w:2px;
+  --radius:0;
+  /* cantos (ronda 3): ligeiramente arredondados, nunca pílula */
+  --radius-card:8px;          /* cartões, folhas, painéis, imagens soltas */
+  --radius-card-inner:6px;    /* imagens dentro do cartão (8 − padding visual) */
+  --radius-control:4px;       /* botões, campos, blocos de m², separadores segmentados */
+  --radius-check:2px;         /* checkboxes, miniaturas pequenas */
+  --radius-s:var(--radius-control); /* compatibilidade com nomes antigos */
+
+  /* ---- 5. Medidas de componentes ---- */
+  --card-media:112px;         /* imagem do cartão horizontal (Corelab) no telemóvel */
+  --card-media-l:136px;
+  --hero-h:min(40svh,360px);  /* hero curta: ≤ 40svh */
+  --hero-h-l:420px;
+  --gallery-ratio:4/5; --gallery-ratio-m:1/1;
+  --sheet-maxh:80svh;
+  --ask-w:96px;               /* «Preço sob consulta» em 2 linhas ao lado do nome */
+  --buybar-h:200px; --tile-h:64px; --gtile-img:56px; --sheet-side-w:420px;
+  --icon:24px; --icon-s:16px;
+  --measure:62ch; --measure-hero:16ch; --measure-s:40ch;
+  --sheet-w:480px; --toast-w:360px;
+  --toast-bg:var(--gray-100); --hero-fallback:var(--gray-90); --interactive-tint:var(--blue-10);
+
+  /* ---- 6. Movimento ---- */
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-std:cubic-bezier(.2,0,0,1);
+  --d-1:120ms; --d-2:200ms; --d-3:320ms; --d-4:480ms;
+  --shadow-fixed:0 -1px 0 var(--gray-20),0 -8px 24px rgb(22 22 22 / .06);
+  --shadow-sheet:0 -12px 32px rgb(22 22 22 / .12);
+  --z-hdr:50; --z-bar:40; --z-sheet:60; --z-toast:70;
+}
+@media (min-width:768px){:root{--m:32px;--g:20px;--section:var(--s-9);}}
+@media (min-width:1024px){:root{--m:40px;--hdr:64px;--card-media:var(--card-media-l);}}
+@media (min-width:1440px){:root{--m:64px;--g:24px;}}
+@media (prefers-reduced-motion:reduce){:root{--d-1:0ms;--d-2:0ms;--d-3:0ms;--d-4:0ms;}}

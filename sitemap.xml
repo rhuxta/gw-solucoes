@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://rhuxta.github.io/gw-solucoes/</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/avisos-legais.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/cesto.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/conta.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/contacto.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/cookies.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/livro-de-reclamacoes.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/loja.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/orcamento.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/privacidade.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/produto-cs-60.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/produto-fl-04.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/produto-mc-80.html</loc></url>
@@ -19,4 +23,5 @@
   <url><loc>https://rhuxta.github.io/gw-solucoes/servicos.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/sobre.html</loc></url>
   <url><loc>https://rhuxta.github.io/gw-solucoes/solucoes.html</loc></url>
+  <url><loc>https://rhuxta.github.io/gw-solucoes/termos.html</loc></url>
 </urlset>

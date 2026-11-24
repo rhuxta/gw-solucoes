@@ -8,7 +8,8 @@
   var $ = function (s, r) { return (r || d).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || d).querySelectorAll(s)); };
   var raf = w.requestAnimationFrame.bind(w);
-  var eur = function (n) { return n == null ? "Sob orçamento" : n.toLocaleString("pt-PT").replace(/\s/g, "\u202f") + "\u2009€"; };
+  var eur = function (n) { return n == null ? "Sob orçamento" : n.toLocaleString("pt-PT").replace(/\s/g, "\u202f") + "\u202f€"; };
+  if (RM.addEventListener) RM.addEventListener("change", function (e) { reduce = e.matches; if (reduce) $$("video[data-video]").forEach(function (v) { v.pause(); }); });
 
   /* ---------- legacy produto.html?ref= ---------- */
   var qp = new URLSearchParams(location.search);
@@ -136,10 +137,10 @@
     var b = e.target.closest("[data-add]");
     if (!b) return;
     var ref = b.getAttribute("data-add"), l = readCart(), f = l.find(function (i) { return i.ref === ref; });
-    if (f) f.qty += 1; else l.push({ ref: ref, qty: 1 });
+    if (f) f.qty += 1; else l.push({ ref: ref, qty: 1, pack: "completo" });
     writeCart(l);
     var p = G.products && G.products.find(function (x) { return x.ref === ref; });
-    showToast((p ? p.name + " " + p.ref : ref) + " no cesto");
+    showToast((p ? p.name + " " + p.ref : ref) + (p && (p.fn === "controlo" || p.fn === "manutencao") ? " no cesto" : " no cesto, com instalação"));
   });
   var cartList = $("#cart-list");
   if (cartList && G.products) {
@@ -148,12 +149,20 @@
       $("#cart-empty").hidden = !!items.length;
       $("#cart-side").hidden = !items.length;
       cartList.parentNode.hidden = !items.length;
+      var PHV = function (t) { return '<span class="phv">[' + t + ']</span>'; };
+      var refs = [];
       cartList.innerHTML = items.map(function (i) {
         var p = G.products.find(function (x) { return x.ref === i.ref; }) || G.products[0];
-        sub += (p.price || 0) * i.qty;
-        return '<div class="ci"><img src="img/p-' + p.ref.toLowerCase() + '-400.webp" alt="" width="400" height="500"><div><b>' + p.name + " " + p.ref + '</b><span class="data">' + eur(p.price) + '</span><div class="qty" role="group" aria-label="Quantidade de ' + p.name + '"><button type="button" data-q="-1" data-r="' + p.ref + '" aria-label="Menos um">−</button><output>' + i.qty + '</output><button type="button" data-q="1" data-r="' + p.ref + '" aria-label="Mais um">+</button></div></div><button type="button" class="rm" data-rm="' + p.ref + '">Remover</button></div>';
+        sub += (p.price || 0) * i.qty; refs.push(p.ref);
+        var acc = p.fn === "controlo" || p.fn === "manutencao", pk = i.pack || "completo";
+        var lines = acc
+          ? '<li><span>Acessório</span><span class="data">' + eur(p.price) + '</span></li><li><span>Segue com o teu pacote ou na próxima manutenção</span><span></span></li>'
+          : '<li><span>Equipamento ' + p.ref + '</span><span class="data">' + eur(p.price) + '</span></li><li><span>Entrega em casa, pelo fornecedor</span><span class="data">' + PHV("a confirmar") + '</span></li><li><span>Instalação OW</span><span class="data">' + PHV("preço €") + '</span></li>' + (pk === "completo" ? '<li><span><b>1.ª manutenção incluída</b></span><span class="data">incluída</span></li>' : "");
+        var choose = acc ? "" : '<fieldset class="ci-pk"><legend class="sr">Pacote para ' + p.name + '</legend><label class="chk"><input type="radio" name="pk-' + p.ref + '" value="base" data-pk="' + p.ref + '"' + (pk === "base" ? " checked" : "") + '> Equipamento + instalação</label><label class="chk"><input type="radio" name="pk-' + p.ref + '" value="completo" data-pk="' + p.ref + '"' + (pk === "completo" ? " checked" : "") + '> Pacote completo, com 1.ª manutenção</label></fieldset>';
+        return '<div class="ci ci-pack"><img src="img/p-' + p.ref.toLowerCase() + '-400.webp" alt="" width="400" height="500"><div><span class="lbl">' + (acc ? "Acessório" : "Pacote com instalação") + '</span><b>' + p.name + " " + p.ref + '</b><ul class="ci-lines">' + lines + '</ul>' + choose + '<div class="qty" role="group" aria-label="Quantidade de ' + p.name + '"><button type="button" data-q="-1" data-r="' + p.ref + '" aria-label="Menos um">−</button><output>' + i.qty + '</output><button type="button" data-q="1" data-r="' + p.ref + '" aria-label="Mais um">+</button></div></div><button type="button" class="rm" data-rm="' + p.ref + '">Remover</button></div>';
       }).join("");
-      $("#c-sub").textContent = eur(sub); $("#c-tot").textContent = eur(sub);
+      var go = $("#c-go"); if (go) go.href = "orcamento.html?ref=" + refs.join(",") + "&from=cesto";
+      $("#c-sub").textContent = eur(sub);
       html.classList.add("cart-ready");
     };
     paintCart();
@@ -162,8 +171,10 @@
       if (q) { var it = l.find(function (i) { return i.ref === q.getAttribute("data-r"); }); it.qty = Math.max(1, it.qty + Number(q.getAttribute("data-q"))); writeCart(l); paintCart(); var again = cartList.querySelector('[data-r="' + it.ref + '"][data-q="' + q.getAttribute("data-q") + '"]'); if (again) again.focus(); }
       if (rm) { writeCart(l.filter(function (i) { return i.ref !== rm.getAttribute("data-rm"); })); paintCart(); var h = $("#h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus(); } }
     });
-    var co = $("[data-checkout]");
-    if (co) co.addEventListener("click", function () { $("#co-note").textContent = "Encomenda reservada. Enviamos o resumo e o pagamento por email."; });
+    cartList.addEventListener("change", function (e) {
+      var r = e.target.closest("[data-pk]"); if (!r) return;
+      var l = readCart(), it = l.find(function (i) { return i.ref === r.getAttribute("data-pk"); }); if (it) { it.pack = r.value; writeCart(l); paintCart(); var again = cartList.querySelector('[data-pk="' + it.ref + '"][value="' + r.value + '"]'); if (again) again.focus(); }
+    });
   }
 
   /* ---------- small demo bits ---------- */
@@ -205,46 +216,39 @@
     else scrollHooks.push(function () { var r = stepsEl.getBoundingClientRect(), vh = w.innerHeight; var p = Math.min(1, Math.max(0, (vh * 0.7 - r.top) / r.height)); bar.style.setProperty("--p", p.toFixed(3)); });
   }
 
-  /* ---------- corte (maquete) ---------- */
-  var avifOK = null;
-  (function () { var i = new Image(); i.onload = function () { avifOK = i.width > 0; }; i.onerror = function () { avifOK = false; }; i.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A="; })();
+  /* ---------- corte (maquete): light is a CSS layer per room, no extra images ---------- */
+  var AR = (G.rooms && G.rooms.ar) || 0.8;
   function Corte(view) {
     this.view = view; this.stage = view.querySelector(".corte-stage"); this.room = null; this.state = null; this.zoom = false;
-    var self = this; w.addEventListener("resize", function () { self.cam(); }, { passive: true });
+    var self = this, t = 0, k = function () { if (!t) t = raf(function () { t = 0; self.cam(); }); };
+    if ("ResizeObserver" in w) new ResizeObserver(k).observe(view); else w.addEventListener("resize", k, { passive: true });
   }
   Corte.prototype.cam = function () {
     var v = this.view, st = this.stage, R = G.rooms && G.rooms.rooms;
-    var VW = v.clientWidth, VH = v.clientHeight, SH = VW * 1500 / 2400, s = 1, tx = 0, ty = 0;
-    var base = Math.min(1, VH / SH);
+    var VW = v.clientWidth, VH = v.clientHeight, SH = VW * AR, s = 1, tx = 0, ty = 0;
+    if (!VW || !VH) return;
+    var fit = Math.min(1, VH / SH);
     if (this.zoom && this.room && R && R[this.room] && !desk.matches) {
       var b = R[this.room], x0 = b[0][0] / 100, y0 = b[0][1] / 100, x1 = b[1][0] / 100, y1 = b[2][1] / 100;
-      s = Math.min(VW / ((x1 - x0) * VW), VH / ((y1 - y0) * SH)) * 0.96;
+      s = Math.min(1 / (x1 - x0), VH / ((y1 - y0) * SH)) * 0.94;
       tx = VW / 2 - (x0 + x1) / 2 * VW * s; ty = VH / 2 - (y0 + y1) / 2 * SH * s;
-    } else { s = desk.matches || VH / SH < 1.2 ? base : Math.min(VW / (0.78 * VW), VH / SH); tx = VW / 2 - 0.5 * VW * s; ty = (VH - SH * s) / 2; }
+    } else { s = fit; tx = (VW - VW * s) / 2; ty = (VH - SH * s) / 2; }
     st.style.setProperty("--s", s.toFixed(4)); st.style.transform = "translate(" + tx.toFixed(1) + "px," + ty.toFixed(1) + "px) scale(" + s.toFixed(4) + ")";
   };
   Corte.prototype.set = function (room, state) {
     this.room = room; this.state = state;
-    var st = this.stage, self = this;
+    var st = this.stage;
     if (room) st.setAttribute("data-room", room); else st.removeAttribute("data-room");
     $$(".c-tag", st).forEach(function (t) { t.classList.toggle("is-on", t.getAttribute("data-tag") === room); });
     $$(".c-led", st).forEach(function (l) { l.classList.toggle("is-on", state === "ok" && l.getAttribute("data-led") === room); });
-    $$(".luz img.is-on", st).forEach(function (i) { if (!(room && i.getAttribute("data-k") === room + "-" + state)) i.classList.remove("is-on"); });
-    if (room && state) {
-      var box = st.querySelector('.luz[data-room="' + room + '"]'); if (!box) return;
-      var k = room + "-" + state, img = box.querySelector('img[data-k="' + k + '"]');
-      var big = st.getBoundingClientRect().width * (w.devicePixelRatio || 1) > 1700 || (this.zoom && !desk.matches);
-      if (!img) {
-        img = new Image(); img.alt = ""; img.decoding = "async"; img.setAttribute("data-k", k);
-        img.src = "img/luz/" + k + "-" + (big ? "l" : "s") + (avifOK === false ? ".webp" : ".avif");
-        box.appendChild(img);
-      }
-      var on = function () { if (self.room === room && self.state === state) img.classList.add("is-on"); };
-      if (img.complete && img.naturalWidth) raf(on); else img.addEventListener("load", on, { once: true });
-    }
+    $$(".luz", st).forEach(function (l) {
+      var on = !!room && !!state && l.getAttribute("data-room") === room;
+      if (on) l.setAttribute("data-state", state);
+      l.classList.toggle("is-on", on);
+    });
     this.cam();
   };
-  Corte.prototype.preload = function (room, state) { var i = new Image(); i.src = "img/luz/" + room + "-" + state + "-s" + (avifOK === false ? ".webp" : ".avif"); };
+  Corte.prototype.preload = function () {};
 
   /* ---------- diagnosis ---------- */
   var diag = $("#diag");
@@ -264,7 +268,7 @@
       if (cap) cap.textContent = Rm ? G.roomNames[Rm] + (P ? " · " + label(P).toLowerCase() : "") : "A casa inteira, em corte";
       if (P && Rm) {
         var ref = G.recs[P][Rm], prod = G.products.find(function (x) { return x.ref === ref; });
-        var wasHidden = res.hidden; res.hidden = false;
+        var wasHidden = res.hidden; res.hidden = false; diag.classList.add("has-res"); raf(function () { C.cam(); });
         if (wasHidden && !reduce) { res.classList.remove("is-new"); raf(function () { res.classList.add("is-new"); }); }
         $("#res-for").textContent = "Para " + ({ sala: "a sala", quarto: "o quarto", escritorio: "o escritório", banho: "a casa de banho" })[Rm] + " · " + label(P).toLowerCase();
         $("#res-h").textContent = prod.name + " " + prod.ref;
@@ -381,19 +385,13 @@
     var ind = $$(".gal-ind i"), gt;
     gal.addEventListener("scroll", function () { if (gt) return; gt = raf(function () { gt = 0; var i = Math.round(gal.scrollLeft / gal.clientWidth); ind.forEach(function (x, j) { x.classList.toggle("is-on", i === j); }); }); }, { passive: true });
   }
-  var buyCta = $(".pp-cta"), buybar = $("#buybar");
-  if (buyCta && buybar && "IntersectionObserver" in w) {
-    new IntersectionObserver(function (es) {
-      var en = es[0], on = !en.isIntersecting && en.boundingClientRect.top < 0;
-      buybar.classList.toggle("is-on", on); buybar.setAttribute("aria-hidden", String(!on));
-      $$("a, button", buybar).forEach(function (b) { b.tabIndex = on ? 0 : -1; });
-    }).observe(buyCta);
-  }
+  var buybar = $("#buybar");
+  if (buybar) { buybar.classList.add("is-on"); buybar.removeAttribute("aria-hidden"); $$("a, button", buybar).forEach(function (b) { b.tabIndex = 0; }); }
   var chapLinks = $$(".chap a");
   if (chapLinks.length && "IntersectionObserver" in w) {
     var cio = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) chapLinks.forEach(function (a) { var on = a.getAttribute("href") === "#" + en.target.id; a.classList.toggle("is-on", on); if (on) { a.setAttribute("aria-current", "true"); var p = a.parentNode; var l = a.offsetLeft - 20; if (Math.abs(p.scrollLeft - l) > 40) p.scrollTo({ left: l, behavior: reduce ? "auto" : "smooth" }); } else a.removeAttribute("aria-current"); }); });
-    }, { rootMargin: "-45% 0px -50% 0px" });
+    }, { rootMargin: "-110px 0px -60% 0px" });
     $$(".ch").forEach(function (s) { cio.observe(s); });
   }
   var specAll = $("[data-spec-all]");
@@ -416,10 +414,10 @@
       if (mv) { if (cb) cb(); return; }
       var s = d.createElement("script"); s.type = "module"; s.src = "vendor/model-viewer.min.js"; d.head.appendChild(s);
       mv = d.createElement("model-viewer");
-      var at = { src: "3d/ui-25.glb", alt: "Modelo 3D da unidade de parede UI-25", "camera-controls": "", "touch-action": "pan-y", "interaction-prompt": "none", "shadow-intensity": "0.7", "shadow-softness": "1", exposure: "1.05", "environment-image": "neutral", "camera-orbit": "-66deg 72deg auto", "field-of-view": "24deg", "animation-name": "explode", ar: "", "ar-modes": "webxr scene-viewer quick-look", "ar-placement": "wall", "disable-zoom": "", poster: $(".xpl-closed", view).currentSrc || $(".xpl-closed", view).src, reveal: "auto", loading: "eager" };
+      var at = { src: "3d/ui-25.glb", alt: "Modelo 3D da unidade de parede UI-25", "camera-controls": "", "touch-action": "pan-y", "interaction-prompt": "none", "shadow-intensity": "0.7", "shadow-softness": "1", exposure: "1.05", "environment-image": "neutral", "camera-orbit": "-30deg 80deg auto", "field-of-view": "24deg", "animation-name": "explode", ar: "", "ar-modes": "webxr scene-viewer quick-look", "ar-placement": "wall", "disable-zoom": "", poster: $(".xpl-closed", view).currentSrc || $(".xpl-closed", view).src, reveal: "auto", loading: "eager" };
       Object.keys(at).forEach(function (k) { mv.setAttribute(k, at[k]); });
       mv.addEventListener("load", function () {
-        mv.pause(); try { var c = mv.getBoundingBoxCenter(), dm = mv.getDimensions(); mv.cameraTarget = c.x.toFixed(3) + "m " + (c.y + 0.03).toFixed(3) + "m " + (c.z + 0.34).toFixed(3) + "m"; mv.cameraOrbit = "-58deg 74deg " + (Math.max(dm.x, dm.z + 0.75) * (view.clientWidth < view.clientHeight ? 3.2 : 1.85)).toFixed(2) + "m"; mv.fieldOfView = "28deg"; mv.maxCameraOrbit = "auto auto 12m"; mv.maxFieldOfView = "40deg"; mv.minCameraOrbit = "auto auto " + (Math.max(dm.x, dm.z + 0.75) * 1.2).toFixed(2) + "m"; if (mv.jumpCameraToGoal) mv.jumpCameraToGoal(); } catch (e) {} mvReady = true; setX(+range.value);
+        mv.pause(); try { var c = mv.getBoundingBoxCenter(), dm = mv.getDimensions(), OPEN = 0.84, ext = Math.max(dm.x, dm.z + OPEN); mv.cameraTarget = c.x.toFixed(3) + "m " + c.y.toFixed(3) + "m " + (c.z + OPEN / 2).toFixed(3) + "m"; mv.cameraOrbit = "-30deg 80deg " + (ext * (view.clientWidth < view.clientHeight ? 3.6 : 2.5)).toFixed(2) + "m"; mv.fieldOfView = "24deg"; mv.maxCameraOrbit = "auto auto 12m"; mv.maxFieldOfView = "40deg"; mv.minCameraOrbit = "auto auto " + (ext * 1.4).toFixed(2) + "m"; if (mv.jumpCameraToGoal) mv.jumpCameraToGoal(); } catch (e) {} mvReady = true; setX(+range.value);
         view.querySelectorAll("img").forEach(function (i) { i.style.visibility = "hidden"; });
         if (mv.canActivateAR) arBtn.hidden = false;
         if (cb) cb();

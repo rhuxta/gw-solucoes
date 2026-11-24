@@ -8,7 +8,7 @@ const BASE = 'https://rhuxta.github.io/gw-solucoes/';
 const M = JSON.parse(fs.readFileSync(`${ROOT}/img/manifest.json`, 'utf8'));
 const ROOMS = JSON.parse(fs.readFileSync(`${ROOT}/tools/rooms.json`, 'utf8'));
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const eur = n => n == null ? 'Sob orçamento' : n.toLocaleString('pt-PT').replace(/\s/g, '\u202f') + '\u2009€';
+const eur = n => n == null ? 'Sob orçamento' : n.toLocaleString('pt-PT').replace(/\s/g, '\u202f') + '\u202f€';
 
 /* ---------- icons ---------- */
 const I = {
@@ -80,7 +80,7 @@ function header(page, opts = {}) {
   return `<a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="hdr" id="hdr">
   <div class="hdr-in">
-    <a class="wm" href="index.html" aria-label="OW Soluções, página inicial">${WM}<b>OW</b><span>Soluções</span></a>
+    <a class="wm" href="index.html">${WM}<b>OW</b> <span>Soluções</span><span class="sr">, página inicial</span></a>
     <nav class="nav" aria-label="Principal">${links}</nav>
     <div class="hdr-r">
       <a class="ico-btn" href="loja.html#pesquisa" aria-label="Pesquisar na loja">${I.search}</a>
@@ -106,19 +106,21 @@ function header(page, opts = {}) {
   <div class="menu-foot"><a class="btn btn-wide" href="orcamento.html">Pedir orçamento ${I.arrow}</a></div>
 </nav>`;
 }
+
 function footer() {
   const c = D.company;
   return `<footer class="ft">
   <div class="grid">
     <div class="ft-brand">
-      <a class="wm" href="index.html" aria-label="OW Soluções, página inicial">${WM}<b>OW</b><span>Soluções</span></a>
+      <a class="wm" href="index.html">${WM}<b>OW</b> <span>Soluções</span><span class="sr">, página inicial</span></a>
       <p>Climatização e ventilação para casas e escritórios na linha de Cascais.</p>
-      <address>${esc(c.address)}<br><a href="${c.telHref}">${c.tel}</a><br><a href="mailto:${c.email}">${c.email}</a><br>${c.hours}</address>
     </div>
-    <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Diagnóstico</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Instalação</a><a href="servicos.html#planos">Manutenção</a></nav>
+    <nav class="ft-col" aria-label="Soluções"><h2>Soluções</h2><a href="solucoes.html">Por problema</a><a href="orcamento.html">Pedir orçamento</a><a href="servicos.html">Como funciona</a><a href="servicos.html#planos">Manutenção</a></nav>
     <nav class="ft-col" aria-label="Loja"><h2>Loja</h2><a href="loja.html?cat=parede">Parede</a><a href="loja.html?cat=tecto">Tecto</a><a href="loja.html?cat=ventilacao">Ventilação</a><a href="loja.html?cat=acessorios">Acessórios</a></nav>
     <nav class="ft-col" aria-label="Empresa"><h2>Empresa</h2><a href="sobre.html">Sobre</a><a href="contacto.html">Contacto</a><a href="conta.html">Conta</a><a href="cesto.html">Cesto</a></nav>
-    <div class="ft-base"><span>© 2026 OW Soluções</span><span>NIF ${c.nif}</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
+    <div class="ft-lr"><p class="ft-lr-k">Reclamações</p><a class="ft-lr-a" href="https://www.livroreclamacoes.pt" rel="noopener" target="_blank"><span><b>Livro de Reclamações</b><span class="small">Plataforma oficial · livroreclamacoes.pt<span class="sr"> (abre noutro separador)</span></span></span>${I.arrow}</a></div>
+    <nav class="ft-legal" aria-label="Informação legal"><a href="avisos-legais.html">Avisos legais</a><a href="privacidade.html">Política de privacidade</a><a href="cookies.html">Cookies e medições</a><a href="termos.html">Termos e condições</a><a href="https://www.livroreclamacoes.pt" rel="noopener" target="_blank">Livro de Reclamações<span class="sr"> (plataforma oficial, abre noutro separador)</span></a><a href="livro-de-reclamacoes.html">Reclamações e RAL</a></nav>
+    <div class="ft-base"><span>OW Soluções · <span class="phv">[denominação social]</span> · NIF <span class="phv">[NIF]</span> · <span class="phv">[morada]</span> · <span class="phv">[email]</span> · <span class="phv">[telefone]</span></span><span>© 2026 OW Soluções</span><span class="demo">Versão de demonstração — conteúdos e preços fictícios</span></div>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><a href="cesto.html">Ver cesto</a></div>`;
@@ -139,7 +141,7 @@ ${footer()}
   // pré-divide os títulos .split em palavras (sem flash antes do JS)
   const html = html0.replace(/<(h1|h2|h3|p)([^>]*class="[^"]*\bsplit\b[^"]*"[^>]*)>([^<]+)<\/\1>/g, (m, t, a, txt) => {
     let i = 0;
-    return `<${t}${a}>${txt.trim().split(/\s+/).map(wd => `<span class="w"><span style="--i:${i++}">${wd}</span></span>`).join(' ')}</${t}>`;
+    return `<${t}${a}><span class="sr">${txt.trim()}</span><span aria-hidden="true">${txt.trim().split(/\s+/).map(wd => `<span class="w"><span style="--i:${i++}">${wd}</span></span>`).join(' ')}</span></${t}>`;
   });
   fs.writeFileSync(`${ROOT}/${file}`, html.replace(/\n{3,}/g, '\n\n'));
   console.log('wrote', file);
@@ -151,24 +153,30 @@ function card(p, { feat = false, sizes = '(min-width: 1024px) 22vw, (min-width: 
   const box = rr ? `left:${rr[0][0]}%;top:${rr[0][1]}%;width:${(rr[1][0] - rr[0][0]).toFixed(2)}%;height:${(rr[2][1] - rr[0][1]).toFixed(2)}%` : '';
   const alt = M[p.insitu + '-45'] ? p.insitu + '-45' : p.insitu;
   const add = p.price == null
-    ? `<a class="card-add" href="orcamento.html?ref=${p.ref}" aria-label="Pedir estudo para ${p.name}">${I.arrow}<span>Pedir estudo</span></a>`
-    : `<button type="button" class="card-add" data-add="${p.ref}" aria-label="Adicionar ${p.name} ao cesto">${I.plus}<span>Adicionar</span></button>`;
+    ? `<a class="card-add" href="orcamento.html?ref=${p.ref}" aria-label="Pedir estudo com instalação para ${p.name}">${I.arrow}<span>Pedir estudo</span></a>`
+    : `<button type="button" class="card-add" data-add="${p.ref}" aria-label="Adicionar ${p.name} ao cesto, com instalação">${I.plus}<span>Adicionar</span></button>`;
   return `<article class="card${feat ? ' is-feat' : ''}" data-product data-ref="${p.ref}" data-cat="${p.cat}" data-ctx="${p.ctx}" data-fn="${p.fn}" data-rooms="${p.rooms.join(' ')}" data-price="${p.price ?? 99999}">
   <a class="card-link" href="${p.slug}">
-    <div class="card-img">${pic(pImg(p.ref), { alt: `${p.name} ${p.short}`, sizes: feat ? '(min-width: 1024px) 22vw, (min-width: 768px) 60vw, 100vw' : sizes, lazy, imgCls: 'main', vt: 'p-' + p.ref.toLowerCase() })}${pic(alt, { alt: '', sizes, imgCls: 'alt' })}${where && rr ? `<span class="card-where" aria-hidden="true"><img src="img/corte-mini-320.webp" alt="" width="320" height="200" loading="lazy"><i style="${box}"></i></span>` : ''}</div>
+    <div class="card-img">${pic(pImg(p.ref), { alt: `${p.name} ${p.short}`, sizes: feat ? '(min-width: 1024px) 22vw, (min-width: 768px) 60vw, 100vw' : sizes, lazy, imgCls: 'main', vt: 'p-' + p.ref.toLowerCase() })}${pic(alt, { alt: '', sizes, imgCls: 'alt' })}${where && rr ? `<span class="card-where" aria-hidden="true"><img src="img/corte-mini-320.webp" alt="" width="320" height="${Math.round(320 * ROOMS.h / ROOMS.w)}" loading="lazy"><i style="${box}"></i></span>` : ''}</div>
     <div class="card-body"><span class="card-name">${p.name}</span><span class="price${p.price == null ? ' q' : ''}">${eur(p.price)}</span><span class="card-meta">${p.short} · ${p.rooms.map(r => D.roomNames[r].toLowerCase()).join(', ')}</span></div>
   </a>
   ${add}
 </article>`;
 }
+const bb = v => { const xs = v.map(p => p[0]), ys = v.map(p => p[1]); return { l: Math.min(...xs), t: Math.min(...ys), r: Math.max(...xs), b: Math.max(...ys) }; };
+const pc = n => +n.toFixed(2) + '%';
 function corte({ id = 'corte', cap = true, dark = false, sizes = '(min-width: 1024px) 58vw, 200vw', prio = false, tags = true, cotas = true } = {}) {
-  const tg = tags ? Object.entries(ROOMS.rooms).map(([k, v]) => `<span class="c-tag" data-tag="${k}" style="left:${v[0][0]}%;top:${v[0][1]}%">${D.roomNames[k]}</span>`).join('') : '';
-  const lz = Object.entries(ROOMS.crops).map(([k, c]) => `<div class="luz" data-room="${k}" style="left:${c.l}%;top:${c.t}%;width:${c.w}%;height:${c.h}%"></div>`).join('');
-  const leds = Object.entries(ROOMS.units).map(([k, v]) => `<i class="c-led" data-led="${k}" style="left:${v[0]}%;top:${v[1]}%"></i>`).join('');
+  const tg = tags ? Object.entries(ROOMS.rooms).map(([k, v]) => `<span class="c-tag" data-tag="${k}" style="left:${pc(bb(v).l)};top:${pc(bb(v).t)}">${D.roomNames[k]}</span>`).join('') : '';
+  const lz = Object.entries(ROOMS.rooms).map(([k, v]) => {
+    const b = bb(v), w = b.r - b.l, h = b.b - b.t, win = ROOMS.windows[k], u = ROOMS.units[k];
+    return `<div class="luz" data-room="${k}" style="left:${pc(b.l)};top:${pc(b.t)};width:${pc(w)};height:${pc(h)};--wx:${pc((win[0] - b.l) / w * 100)};--wy:${pc((win[1] - b.t) / h * 100)};--ux:${pc((u[0] - b.l) / w * 100)};--uy:${pc((u[1] - b.t) / h * 100)}"></div>`;
+  }).join('');
+  const leds = Object.entries(ROOMS.units).map(([k, v]) => `<i class="c-led" data-led="${k}" style="left:${pc(v[0])};top:${pc(v[1])}"></i>`).join('');
+  const s = bb(ROOMS.rooms.sala), bn = bb(ROOMS.rooms.banho);
+  const ct = cotas ? `<span class="c-cota h" aria-hidden="true" style="left:${pc(s.l)};right:${pc(100 - bn.r)};top:${pc(s.b + 4.2)}"><span>8,40 m</span></span><span class="c-cota v" aria-hidden="true" style="left:${pc(s.l - 2.4)};top:${pc(s.t)};height:${pc(s.b - s.t)}"><span>2,80 m</span></span>` : '';
   return `<div class="corte-view" id="${id}"><div class="corte-stage">
-    ${pic(dark ? 'corte-dark' : 'corte', { alt: dark ? 'Maquete da casa em corte, com todas as divisões às escuras' : 'Maquete da casa em corte: sala e casa de banho no rés-do-chão, quarto e escritório no piso de cima', sizes, prio, lazy: !prio })}
-    <div class="corte-dim"></div>${lz}${leds}${tg}
-    ${cotas ? '<span class="c-cota h" aria-hidden="true"><span>8,40 m</span></span><span class="c-cota v" aria-hidden="true"><span>2,80 m</span></span>' : ''}
+    ${pic(dark ? 'corte-dark' : 'corte', { alt: dark ? 'Maquete da casa em corte, com todas as divisões às escuras' : 'Maquete da casa em corte: sala e casa de banho no rés-do-chão, quarto e escritório no piso de cima, sótão com arrumos', sizes, prio, lazy: !prio })}
+    ${lz}${leds}${tg}${ct}
   </div></div>`;
 }
 function diagnosis({ withPhotos = false, h = 'Qual é o teu problema?', sub = 'Escolhe o que sentes em casa. A divisão acende na maquete.' } = {}) {
@@ -184,13 +192,13 @@ function diagnosis({ withPhotos = false, h = 'Qual é o teu problema?', sub = 'E
     <div class="diag-block">
       <div class="prog" aria-hidden="true"><i class="is-on"></i><i data-p2></i><span id="prog-t">1 de 2</span></div>
       <h2 class="h2 split" id="diag-h">${h}</h2>
-      <p class="lede" style="margin-top:12px">${sub}</p>
+      <p class="lede mt-12">${sub}</p>
       ${photos}
       <div class="opts" role="radiogroup" aria-labelledby="diag-h"${withPhotos ? ' hidden' : ''} id="probs">${probs}</div>
     </div>
     <div class="diag-block">
       <h3 class="h3" id="room-h">Em que divisão?</h3>
-      <p class="small" style="margin-top:6px">Sugerimos uma. Podes trocar.</p>
+      <p class="small mt-6">Sugerimos uma. Podes trocar.</p>
       <div class="opts" role="radiogroup" aria-labelledby="room-h" id="rooms">${rooms}</div>
     </div>
     <p class="sr" aria-live="polite" id="diag-live"></p>
@@ -207,7 +215,7 @@ function diagnosis({ withPhotos = false, h = 'Qual é o teu problema?', sub = 'E
         </dl>
         <div class="cmp"><span>Agora</span><input type="range" min="0" max="1" step="1" value="0" id="cmp" aria-label="Comparar agora com a solução" aria-valuetext="Agora"><span>Com a solução</span></div>
         <div class="row"><a class="btn" id="res-quote" href="orcamento.html">Pedir orçamento ${I.arrow}</a><a class="btn-2" id="res-prod" href="produto.html">Ver a peça ${I.arrow}</a></div>
-        <p class="small" style="margin-top:16px">Valores indicativos para uma divisão de 20 m².</p>
+        <p class="small mt-16">Valores indicativos para uma divisão de 20 m².</p>
       </div>
     </section>
   </div>
@@ -236,22 +244,41 @@ function heroPicture(n45, n219, alt, prio = true) {
 const preloadHero = (n45, n219) => `<link rel="preload" as="image" type="image/avif" media="(max-width: 767px)" imagesrcset="${M[n45].widths.map(w => `img/${n45}-${w}.avif ${w}w`).join(', ')}" imagesizes="100vw" fetchpriority="high">
 <link rel="preload" as="image" type="image/avif" media="(min-width: 768px)" imagesrcset="${M[n219].widths.map(w => `img/${n219}-${w}.avif ${w}w`).join(', ')}" imagesizes="100vw" fetchpriority="high">
 `;
-const closing = (h = 'Diz-nos o que se passa em casa.', cta = 'Pedir orçamento') => `<section class="sec close" aria-labelledby="close-h"><div class="grid">
-  <div class="close-h"><h2 class="d-l split" id="close-h">${h}</h2><p class="lede" style="margin-top:16px">Respondemos no mesmo dia útil, com uma proposta ou uma data para a visita.</p></div>
-  <div class="close-a"><a class="btn" href="orcamento.html">${cta} ${I.arrow}</a></div>
+const closing = (h = 'Diz-nos o que se passa em casa.', cta = 'Pedir orçamento', href = 'orcamento.html') => `<section class="sec close" aria-labelledby="close-h"><div class="grid">
+  <div class="close-h"><h2 class="d-l split" id="close-h">${h}</h2><p class="lede mt-16">Passos curtos: a casa, as divisões, a estimativa com instalação, a visita técnica e uma revisão antes de enviar. Só pagas depois de confirmarmos o equipamento.</p></div>
+  <div class="close-a"><a class="btn" href="${href}">${cta} ${I.arrow}</a></div>
 </div></section>`;
+
+
+/* ---------- mini-casa (SVG): entrada do funil e passo 2 ---------- */
+// Corte simplificado: sala e casa de banho no rés-do-chão, quarto e escritório em cima.
+/* Lugar reservado para a casa 3D em corte (conceito A). A mini-casa SVG saiu (23 nov 2026, decisão do Rhuston).
+   O 3D monta-se dentro de [data-3d-slot="casa"]; sem 3D, a lista de divisões ao lado é a interface (data-3d-fallback="casa"). */
+/* Poster primeiro (23 nov 2026): o poster AVIF do capítulo «Casa» (ow-casa3d/COREOGRAFIA.md) pinta o lugar e é a imagem LCP
+   onde o lugar abre o ecrã; a cena three.js (js/casa3d-cena.js) só se importa depois de um toque no lugar, ou em idle com o
+   lugar visível e nunca antes do `load` (js/casa3d.js). Poster provisório: still da cena de estudo, não é o modelo final. */
+const CASA_ALT = 'Corte 3D de uma casa de dois pisos, com a sala, o quarto, o escritório, a casa de banho e a unidade exterior na fachada lateral';
+function casaPoster({ prio = false } = {}) {
+  const s = (n, ext) => M[n].widths.map(w => `img/${n}-${w}.${ext} ${w}w`).join(', ');
+  return `<picture class="slot3d-p"><source type="image/avif" media="(max-width: 767px)" srcset="${s('casa-poster-45', 'avif')}" sizes="calc(100vw - 40px)"><source type="image/webp" media="(max-width: 767px)" srcset="${s('casa-poster-45', 'webp')}" sizes="calc(100vw - 40px)"><source type="image/avif" srcset="${s('casa-poster', 'avif')}" sizes="(min-width: 1024px) 45vw, 100vw"><source type="image/webp" srcset="${s('casa-poster', 'webp')}" sizes="(min-width: 1024px) 45vw, 100vw"><img src="img/casa-poster-960.webp" alt="${CASA_ALT}" width="${M['casa-poster'].w}" height="${M['casa-poster'].h}"${prio ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"'}></picture>`;
+}
+function casaSlot({ mode = 'explorar', prio = false, hidden = false } = {}) {
+  const cls = mode === 'escolher' ? 'fn-casa slot3d' : 'slot3d';
+  return `<div class="${cls}" data-3d-slot="casa" data-3d-mode="${mode}" data-3d-state="poster"${hidden ? ' hidden' : ''}>${casaPoster({ prio })}<button class="slot3d-go" type="button" data-3d-go hidden>${I.cube}<span>Explorar em 3D</span></button><p class="slot3d-c">Corte · pé-direito 2,70 m</p><p class="sr" role="status" data-3d-msg></p></div>`;
+}
+const ROOM_ORDER = ['sala', 'quarto', 'escritorio', 'banho'];
 
 /* ---------- css, data.js, sitemap ---------- */
 const PAGES = [];
 function finish() {
-  const css = ['tokens.css', 'fonts.css', 'site.css'].map(f => fs.readFileSync(`${ROOT}/css/${f}`, 'utf8')).join('\n')
+  const css = ['tokens.css', 'fonts.css', 'site.css', 'funil.css'].map(f => fs.readFileSync(`${ROOT}/css/${f}`, 'utf8')).join('\n')
     .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n').replace(/\n+/g, '\n').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}');
-  fs.writeFileSync(`${ROOT}/css/gw.css`, css.trim() + '\n');
-  const data = { products: D.products.map(p => ({ ref: p.ref, name: p.name, short: p.short, price: p.price, slug: p.slug })), problems: D.problems.map(p => ({ id: p.id, label: p.label, room: p.room })), answers: D.answers, recs: D.recs, comfort: D.comfort, comfortUnits: D.comfortUnits, roomNames: D.roomNames, rooms: { rooms: ROOMS.rooms } };
+  fs.writeFileSync(`${ROOT}/css/gw.css`, `:root{--car:${ROOMS.w} / ${ROOMS.h}}` + css.trim() + '\n');
+  const data = { cats: D.cats, products: D.products.map(p => ({ ref: p.ref, name: p.name, short: p.short, price: p.price, slug: p.slug, cat: p.cat, fn: p.fn, rooms: p.rooms, desc: p.desc, lede: p.lede, stock: p.stock, power: p.power })), problems: D.problems.map(p => ({ id: p.id, label: p.label, room: p.room })), answers: D.answers, recs: D.recs, comfort: D.comfort, comfortUnits: D.comfortUnits, roomNames: D.roomNames, rooms: { rooms: ROOMS.rooms, ar: ROOMS.h / ROOMS.w } };
   fs.writeFileSync(`${ROOT}/js/data.js`, '/* gerado por tools/build.mjs */\nwindow.GW=' + JSON.stringify(data) + ';\n');
   const files = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && f !== '404.html').sort((a, b) => a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b));
   fs.writeFileSync(`${ROOT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map(f => `  <url><loc>${BASE}${f === 'index.html' ? '' : f}</loc></url>`).join('\n')}\n</urlset>\n`);
   console.log('css', css.length, 'bytes; data.js; sitemap', files.length);
 }
 
-export { finish, I, WM, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, ROOT };
+export { casaSlot, ROOM_ORDER, finish, I, WM, pic, pImg, P, page, card, corte, diagnosis, video, heroPicture, preloadHero, closing, eur, esc, D, ROOMS, M, BASE, ROOT };

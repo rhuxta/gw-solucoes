@@ -42,6 +42,14 @@ Licença: https://mixkit.co/license/#videoFree (verificada na página do clip). 
 - **Produtos** (`p-*`): 10 modelos procedimentais em `scripts/products.py`, render 1200×1500 com fundo `--grey-10`. 10 renders somam 199 KB em AVIF (todas as larguras).
 - **UI-25 3D**: `3d/ui-25.glb`, 27 KB (Draco), uma animação `explode` (30 fotogramas a 24 fps), juntada com glTF-Transform. Visor `vendor/model-viewer.min.js` 4.4.0 (Apache-2.0), 1,07 MB em bruto e 282 KB em gzip, só se carrega quando se pede o 3D (no desktop, ao aproximar a secção). Total do 3D por rede ≈ 310 KB (limite: 600 KB).
 
+## Casa em corte — poster provisório (three.js, feito por nós)
+
+| Ficheiro | Origem | Uso | Peso |
+|---|---|---|---|
+| `casa-poster-960/1440.{avif,webp}`, `casa-poster-45-480/780.{avif,webp}` | Render headless da cena de estudo `/workspace/vision/ow-casa3d/scene.js` (capítulo «Casa», `render-stops.mjs casa poster`), 23 nov 2026 | Poster do lugar `[data-3d-slot="casa"]` (entrada da home e de Soluções; passo 2 quando o 3D existir) | AVIF 5–22 KB |
+
+Provisório: é um estudo de coreografia sobre a cena procedural, não o modelo final. Substituir pelos posters da cena de produção (PLANO.md, etapa 4).
+
 ## Vídeo (codificação própria)
 
 Grade comum (ffmpeg): saturação 0,9, balanço frio ligeiro, pretos levantados. Sem som, em loop, com poster, carregado só depois do `load` e nunca com `prefers-reduced-motion` ou Save-Data.
